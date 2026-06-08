@@ -1,0 +1,19 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Word lock files
+~$*
+
+# Editor cruft
+.vscode/
+.idea/
+*.swp
+*~
+
+# Local temp
+*.log
+
+# Documenti interni di progetto (non destinati al sito pubblico)
+Documento informazioni/
