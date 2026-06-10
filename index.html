@@ -144,10 +144,10 @@
     }
 
     /* <picture> is layout-transparent — slide/grid styles target the inner <img> */
-    .hero__slides > picture,
-    .about__img > picture,
-    .evento__photo > picture,
-    .lightbox__slides > picture {
+    .hero__slides>picture,
+    .about__img>picture,
+    .evento__photo>picture,
+    .lightbox__slides>picture {
       display: contents;
     }
 
@@ -2676,7 +2676,7 @@
       transition: transform .25s var(--ease-out);
     }
 
-    .menu__sub[open] > .menu__sub__head .menu__sub__chevron {
+    .menu__sub[open]>.menu__sub__head .menu__sub__chevron {
       transform: rotate(180deg);
     }
 
@@ -2692,12 +2692,21 @@
     }
 
     @keyframes subIn {
-      from { opacity: 0; transform: translateY(-4px); }
-      to   { opacity: 1; transform: translateY(0); }
+      from {
+        opacity: 0;
+        transform: translateY(-4px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .menu__sub__body { animation: none; }
+      .menu__sub__body {
+        animation: none;
+      }
     }
 
     .menu__sub__intro {
@@ -2764,10 +2773,12 @@
         padding: 16px 2px;
         font-size: 10.5px;
       }
+
       .menu__flavors {
         grid-template-columns: 1fr 1fr;
         gap: 4px 18px;
       }
+
       .menu__flavor {
         font-size: 15px;
       }
@@ -3653,7 +3664,8 @@
                 <img class="hero__img hero__slide" src="Immagini/hero/IMG_8037-1280w.jpg"
                   srcset="Immagini/hero/IMG_8037-640w.jpg 640w, Immagini/hero/IMG_8037-1280w.jpg 1280w, Immagini/hero/IMG_8037-1920w.jpg 1920w"
                   sizes="(max-width: 900px) 100vw, 50vw" width="1920" height="1280"
-                  alt="Sala interna del Ristorante Tennis 23 con tavoli apparecchiati" loading="lazy" decoding="async" />
+                  alt="Sala interna del Ristorante Tennis 23 con tavoli apparecchiati" loading="lazy"
+                  decoding="async" />
               </picture>
               <picture>
                 <source type="image/webp"
@@ -3734,10 +3746,10 @@
           <div class="about__img reveal">
             <picture>
               <source type="image/webp"
-                srcset="Immagini/pizza-forno-legna-opt-640w.webp 640w, Immagini/pizza-forno-legna-opt-1280w.webp 1280w, Immagini/pizza-forno-legna-opt-1400w.webp 1400w"
+                srcset="Immagini/pizza-forno-legna-opt-640w.webp 640w, Immagini/pizza-forno-legna-opt-1280w.webp 1280w, Immagini/pizza-forno-legna-opt-1920w.webp 1920w"
                 sizes="(max-width: 1024px) 100vw, 50vw" />
               <img src="Immagini/pizza-forno-legna-opt-1280w.jpg"
-                srcset="Immagini/pizza-forno-legna-opt-640w.jpg 640w, Immagini/pizza-forno-legna-opt-1280w.jpg 1280w, Immagini/pizza-forno-legna-opt-1400w.jpg 1400w"
+                srcset="Immagini/pizza-forno-legna-opt-640w.jpg 640w, Immagini/pizza-forno-legna-opt-1280w.jpg 1280w, Immagini/pizza-forno-legna-opt-1920w.jpg 1920w"
                 sizes="(max-width: 1024px) 100vw, 50vw"
                 alt="Pizza margherita appena sfornata dal forno a legna del Ristorante Tennis 23" width="1400"
                 height="933" loading="lazy" decoding="async" />
@@ -3803,7 +3815,8 @@
         </div>
 
         <nav class="menu__nav" aria-label="Categorie del menu" role="tablist">
-          <a href="#menu-antipasti" class="is-active" role="tab" aria-selected="true" data-i18n="menu.tab.antipasti">Antipasti</a>
+          <a href="#menu-antipasti" class="is-active" role="tab" aria-selected="true"
+            data-i18n="menu.tab.antipasti">Antipasti</a>
           <a href="#menu-primi" role="tab" aria-selected="false" data-i18n="menu.tab.primi">Primi</a>
           <a href="#menu-secondi" role="tab" aria-selected="false" data-i18n="menu.tab.secondi">Secondi</a>
           <a href="#menu-bambini" role="tab" aria-selected="false" data-i18n="menu.tab.bambini">Per i bambini</a>
@@ -3835,14 +3848,16 @@
             <article class="menu-row">
               <div>
                 <p class="menu-row__name" data-i18n="ant.3.n">Insalata greca</p>
-                <p class="menu-row__desc" data-i18n="ant.3.d">Peperoni, feta, cetrioli, cipolle rosse, olive, salsa yogurt</p>
+                <p class="menu-row__desc" data-i18n="ant.3.d">Peperoni, feta, cetrioli, cipolle rosse, olive, salsa
+                  yogurt</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;17.50</span>
             </article>
             <article class="menu-row">
               <div>
                 <p class="menu-row__name" data-i18n="ant.4.n">Caesar salad</p>
-                <p class="menu-row__desc" data-i18n="ant.4.d">Insalata iceberg, pollo CBT, parmigiano, salsa caesar, crostini</p>
+                <p class="menu-row__desc" data-i18n="ant.4.d">Insalata iceberg, pollo CBT, parmigiano, salsa caesar,
+                  crostini</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;16.50</span>
             </article>
@@ -3939,7 +3954,8 @@
             <article class="menu-row">
               <div>
                 <p class="menu-row__name" data-i18n="sec.1.n">Smashed burger</p>
-                <p class="menu-row__desc" data-i18n="sec.1.d">Carne di manzo, formaggio, insalata, pomodoro, cipolle, salsa, patatine fritte
+                <p class="menu-row__desc" data-i18n="sec.1.d">Carne di manzo, formaggio, insalata, pomodoro, cipolle,
+                  salsa, patatine fritte
                 </p>
               </div>
               <span class="menu-row__price">Fr&nbsp;25.80</span>
@@ -3954,7 +3970,8 @@
             <article class="menu-row">
               <div>
                 <p class="menu-row__name" data-i18n="sec.3.n">Cordon bleu di maiale</p>
-                <p class="menu-row__desc" data-i18n="sec.3.d">Formaggio d'alpeggio, prosciutto crudo, patatine fritte, verdure</p>
+                <p class="menu-row__desc" data-i18n="sec.3.d">Formaggio d'alpeggio, prosciutto crudo, patatine fritte,
+                  verdure</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;31.80</span>
             </article>
@@ -4049,7 +4066,8 @@
             <article class="menu-row">
               <div>
                 <p class="menu-row__name" data-i18n="piz.6.n">4 stagioni</p>
-                <p class="menu-row__desc" data-i18n="piz.6.d">Pomodoro, mozzarella, prosciutto cotto, champignon, carciofi, olive nere</p>
+                <p class="menu-row__desc" data-i18n="piz.6.d">Pomodoro, mozzarella, prosciutto cotto, champignon,
+                  carciofi, olive nere</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;21.50</span>
             </article>
@@ -4063,11 +4081,13 @@
             <article class="menu-row">
               <div>
                 <p class="menu-row__name" data-i18n="piz.8.n">Tricolore</p>
-                <p class="menu-row__desc" data-i18n="piz.8.d">Pomodoro, mozzarella, rucola, pomodori cherry, mozzarella di bufala</p>
+                <p class="menu-row__desc" data-i18n="piz.8.d">Pomodoro, mozzarella, rucola, pomodori cherry, mozzarella
+                  di bufala</p>
               </div>
               <div class="menu-row__price-list">
                 <span class="menu-row__price">Fr&nbsp;22.00</span>
-                <span class="menu-row__price menu-row__price--small" data-i18n="piz.8.p2">con burrata · Fr&nbsp;23.00</span>
+                <span class="menu-row__price menu-row__price--small" data-i18n="piz.8.p2">con burrata ·
+                  Fr&nbsp;23.00</span>
               </div>
             </article>
             <article class="menu-row">
@@ -4166,7 +4186,8 @@
             <details class="menu__sub" open>
               <summary class="menu__sub__head">
                 <span class="menu__sub__head__label" data-i18n="gel.coppe.label">Coppe</span>
-                <svg class="menu__sub__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg class="menu__sub__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M6 9l6 6 6-6" />
                 </svg>
               </summary>
@@ -4209,7 +4230,8 @@
                 <article class="menu-row">
                   <div>
                     <p class="menu-row__name" data-i18n="gel.6.n">Forziere</p>
-                    <p class="menu-row__desc" data-i18n="gel.6.d">Un sacco tutto da scoprire, una sorpresa con gelato alla vaniglia e cioccolato</p>
+                    <p class="menu-row__desc" data-i18n="gel.6.d">Un sacco tutto da scoprire, una sorpresa con gelato
+                      alla vaniglia e cioccolato</p>
                   </div>
                   <span class="menu-row__price">Fr&nbsp;9.50</span>
                 </article>
@@ -4257,7 +4279,8 @@
                   <span data-i18n="gel.gusti.label">Gusti</span>
                   <span class="menu__sub__head__hint" data-i18n="gel.gusti.hint">Fr&nbsp;3.50 / pallina</span>
                 </span>
-                <svg class="menu__sub__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <svg class="menu__sub__chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
                   <path d="M6 9l6 6 6-6" />
                 </svg>
               </summary>
@@ -4283,10 +4306,14 @@
                 <div class="menu__sub__group">
                   <p class="menu__sub__group__title" data-i18n="gel.sorbetti.label">Sorbetti</p>
                   <div class="menu__flavors">
-                    <span class="menu__flavor"><span data-i18n="gel.s1">Limone</span> <span class="vegan">Vegan</span></span>
-                    <span class="menu__flavor"><span data-i18n="gel.s2">Arancia</span> <span class="vegan">Vegan</span></span>
-                    <span class="menu__flavor"><span data-i18n="gel.s3">Uva</span> <span class="vegan">Vegan</span></span>
-                    <span class="menu__flavor"><span data-i18n="gel.s4">Frutto della Passione</span> <span class="vegan">Vegan</span></span>
+                    <span class="menu__flavor"><span data-i18n="gel.s1">Limone</span> <span
+                        class="vegan">Vegan</span></span>
+                    <span class="menu__flavor"><span data-i18n="gel.s2">Arancia</span> <span
+                        class="vegan">Vegan</span></span>
+                    <span class="menu__flavor"><span data-i18n="gel.s3">Uva</span> <span
+                        class="vegan">Vegan</span></span>
+                    <span class="menu__flavor"><span data-i18n="gel.s4">Frutto della Passione</span> <span
+                        class="vegan">Vegan</span></span>
                   </div>
                 </div>
               </div>
@@ -4319,8 +4346,8 @@
         <header class="eventi__head">
           <div>
             <span class="eyebrow" data-i18n="eventi.eyebrow">Eventi &amp; occasioni</span>
-            <h2 class="section-title" data-i18n-html="eventi.title">Cosa <em>succede</em><br>al Ristorante <span class="num">23</span><span
-                class="dot">.</span></h2>
+            <h2 class="section-title" data-i18n-html="eventi.title">Cosa <em>succede</em><br>al Ristorante <span
+                class="num">23</span><span class="dot">.</span></h2>
           </div>
           <div>
             <p class="section-lead" data-i18n="eventi.lead">
@@ -4354,8 +4381,10 @@
               </div>
             </div>
             <div class="evento__body">
-              <h3 class="evento__title" data-i18n-html="eventi.e1.title">I Mondiali,<br><em>sul grande schermo.</em></h3>
-              <p class="evento__text" data-i18n="eventi.e1.text">Tutte le partite della Coppa del Mondo in diretta sul maxi schermo in terrazza.
+              <h3 class="evento__title" data-i18n-html="eventi.e1.title">I Mondiali,<br><em>sul grande schermo.</em>
+              </h3>
+              <p class="evento__text" data-i18n="eventi.e1.text">Tutte le partite della Coppa del Mondo in diretta sul
+                maxi schermo in terrazza.
                 Griglia accesa, birre alla spina, specialità del weekend.</p>
               <div class="evento__cta">
                 <span data-i18n="eventi.e1.cta">Prenota il tuo tavolo</span>
@@ -4387,8 +4416,10 @@
               </div>
             </div>
             <div class="evento__body">
-              <h3 class="evento__title" data-i18n-html="eventi.e2.title">Nel weekend in serata,<br><em>griglia sempre accesa.</em></h3>
-              <p class="evento__text" data-i18n="eventi.e2.text">Da maggio a settembre, due sere a settimana la griglia resta accesa fino a tardi.
+              <h3 class="evento__title" data-i18n-html="eventi.e2.title">Nel weekend in serata,<br><em>griglia sempre
+                  accesa.</em></h3>
+              <p class="evento__text" data-i18n="eventi.e2.text">Da maggio a settembre, due sere a settimana la griglia
+                resta accesa fino a tardi.
                 Carne ticinese alla brace, verdure dell'orto e aperitivo al tramonto sui campi in terra battuta.</p>
               <div class="evento__cta">
                 <span data-i18n="eventi.e2.cta">Menu del weekend</span>
@@ -4420,8 +4451,10 @@
               </div>
             </div>
             <div class="evento__body">
-              <h3 class="evento__title" data-i18n-html="eventi.e3.title">Spazi riservabili,<br><em>per eventi privati.</em></h3>
-              <p class="evento__text" data-i18n="eventi.e3.text">Spazi riservabili per eventi privati. Chiamaci oppure scrivici e ti diremo come
+              <h3 class="evento__title" data-i18n-html="eventi.e3.title">Spazi riservabili,<br><em>per eventi
+                  privati.</em></h3>
+              <p class="evento__text" data-i18n="eventi.e3.text">Spazi riservabili per eventi privati. Chiamaci oppure
+                scrivici e ti diremo come
                 fare.</p>
               <div class="evento__cta">
                 <span data-i18n="eventi.e3.cta">Chiama 091 751 11 16</span>
@@ -4484,11 +4517,14 @@
               <div class="hours-row"><b data-i18n="info.day.tue">Martedì</b><span>08:00 — 23:00</span></div>
               <div class="hours-row"><b data-i18n="info.day.wed">Mercoledì</b><span>08:00 — 23:00</span></div>
               <div class="hours-row"><b data-i18n="info.day.thu">Giovedì</b><span>08:00 — 23:00</span></div>
-              <div class="hours-row"><b data-i18n="info.day.fri">Venerdì</b><span data-i18n="info.hours.fri">08:00 — 23:00 · griglia</span></div>
-              <div class="hours-row"><b data-i18n="info.day.sat">Sabato</b><span data-i18n="info.hours.sat">08:00 — 23:00 · griglia</span></div>
+              <div class="hours-row"><b data-i18n="info.day.fri">Venerdì</b><span data-i18n="info.hours.fri">08:00 —
+                  23:00 · griglia</span></div>
+              <div class="hours-row"><b data-i18n="info.day.sat">Sabato</b><span data-i18n="info.hours.sat">08:00 —
+                  23:00 · griglia</span></div>
               <div class="hours-row"><b data-i18n="info.day.sun">Domenica</b><span>08:00 — 23:00</span></div>
             </div>
-            <p style="font-size:13.5px;color:var(--ink-mute);margin:4px 0 0;line-height:1.55;" data-i18n="info.hours.note">
+            <p style="font-size:13.5px;color:var(--ink-mute);margin:4px 0 0;line-height:1.55;"
+              data-i18n="info.hours.note">
               Dalla colazione all'aperitivo, cucina aperta a pranzo e cena.
               Per gruppi e occasioni speciali ti chiediamo di chiamarci,
               così possiamo prepararci come si deve.
@@ -4516,7 +4552,8 @@
           <div class="rf-row">
             <label class="rf-field">
               <span data-i18n="form.name">Nome e cognome</span>
-              <input type="text" name="nome" required autocomplete="name" placeholder="Mario Rossi" data-i18n-ph="form.name.ph" />
+              <input type="text" name="nome" required autocomplete="name" placeholder="Mario Rossi"
+                data-i18n-ph="form.name.ph" />
             </label>
           </div>
 
@@ -4597,13 +4634,15 @@
           <div class="rf-row">
             <label class="rf-field">
               <span data-i18n-html="form.notes">Note <em>(facoltative)</em></span>
-              <textarea name="note" rows="3" placeholder="Allergie, tavolo all'ombra, compleanno…" data-i18n-ph="form.notes.ph"></textarea>
+              <textarea name="note" rows="3" placeholder="Allergie, tavolo all'ombra, compleanno…"
+                data-i18n-ph="form.notes.ph"></textarea>
             </label>
           </div>
 
           <label class="rf-consent">
             <input type="checkbox" name="privacy" required />
-            <span data-i18n-html="form.consent">Ho letto e accetto l'<a href="privacy.html" target="_blank" rel="noopener">informativa
+            <span data-i18n-html="form.consent">Ho letto e accetto l'<a href="privacy.html" target="_blank"
+                rel="noopener">informativa
                 privacy</a>.</span>
           </label>
 
