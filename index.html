@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#1C1917" />
   <title>Ristorante 23 · Pizzeria · Tennis Club Locarno</title>
   <meta name="description"
-    content="Ristorante 23 al Tennis Club Locarno — aperto a tutti. Caffè, pranzo, aperitivo, cena. Pizza al forno a legna (anche senza glutine), griglia del weekend, Mondiali al maxi schermo. Via Ballerini 1, Locarno." />
+    content="Ristorante 23 al Tennis Club Locarno — aperto a tutti. Caffè, pranzo, aperitivo, cena. Pizza al forno a legna (anche senza glutine), griglia del weekend, Mondiali 2026 in terrazza. Via Ballerini 1, Locarno." />
 
   <link rel="canonical" href="https://ristorante23.ch/" />
 
@@ -1135,15 +1135,12 @@
 
       .hero__alert-text {
         font-size: 12px;
-        gap: 6px;
+        gap: 2px 6px;
+        flex-wrap: wrap;
       }
 
       .hero__alert-text em {
         font-size: 14px;
-      }
-
-      .hero__alert-text span {
-        display: none;
       }
     }
 
@@ -3637,7 +3634,7 @@
               </span>
               <span class="hero__alert-text">
                 <em data-i18n="hero.alertTitle">Mondiali 2026</em>
-                <span data-i18n="hero.alertText">al maxi schermo, in terrazza</span>
+                <span data-i18n="hero.alertText">direttamente in terrazza</span>
               </span>
               <svg class="hero__alert-arr" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
                 stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
@@ -4570,7 +4567,7 @@
             </figcaption>
             <div class="info-map__embed">
               <iframe
-                src="https://maps.google.com/maps?q=46.1658073,8.8021173&amp;t=k&amp;z=18&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
+                src="https://maps.google.com/maps?q=46.1658073,8.8021173&amp;t=k&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
                 title="Mappa della posizione del Ristorante 23 in Via Francesco Ballerini 1, Locarno" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
             </div>
@@ -5134,7 +5131,7 @@
         de: {
           /* meta */
           'meta.title': 'Ristorante 23 · Restaurant & Pizzeria · Tennis Club Locarno',
-          'meta.description': 'Ristorante 23 im Tennis Club Locarno — offen für alle. Kaffee, Mittag, Aperitif, Abendessen. Pizza aus dem Holzofen (auch glutenfrei), Wochenend-Grill, WM auf der Großleinwand. Via Ballerini 1, Locarno.',
+          'meta.description': 'Ristorante 23 im Tennis Club Locarno — offen für alle. Kaffee, Mittag, Aperitif, Abendessen. Pizza aus dem Holzofen (auch glutenfrei), Wochenend-Grill, WM 2026 auf der Terrasse. Via Ballerini 1, Locarno.',
           /* nav */
           'nav.restaurant': 'Restaurant',
           'nav.menu': 'Speisekarte',
@@ -5146,7 +5143,7 @@
           'drawer.bookBtn': 'Tisch reservieren',
           /* hero */
           'hero.alertTitle': 'WM 2026',
-          'hero.alertText': 'auf der Großleinwand, auf der Terrasse',
+          'hero.alertText': 'direkt auf der Terrasse',
           'hero.title': '<span class="nowrap">Pizza <span class="amp">&amp;</span> Küche</span><br class="br-desktop" /> <span class="nowrap">im Ristorante <span class="num">23</span></span>',
           'hero.sub': '<strong>Restaurant für alle, im Tennis Club Locarno.</strong> Eingebettet in den Bosco Isolino und nur einen Steinwurf vom See entfernt: Pizza aus dem Holzofen, Grillabende am Wochenende und mediterrane Küche.',
           'hero.bookBtn': 'Tisch reservieren',
@@ -5392,7 +5389,7 @@
         en: {
           /* meta */
           'meta.title': 'Ristorante 23 · Restaurant & Pizzeria · Tennis Club Locarno',
-          'meta.description': 'Ristorante 23 at the Tennis Club Locarno — open to everyone. Coffee, lunch, aperitif, dinner. Wood-fired pizza (also gluten-free), weekend grill, World Cup on the big screen. Via Ballerini 1, Locarno.',
+          'meta.description': 'Ristorante 23 at the Tennis Club Locarno — open to everyone. Coffee, lunch, aperitif, dinner. Wood-fired pizza (also gluten-free), weekend grill, World Cup 2026 on the terrace. Via Ballerini 1, Locarno.',
           /* nav */
           'nav.restaurant': 'Restaurant',
           'nav.menu': 'Menu',
@@ -5404,7 +5401,7 @@
           'drawer.bookBtn': 'Book a table',
           /* hero */
           'hero.alertTitle': 'World Cup 2026',
-          'hero.alertText': 'on the big screen, on the terrace',
+          'hero.alertText': 'directly on the terrace',
           'hero.title': '<span class="nowrap">Pizza <span class="amp">&amp;</span> kitchen</span><br class="br-desktop" /> <span class="nowrap">at Ristorante <span class="num">23</span></span>',
           'hero.sub': '<strong>Restaurant open to the public, inside the Tennis Club Locarno.</strong> Nestled in the Bosco Isolino woods, a stone\'s throw from the lake: wood-fired pizza, weekend grill nights and Mediterranean cuisine.',
           'hero.bookBtn': 'Book a table',
@@ -5753,7 +5750,7 @@
         var metaDesc = document.querySelector('meta[name="description"]');
         if (metaDesc) {
           if (dict && dict['meta.description']) metaDesc.setAttribute('content', dict['meta.description']);
-          else metaDesc.setAttribute('content', 'Ristorante 23 al Tennis Club Locarno — aperto a tutti. Caffè, pranzo, aperitivo, cena. Pizza al forno a legna (anche senza glutine), griglia del weekend, Mondiali al maxi schermo. Via Ballerini 1, Locarno.');
+          else metaDesc.setAttribute('content', 'Ristorante 23 al Tennis Club Locarno — aperto a tutti. Caffè, pranzo, aperitivo, cena. Pizza al forno a legna (anche senza glutine), griglia del weekend, Mondiali 2026 in terrazza. Via Ballerini 1, Locarno.');
         }
 
         /* legal links */
