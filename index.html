@@ -1549,6 +1549,14 @@
       color: var(--ink-mute);
       margin: 0;
       flex: 1;
+      text-align: justify;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+
+    .evento__text strong {
+      font-weight: 700;
+      color: var(--ink);
     }
 
     .evento__cta {
@@ -1771,6 +1779,65 @@
       text-transform: uppercase;
       color: var(--gold);
       line-height: 1.5;
+    }
+
+    /* Orario cucina — pill liquid glass con icona orologio */
+    .about__copy p.about__hours {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      margin: 6px 0 24px;
+      padding: 11px 21px 11px 16px;
+      border-radius: 999px;
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.25;
+      letter-spacing: .015em;
+      color: var(--ink-soft);
+      background: linear-gradient(180deg, rgba(255, 255, 255, .82), rgba(254, 252, 246, .5));
+      border: 1px solid rgba(182, 135, 58, .22);
+      box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, .85);
+      -webkit-backdrop-filter: blur(10px) saturate(1.1);
+      backdrop-filter: blur(10px) saturate(1.1);
+    }
+
+    .about__hours__ico {
+      flex: none;
+      width: 18px;
+      height: 18px;
+      color: var(--gold);
+    }
+
+    .about__copy p.about__hours span {
+      padding-left: 13px;
+      border-left: 1px solid rgba(182, 135, 58, .25);
+    }
+
+    .about__copy p.about__hours strong {
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: .03em;
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Orario in evidenza nella nota orari in fondo */
+    .hours-note {
+      text-align: justify;
+      -webkit-hyphens: auto;
+      hyphens: auto;
+    }
+
+    .hours-note strong {
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: .01em;
+      font-variant-numeric: tabular-nums;
+      white-space: nowrap;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1.5px;
     }
 
     .about__sign {
@@ -3464,8 +3531,8 @@
       {
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "08:00",
-        "closes": "23:00"
+        "opens": "08:30",
+        "closes": "22:30"
       }
     ],
     "menu": "https://ristorante23.ch/#menu",
@@ -3729,7 +3796,7 @@
             <span class="strip-item__icon is-live" aria-hidden="true"></span>
             <div>
               <small data-i18n="hero.strip.openLabel">Aperto oggi</small>
-              <strong>08:00 — 23:00</strong>
+              <strong>08:30 — 22:30</strong>
             </div>
           </div>
           <div class="strip-item">
@@ -3787,6 +3854,14 @@
             <h2 class="section-title" data-i18n-html="about.title">La pizza, <em>cotta nel forno a legna</em>.</h2>
             <p class="lead" data-i18n="about.lead">
               Scopri il sapore delle nostre pizze, fragranti e profumate.
+            </p>
+            <p class="about__hours" role="note">
+              <svg class="about__hours__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <path d="M12 7.5V12l3 1.8" />
+              </svg>
+              <span data-i18n-html="about.hours">La cucina resta aperta fino alle <strong>21:15</strong></span>
             </p>
             <p class="about__diet" data-i18n="about.diet">
               Senza glutine &middot; Senza lattosio
@@ -4452,10 +4527,9 @@
             <div class="evento__body">
               <h3 class="evento__title" data-i18n-html="eventi.e1.title">I Mondiali,<br><em>guardali con noi.</em>
               </h3>
-              <p class="evento__text" data-i18n="eventi.e1.text">Le partite della Coppa del Mondo di calcio in diretta
-                dalla
-                nostra terrazza.
-                Goditeli in relax con la griglia accesa, birre alla spina ed i nostri piatti.</p>
+              <p class="evento__text" data-i18n-html="eventi.e1.text"><strong>Nelle serate in cui gioca la Nazionale svizzera, si accende anche la griglia.</strong>
+                Le partite della Coppa del Mondo di calcio in diretta dalla nostra terrazza:
+                goditele in relax con le birre alla spina e i nostri piatti.</p>
               <div class="evento__cta">
                 <span data-i18n="eventi.e1.cta">Prenota il tuo tavolo</span>
                 <span class="arrow" aria-hidden="true">
@@ -4584,19 +4658,19 @@
           <div class="info-card reveal">
             <h3 data-i18n="info.hours.title">Orari di apertura</h3>
             <div class="hours-table">
-              <div class="hours-row"><b data-i18n="info.day.mon">Lunedì</b><span>08:00 — 23:00</span></div>
-              <div class="hours-row"><b data-i18n="info.day.tue">Martedì</b><span>08:00 — 23:00</span></div>
-              <div class="hours-row"><b data-i18n="info.day.wed">Mercoledì</b><span>08:00 — 23:00</span></div>
-              <div class="hours-row"><b data-i18n="info.day.thu">Giovedì</b><span>08:00 — 23:00</span></div>
-              <div class="hours-row"><b data-i18n="info.day.fri">Venerdì</b><span data-i18n="info.hours.fri">08:00 —
-                  23:00 · griglia</span></div>
-              <div class="hours-row"><b data-i18n="info.day.sat">Sabato</b><span data-i18n="info.hours.sat">08:00 —
-                  23:00 · griglia</span></div>
-              <div class="hours-row"><b data-i18n="info.day.sun">Domenica</b><span>08:00 — 23:00</span></div>
+              <div class="hours-row"><b data-i18n="info.day.mon">Lunedì</b><span>08:30 — 22:30</span></div>
+              <div class="hours-row"><b data-i18n="info.day.tue">Martedì</b><span>08:30 — 22:30</span></div>
+              <div class="hours-row"><b data-i18n="info.day.wed">Mercoledì</b><span>08:30 — 22:30</span></div>
+              <div class="hours-row"><b data-i18n="info.day.thu">Giovedì</b><span>08:30 — 22:30</span></div>
+              <div class="hours-row"><b data-i18n="info.day.fri">Venerdì</b><span data-i18n="info.hours.fri">08:30 —
+                  22:30</span></div>
+              <div class="hours-row"><b data-i18n="info.day.sat">Sabato</b><span data-i18n="info.hours.sat">08:30 —
+                  22:30</span></div>
+              <div class="hours-row"><b data-i18n="info.day.sun">Domenica</b><span>08:30 — 22:30</span></div>
             </div>
-            <p style="font-size:13.5px;color:var(--ink-mute);margin:4px 0 0;line-height:1.55;"
-              data-i18n="info.hours.note">
-              Dalla colazione all'aperitivo, cucina aperta a pranzo e cena.
+            <p class="hours-note" style="font-size:13.5px;color:var(--ink-mute);margin:4px 0 0;line-height:1.55;"
+              data-i18n-html="info.hours.note">
+              Cucina aperta <strong>fino alle 21:15</strong>: dalla colazione all'aperitivo, a pranzo e a cena.
               Per gruppi e occasioni speciali ti chiediamo di chiamarci,
               così possiamo prepararci come si deve.
             </p>
@@ -5158,6 +5232,7 @@
           'about.eyebrow': 'Unsere Küche',
           'about.title': 'Die Pizza, <em>aus dem Holzofen</em>.',
           'about.lead': 'Entdecken Sie den Geschmack unserer duftenden, knusprigen Pizzen.',
+          'about.hours': 'Die Küche bleibt bis <strong>21:15 Uhr</strong> geöffnet',
           'about.diet': 'Glutenfrei · Laktosefrei',
           'about.cta': 'Die ganze Speisekarte entdecken',
           /* feat23 */
@@ -5317,17 +5392,17 @@
           'eventi.e1.tag': 'Sport',
           'eventi.e1.m': 'Jun',
           'eventi.e1.title': 'Die WM,<br><em>auf der Großleinwand.</em>',
-          'eventi.e1.text': 'Alle Spiele der Fußball-WM live auf der Großleinwand auf der Terrasse. Grill an, Bier vom Fass, Wochenend-Spezialitäten.',
+          'eventi.e1.text': '<strong>An den Abenden, an denen die Schweizer Nati spielt, wird auch gegrillt.</strong> Alle Spiele der Fußball-WM live auf der Großleinwand auf der Terrasse, bei Bier vom Fass und Wochenend-Spezialitäten.',
           'eventi.e1.cta': 'Tisch reservieren',
           'eventi.e2.tag': 'Auf der Terrasse',
           'eventi.e2.m': 'Mai–Sep',
           'eventi.e2.title': 'Am Wochenend-Abend,<br><em>immer Grill an.</em>',
-          'eventi.e2.text': 'Von Mai bis September bleibt der Grill zwei Abende pro Woche bis spät an. Tessiner Fleisch vom Grill, Gemüse aus dem Garten und Aperitif bei Sonnenuntergang auf den Sandplätzen.',
+          'eventi.e2.text': 'Von Mai bis September bleibt der Grill freitags und samstags bis spät an — in angenehmer Atmosphäre am See und am Bosco Isolino.',
           'eventi.e2.cta': 'Wochenend-Menü',
           'eventi.e3.tag': 'Auf Anfrage',
           'eventi.e3.m': 'Monate',
           'eventi.e3.title': 'Reservierbare Räume,<br><em>für private Anlässe.</em>',
-          'eventi.e3.text': 'Reservierbare Räume für private Veranstaltungen. Rufen Sie uns an oder schreiben Sie uns — wir sagen Ihnen, wie es geht.',
+          'eventi.e3.text': 'Rufen Sie uns an oder schreiben Sie uns — wir sagen Ihnen, wie es geht.',
           'eventi.e3.cta': 'Anrufen 091 751 11 16',
           /* info */
           'info.eyebrow': 'Zeiten & Ort',
@@ -5343,9 +5418,9 @@
           'info.day.fri': 'Freitag',
           'info.day.sat': 'Samstag',
           'info.day.sun': 'Sonntag',
-          'info.hours.fri': '08:00 — 23:00 · Grill',
-          'info.hours.sat': '08:00 — 23:00 · Grill',
-          'info.hours.note': 'Vom Frühstück bis zum Aperitif, Küche zu Mittag und Abend geöffnet. Für Gruppen und besondere Anlässe bitten wir Sie um einen Anruf, damit wir uns richtig vorbereiten können.',
+          'info.hours.fri': '08:30 — 22:30',
+          'info.hours.sat': '08:30 — 22:30',
+          'info.hours.note': 'Küche <strong>bis 21:15 Uhr</strong> geöffnet: vom Frühstück bis zum Aperitif, zu Mittag und Abend. Für Gruppen und besondere Anlässe bitten wir Sie um einen Anruf, damit wir uns richtig vorbereiten können.',
           /* reserve */
           'reserve.eyebrow': 'Reservierungen',
           'reserve.title': 'Ein Tisch im <em>Ristorante 23</em>.',
@@ -5416,6 +5491,7 @@
           'about.eyebrow': 'Our kitchen',
           'about.title': 'The pizza, <em>from the wood oven</em>.',
           'about.lead': 'Discover the taste of our fragrant, crisp pizzas.',
+          'about.hours': 'The kitchen stays open until <strong>21:15</strong>',
           'about.diet': 'Gluten-free · Lactose-free',
           'about.cta': 'See the full menu',
           /* feat23 */
@@ -5575,17 +5651,17 @@
           'eventi.e1.tag': 'Sport',
           'eventi.e1.m': 'Jun',
           'eventi.e1.title': 'The World Cup,<br><em>on the big screen.</em>',
-          'eventi.e1.text': 'All Football World Cup matches live on the big screen on the terrace. Grill on, draught beer, weekend specials.',
+          'eventi.e1.text': '<strong>On the evenings the Swiss national team plays, we fire up the grill too.</strong> All Football World Cup matches live on the big screen on the terrace, with draught beer and weekend specials.',
           'eventi.e1.cta': 'Book a table',
           'eventi.e2.tag': 'On the terrace',
           'eventi.e2.m': 'May–Sep',
           'eventi.e2.title': 'On weekend evenings,<br><em>the grill is always on.</em>',
-          'eventi.e2.text': 'From May to September the grill stays on late two evenings a week. Grilled Ticino meat, garden vegetables and aperitifs at sunset by the clay courts.',
+          'eventi.e2.text': 'From May to September the grill stays on late on Fridays and Saturdays, in a relaxed atmosphere by the lake and the Bosco Isolino.',
           'eventi.e2.cta': 'Weekend menu',
           'eventi.e3.tag': 'On request',
-          'eventi.e3.m': 'All year',
+          'eventi.e3.m': 'Months',
           'eventi.e3.title': 'Bookable rooms,<br><em>for private events.</em>',
-          'eventi.e3.text': 'Rooms available for private events. Call or write to us — we\'ll tell you how it works.',
+          'eventi.e3.text': 'Call or write to us — we\'ll tell you how it works.',
           'eventi.e3.cta': 'Call 091 751 11 16',
           /* info */
           'info.eyebrow': 'Hours & location',
@@ -5601,9 +5677,9 @@
           'info.day.fri': 'Friday',
           'info.day.sat': 'Saturday',
           'info.day.sun': 'Sunday',
-          'info.hours.fri': '08:00 — 23:00 · Grill',
-          'info.hours.sat': '08:00 — 23:00 · Grill',
-          'info.hours.note': 'From breakfast to aperitif, kitchen open at lunch and dinner. For groups and special occasions please call ahead so we can prepare properly.',
+          'info.hours.fri': '08:30 — 22:30',
+          'info.hours.sat': '08:30 — 22:30',
+          'info.hours.note': 'Kitchen open <strong>until 21:15</strong>: from breakfast to aperitif, at lunch and dinner. For groups and special occasions please call ahead so we can prepare properly.',
           /* reserve */
           'reserve.eyebrow': 'Reservations',
           'reserve.title': 'A table at <em>Ristorante 23</em>.',
