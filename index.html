@@ -1869,29 +1869,233 @@
       position: absolute;
       inset: 0;
       z-index: 0;
-      display: grid;
-      place-items: center;
       pointer-events: none;
       user-select: none;
+      background: radial-gradient(58% 46% at 50% 0%, rgba(217, 162, 75, .13), transparent 72%);
     }
 
-    .feat23__bg span {
+    /* Centered intro */
+    .feat23__head {
+      position: relative;
+      z-index: 2;
+      max-width: 660px;
+      margin: 0 auto;
+      text-align: center;
+    }
+
+    .feat23__head .eyebrow {
+      justify-content: center;
+    }
+
+    .feat23__head .eyebrow::after {
+      content: "";
+      width: 28px;
+      height: 1px;
+      background: #9CA39A;
+    }
+
+    .feat23__title {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(30px, 4vw, 50px);
+      line-height: 1.12;
+      letter-spacing: -.015em;
+      margin: 18px 0 0;
+      color: #EBEFE7;
+    }
+
+    .feat23__title em {
+      font-style: italic;
+      font-weight: 400;
+      color: var(--gold-bright);
+    }
+
+    .feat23__lead {
+      max-width: 520px;
+      margin: 20px auto 0;
+      color: #B7BDB5;
+      font-size: clamp(15.5px, 1.2vw, 17px);
+      line-height: 1.7;
+    }
+
+    .feat23__lead strong {
+      color: var(--gold-bright);
+      font-weight: 700;
+    }
+
+    /* Triptych — the recurring 23 */
+    .feat23__triptych {
+      position: relative;
+      z-index: 2;
+      margin-top: clamp(46px, 6vw, 84px);
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .feat23__moment {
+      position: relative;
+      text-align: center;
+      padding: clamp(8px, 2vw, 22px) clamp(14px, 3vw, 34px);
+    }
+
+    .feat23__moment + .feat23__moment::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 14%;
+      bottom: 14%;
+      width: 1px;
+      background: linear-gradient(180deg, transparent, rgba(235, 239, 231, .16) 22%, rgba(235, 239, 231, .16) 78%, transparent);
+    }
+
+    .feat23__big {
+      display: block;
       font-family: var(--serif);
       font-style: italic;
       font-weight: 700;
-      font-size: clamp(280px, 50vw, 720px);
-      line-height: .8;
-      color: rgba(182, 135, 58, .10);
-      letter-spacing: -.04em;
+      line-height: .9;
+      font-size: clamp(72px, 9vw, 124px);
+      letter-spacing: -.03em;
+      color: var(--gold-bright);
     }
 
-    .feat23__grid {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 64px;
-      align-items: center;
+    .feat23__moment h4 {
+      margin: 16px 0 0;
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(18px, 1.6vw, 22px);
+      color: #EBEFE7;
+    }
+
+    .feat23__moment p {
+      margin: 9px auto 0;
+      max-width: 26ch;
+      color: #A8AEA7;
+      font-size: 14.5px;
+      line-height: 1.65;
+    }
+
+    /* Triptych stagger reveal (container stays put, moments rise) */
+    .feat23__triptych.reveal {
+      opacity: 1;
+      transform: none;
+    }
+
+    .feat23__triptych .feat23__moment {
+      opacity: 0;
+      transform: translateY(16px);
+      transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
+    }
+
+    .feat23__triptych.is-in .feat23__moment {
+      opacity: 1;
+      transform: none;
+    }
+
+    .feat23__triptych.is-in .feat23__moment:nth-child(1) {
+      transition-delay: 60ms;
+    }
+
+    .feat23__triptych.is-in .feat23__moment:nth-child(2) {
+      transition-delay: 150ms;
+    }
+
+    .feat23__triptych.is-in .feat23__moment:nth-child(3) {
+      transition-delay: 240ms;
+    }
+
+    @media (max-width: 620px) {
+      .feat23__triptych {
+        grid-template-columns: 1fr;
+        margin-top: clamp(34px, 9vw, 52px);
+      }
+
+      /* Each moment becomes a compact row: recurring 23 on the left, text on the right */
+      .feat23__moment {
+        display: grid;
+        grid-template-columns: auto 1fr;
+        column-gap: clamp(16px, 5vw, 22px);
+        align-items: center;
+        text-align: left;
+        padding: clamp(18px, 5vw, 24px) 2px;
+      }
+
+      .feat23__moment + .feat23__moment::before {
+        left: 0;
+        right: 0;
+        top: 0;
+        bottom: auto;
+        width: auto;
+        height: 1px;
+        background: linear-gradient(90deg, rgba(235, 239, 231, .18), rgba(235, 239, 231, .05) 78%, transparent);
+      }
+
+      .feat23__big {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        align-self: center;
+        font-size: clamp(54px, 17vw, 74px);
+      }
+
+      .feat23__moment h4 {
+        grid-column: 2;
+        grid-row: 1;
+        margin: 0;
+      }
+
+      .feat23__moment p {
+        grid-column: 2;
+        grid-row: 2;
+        margin: 5px 0 0;
+        max-width: none;
+        font-size: 15px;
+      }
+    }
+
+    /* Desktop: fit the whole story in a single screen (scales with viewport height) */
+    @media (min-width: 700px) and (min-height: 640px) {
+      .feat23 {
+        min-height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        padding-top: clamp(32px, 6vh, 80px);
+        padding-bottom: clamp(32px, 6vh, 80px);
+      }
+
+      .feat23__title {
+        margin-top: clamp(10px, 1.6vh, 18px);
+        font-size: clamp(28px, 4.6vh, 48px);
+      }
+
+      .feat23__lead {
+        margin-top: clamp(12px, 2vh, 20px);
+      }
+
+      .feat23__triptych {
+        margin-top: clamp(26px, 4.6vh, 64px);
+      }
+
+      .feat23__big {
+        font-size: clamp(60px, 13vh, 120px);
+      }
+
+      .feat23__moment h4 {
+        margin-top: clamp(10px, 1.6vh, 16px);
+      }
+
+      .feat23__moment p {
+        margin-top: clamp(6px, 1vh, 9px);
+      }
+
+      .feat23__quote {
+        margin-top: clamp(28px, 4.6vh, 80px);
+        font-size: clamp(24px, 3.9vh, 42px);
+      }
+
+      .feat23__quote::before {
+        margin-bottom: clamp(16px, 2.4vh, 32px);
+      }
     }
 
     .feat23__grid--placeholder {
@@ -1902,12 +2106,27 @@
     }
 
     .feat23__quote {
+      position: relative;
+      z-index: 2;
       font-family: var(--serif);
       font-weight: 400;
-      font-size: clamp(28px, 3.4vw, 44px);
-      line-height: 1.25;
+      font-size: clamp(26px, 3.2vw, 42px);
+      line-height: 1.3;
       letter-spacing: -.01em;
-      margin: 18px 0 0;
+      text-align: center;
+      max-width: 760px;
+      margin: clamp(54px, 6.5vw, 92px) auto 0;
+      quotes: none;
+    }
+
+    .feat23__quote::before {
+      content: "";
+      display: block;
+      width: 44px;
+      height: 2px;
+      margin: 0 auto clamp(24px, 3vw, 34px);
+      border-radius: 2px;
+      background: linear-gradient(90deg, var(--gold), var(--gold-bright));
     }
 
     .feat23__quote em {
@@ -1917,8 +2136,10 @@
 
     .feat23__list {
       display: grid;
-      gap: 22px;
-      margin-top: 8px;
+      gap: 0;
+      margin: 6px 0 0;
+      padding: 0;
+      list-style: none;
     }
 
     .feat23__item {
@@ -3271,7 +3492,8 @@
       .hero__copy>*,
       .hero__visual,
       .hero__strip .strip-item,
-      .feat23__list .feat23__item {
+      .feat23__list .feat23__item,
+      .feat23__triptych .feat23__moment {
         opacity: 1 !important;
         transform: none !important;
         filter: none !important;
@@ -3480,9 +3702,6 @@
         display: none;
       }
 
-      .feat23__bg span {
-        font-size: clamp(180px, 50vw, 280px);
-      }
 
       .info-map__embed iframe {
         aspect-ratio: 5 / 4;
@@ -3884,17 +4103,36 @@
      SEZIONE 23 — DARK
      TODO: inserire la storia vera legata al numero 23
      ================================================= -->
-    <section class="section section--dark feat23">
-      <div class="feat23__bg" aria-hidden="true"><span>23</span></div>
+    <section class="section section--dark feat23" id="storia">
+      <div class="feat23__bg" aria-hidden="true"></div>
       <div class="container">
-        <div class="feat23__grid feat23__grid--placeholder">
-          <div class="reveal">
-            <span class="eyebrow" data-i18n="feat23.eyebrow">Perché 23</span>
-            <h2 class="feat23__quote" data-i18n-html="feat23.quote">
-              La storia del <em>23</em><br />presto qui.
-            </h2>
+        <div class="feat23__head reveal">
+          <span class="eyebrow" data-i18n="feat23.eyebrow">Perché 23</span>
+          <h2 class="feat23__title" data-i18n-html="feat23.title">Dietro questo numero,<br /><em>la nostra storia.</em></h2>
+          <p class="feat23__lead" data-i18n-html="feat23.lead">Il <strong>23</strong> racchiude i momenti più importanti della nostra vita. Quando è arrivato il momento di dare un nome al ristorante, la scelta è stata naturale.</p>
+        </div>
+
+        <div class="feat23__triptych reveal">
+          <div class="feat23__moment">
+            <span class="feat23__big" aria-hidden="true">23</span>
+            <h4 data-i18n="feat23.m1.t">Ci siamo sposati</h4>
+            <p data-i18n="feat23.m1.d">Il giorno in cui è iniziato il nostro cammino insieme, come famiglia.</p>
+          </div>
+          <div class="feat23__moment">
+            <span class="feat23__big" aria-hidden="true">23</span>
+            <h4 data-i18n="feat23.m2.t">È nata la primogenita</h4>
+            <p data-i18n="feat23.m2.d">Un evento che ha cambiato per sempre le nostre vite.</p>
+          </div>
+          <div class="feat23__moment">
+            <span class="feat23__big" aria-hidden="true">23</span>
+            <h4 data-i18n="feat23.m3.t">Aspettiamo la secondogenita</h4>
+            <p data-i18n="feat23.m3.d">La sua data presunta: la attendiamo con immensa gioia.</p>
           </div>
         </div>
+
+        <blockquote class="feat23__quote reveal" data-i18n-html="feat23.quote">
+          Non è semplicemente un numero.<br /><em>È la nostra storia.</em>
+        </blockquote>
       </div>
     </section>
 
@@ -5237,7 +5475,15 @@
           'about.cta': 'Die ganze Speisekarte entdecken',
           /* feat23 */
           'feat23.eyebrow': 'Warum 23',
-          'feat23.quote': 'Die Geschichte der <em>23</em><br />folgt bald.',
+          'feat23.title': 'Hinter dieser Zahl,<br /><em>unsere Geschichte.</em>',
+          'feat23.lead': 'Die <strong>23</strong> vereint die wichtigsten Momente unseres Lebens. Als es darum ging, unserem Restaurant einen Namen zu geben, war die Wahl ganz natürlich.',
+          'feat23.m1.t': 'Wir haben geheiratet',
+          'feat23.m1.d': 'Der Tag, an dem unser gemeinsamer Weg als Familie begann.',
+          'feat23.m2.t': 'Unsere Erstgeborene kam',
+          'feat23.m2.d': 'Ein Ereignis, das unser Leben für immer verändert hat.',
+          'feat23.m3.t': 'Wir erwarten die Zweite',
+          'feat23.m3.d': 'Ihr voraussichtlicher Geburtstermin — wir erwarten sie mit großer Freude.',
+          'feat23.quote': 'Für uns ist es nicht einfach eine Zahl.<br /><em>Es ist unsere Geschichte.</em>',
           /* menu */
           'menu.eyebrow': 'Unsere Karte',
           'menu.title': 'Die <em>Speisekarte</em>.',
@@ -5496,7 +5742,15 @@
           'about.cta': 'See the full menu',
           /* feat23 */
           'feat23.eyebrow': 'Why 23',
-          'feat23.quote': 'The story behind <em>23</em><br />coming soon.',
+          'feat23.title': 'Behind this number,<br /><em>our story.</em>',
+          'feat23.lead': 'The <strong>23</strong> holds the most important moments of our lives. When the time came to name our restaurant, the choice felt only natural.',
+          'feat23.m1.t': 'We got married',
+          'feat23.m1.d': 'The day our journey together began, as a family.',
+          'feat23.m2.t': 'Our firstborn arrived',
+          'feat23.m2.d': 'An event that changed our lives forever.',
+          'feat23.m3.t': 'Awaiting our second',
+          'feat23.m3.d': 'Her due date — we await her with immense joy.',
+          'feat23.quote': 'To us it isn\'t simply a number.<br /><em>It\'s our story.</em>',
           /* menu */
           'menu.eyebrow': 'Our menu',
           'menu.title': 'The <em>menu</em>.',

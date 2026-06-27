@@ -15,5 +15,8 @@
 # Local temp
 *.log
 
+# Node (solo per gli strumenti locali del CMS: non serve sul sito)
+node_modules/
+
 # Documenti interni di progetto (non destinati al sito pubblico)
 Documento informazioni/
