@@ -1589,27 +1589,54 @@
       color: var(--ink);
     }
 
-    /* Badge dinamico "prossima grigliata" — controllato da griglia.json / pannello /admin */
+    /* Badge dinamico "prossima grigliata" — controllato da griglia.json / pannello /admin.
+       Chip leggero su tinta clay con punto-brace pulsante (design pulito, on-brand). */
     .evento__griglia-next {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      align-self: flex-start;
+      margin: 0;
+      padding: 7px 14px 7px 11px;
+      border-radius: 999px;
+      background: rgba(183, 89, 58, .07);
+      border: 1px solid rgba(183, 89, 58, .22);
+    }
+
+    .evento__griglia-next .ev-next-dot {
+      flex: none;
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--clay);
+      box-shadow: 0 0 0 0 rgba(183, 89, 58, .45);
+      animation: ember-pulse 2.4s ease-in-out infinite;
+    }
+
+    @keyframes ember-pulse {
+      0%   { box-shadow: 0 0 0 0 rgba(183, 89, 58, .45); }
+      70%  { box-shadow: 0 0 0 6px rgba(183, 89, 58, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(183, 89, 58, 0); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .evento__griglia-next .ev-next-dot { animation: none; }
+    }
+
+    .evento__griglia-next .ev-next-text {
       display: inline-flex;
       align-items: baseline;
       flex-wrap: wrap;
-      gap: 3px 8px;
-      align-self: flex-start;
-      margin: 0;
-      padding: 7px 13px;
-      border-radius: 999px;
-      background: var(--clay);
-      color: #FFF;
+      gap: 2px 8px;
     }
 
     .evento__griglia-next .ev-next-label {
       font-family: var(--sans);
-      font-size: 9.5px;
-      letter-spacing: 0.14em;
+      font-size: 9px;
+      letter-spacing: 0.16em;
       text-transform: uppercase;
       font-weight: 700;
-      opacity: 0.82;
+      color: var(--clay);
     }
 
     .evento__griglia-next .ev-next-val {
@@ -1617,6 +1644,7 @@
       font-size: 13px;
       font-weight: 700;
       letter-spacing: 0.01em;
+      color: var(--ink);
     }
 
     .evento__cta {
@@ -4858,13 +4886,14 @@
               </div>
             </div>
             <div class="evento__body">
-              <h3 class="evento__title" data-i18n-html="eventi.e2.title">Griglia su prenotazione,<br><em>nelle serate
-                  scelte da noi.</em></h3>
-              <p class="evento__griglia-next" id="griglia-next" hidden><span class="ev-next-label"
-                  data-i18n="eventi.e2.next">Prossima grigliata</span><span class="ev-next-val"
-                  id="griglia-next-val"></span></p>
-              <p class="evento__text" data-i18n="eventi.e2.text">La griglia si accende nelle serate che decidiamo noi:
-                chiedi in sala o scrivici per prenotare.</p>
+              <h3 class="evento__title" data-i18n-html="eventi.e2.title">Griglia su prenotazione,<br><em>in serate
+                  selezionate.</em></h3>
+              <p class="evento__griglia-next" id="griglia-next" hidden><span class="ev-next-dot"
+                  aria-hidden="true"></span><span class="ev-next-text"><span class="ev-next-label"
+                    data-i18n="eventi.e2.next">Prossima grigliata</span><span class="ev-next-val"
+                    id="griglia-next-val"></span></span></p>
+              <p class="evento__text" data-i18n="eventi.e2.text">In serate selezionate accendiamo la brace nella nostra
+                terrazza a pochi passi dal lago. Chiedi in sala o scrivici per prenotare.</p>
               <div class="evento__cta">
                 <span data-i18n="eventi.e2.cta">Menu del weekend</span>
                 <span class="arrow" aria-hidden="true">
@@ -5705,7 +5734,7 @@
           'eventi.e2.m': 'Grill',
           'eventi.e2.next': 'Nächster Grillabend',
           'eventi.e2.title': 'Grill auf Reservierung,<br><em>an ausgewählten Abenden.</em>',
-          'eventi.e2.text': 'Der Grill wird an ausgewählten Abenden angezündet, wann wir entscheiden — frag uns im Lokal oder schreib uns zum Reservieren.',
+          'eventi.e2.text': 'An ausgewählten Abenden entfachen wir die Glut auf unserer Terrasse wenige Schritte vom See. Frag uns im Lokal oder schreib uns zum Reservieren.',
           'eventi.e2.cta': 'Wochenend-Menü',
           'eventi.e3.tag': 'Auf Anfrage',
           'eventi.e3.m': 'Monate',
@@ -5973,7 +6002,7 @@
           'eventi.e2.m': 'Grill',
           'eventi.e2.next': 'Next grill night',
           'eventi.e2.title': 'Grill by reservation,<br><em>on selected evenings.</em>',
-          'eventi.e2.text': 'We fire up the grill on selected evenings, whenever we decide — ask us inside or message us to book.',
+          'eventi.e2.text': 'On selected evenings we light the embers on our terrace just steps from the lake. Ask us inside or message us to book.',
           'eventi.e2.cta': 'Weekend menu',
           'eventi.e3.tag': 'On request',
           'eventi.e3.m': 'Months',
