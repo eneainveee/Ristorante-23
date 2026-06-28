@@ -1401,6 +1401,36 @@
       gap: clamp(16px, 1.6vw, 24px);
     }
 
+    /* Con la griglia spenta, su desktop i due eventi restano affiancati (come prima)
+       ma in formato orizzontale: foto da un lato, testo dall'altro. Riempiono la riga. */
+    @media (min-width: 1025px) {
+      .eventi__grid.is-centered {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .eventi__grid.is-centered .evento {
+        flex-direction: row;
+        align-items: stretch;
+        min-height: 240px;
+      }
+
+      .eventi__grid.is-centered .evento__photo {
+        flex: 0 0 44%;
+        aspect-ratio: auto;
+      }
+
+      .eventi__grid.is-centered .evento__body {
+        flex: 1;
+        justify-content: center;
+        padding: clamp(20px, 2vw, 32px);
+        gap: 12px;
+      }
+
+      .eventi__grid.is-centered .evento__text {
+        text-align: left;
+      }
+    }
+
     .evento {
       background: var(--bg-3);
       border: 1px solid var(--glass-line);
@@ -1557,6 +1587,36 @@
     .evento__text strong {
       font-weight: 700;
       color: var(--ink);
+    }
+
+    /* Badge dinamico "prossima grigliata" — controllato da griglia.json / pannello /admin */
+    .evento__griglia-next {
+      display: inline-flex;
+      align-items: baseline;
+      flex-wrap: wrap;
+      gap: 3px 8px;
+      align-self: flex-start;
+      margin: 0;
+      padding: 7px 13px;
+      border-radius: 999px;
+      background: var(--clay);
+      color: #FFF;
+    }
+
+    .evento__griglia-next .ev-next-label {
+      font-family: var(--sans);
+      font-size: 9.5px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      font-weight: 700;
+      opacity: 0.82;
+    }
+
+    .evento__griglia-next .ev-next-val {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 700;
+      letter-spacing: 0.01em;
     }
 
     .evento__cta {
@@ -4780,30 +4840,31 @@
             </div>
           </a>
 
-          <a class="evento reveal" href="#menu">
+          <a class="evento reveal" id="evento-griglia" href="#menu">
             <div class="evento__photo">
               <picture>
-                <source type="image/webp"
+                <source id="griglia-photo-src" type="image/webp"
                   srcset="Immagini/eventi/griglia-opt-480w.webp 480w, Immagini/eventi/griglia-opt-800w.webp 800w, Immagini/eventi/griglia-opt-1200w.webp 1200w"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" />
-                <img src="Immagini/eventi/griglia-opt-800w.jpg"
+                <img id="griglia-photo-img" src="Immagini/eventi/griglia-opt-800w.jpg"
                   srcset="Immagini/eventi/griglia-opt-480w.jpg 480w, Immagini/eventi/griglia-opt-800w.jpg 800w, Immagini/eventi/griglia-opt-1200w.jpg 1200w"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw" width="800" height="532"
                   alt="Griglia accesa sotto i pini al tramonto" loading="lazy" decoding="async" />
               </picture>
               <span class="evento__tag" data-i18n="eventi.e2.tag">In terrazza</span>
               <div class="evento__stamp">
-                <span class="d">V·S</span>
-                <span class="m" data-i18n="eventi.e2.m">Mag–Set</span>
+                <span class="d">🔥</span>
+                <span class="m" data-i18n="eventi.e2.m">Griglia</span>
               </div>
             </div>
             <div class="evento__body">
-              <h3 class="evento__title" data-i18n-html="eventi.e2.title">Nel weekend in serata,<br><em>griglia sempre
-                  accesa.</em></h3>
-              <p class="evento__text" data-i18n="eventi.e2.text">Da maggio a settembre, il venerdì e il sabato la
-                griglia
-                resta accesa fino a tardi in una piacevole atmosfera accanto al lago e al Bosco Isolino.
-              </p>
+              <h3 class="evento__title" data-i18n-html="eventi.e2.title">Griglia su prenotazione,<br><em>nelle serate
+                  scelte da noi.</em></h3>
+              <p class="evento__griglia-next" id="griglia-next" hidden><span class="ev-next-label"
+                  data-i18n="eventi.e2.next">Prossima grigliata</span><span class="ev-next-val"
+                  id="griglia-next-val"></span></p>
+              <p class="evento__text" data-i18n="eventi.e2.text">La griglia si accende nelle serate che decidiamo noi:
+                chiedi in sala o scrivici per prenotare.</p>
               <div class="evento__cta">
                 <span data-i18n="eventi.e2.cta">Menu del weekend</span>
                 <span class="arrow" aria-hidden="true">
@@ -5641,9 +5702,10 @@
           'eventi.e1.text': '<strong>An den Abenden, an denen die Schweizer Nati spielt, wird auch gegrillt.</strong> Alle Spiele der Fußball-WM live auf der Großleinwand auf der Terrasse, bei Bier vom Fass und Wochenend-Spezialitäten.',
           'eventi.e1.cta': 'Tisch reservieren',
           'eventi.e2.tag': 'Auf der Terrasse',
-          'eventi.e2.m': 'Mai–Sep',
-          'eventi.e2.title': 'Am Wochenend-Abend,<br><em>immer Grill an.</em>',
-          'eventi.e2.text': 'Von Mai bis September bleibt der Grill freitags und samstags bis spät an — in angenehmer Atmosphäre am See und am Bosco Isolino.',
+          'eventi.e2.m': 'Grill',
+          'eventi.e2.next': 'Nächster Grillabend',
+          'eventi.e2.title': 'Grill auf Reservierung,<br><em>an ausgewählten Abenden.</em>',
+          'eventi.e2.text': 'Der Grill wird an ausgewählten Abenden angezündet, wann wir entscheiden — frag uns im Lokal oder schreib uns zum Reservieren.',
           'eventi.e2.cta': 'Wochenend-Menü',
           'eventi.e3.tag': 'Auf Anfrage',
           'eventi.e3.m': 'Monate',
@@ -5908,9 +5970,10 @@
           'eventi.e1.text': '<strong>On the evenings the Swiss national team plays, we fire up the grill too.</strong> All Football World Cup matches live on the big screen on the terrace, with draught beer and weekend specials.',
           'eventi.e1.cta': 'Book a table',
           'eventi.e2.tag': 'On the terrace',
-          'eventi.e2.m': 'May–Sep',
-          'eventi.e2.title': 'On weekend evenings,<br><em>the grill is always on.</em>',
-          'eventi.e2.text': 'From May to September the grill stays on late on Fridays and Saturdays, in a relaxed atmosphere by the lake and the Bosco Isolino.',
+          'eventi.e2.m': 'Grill',
+          'eventi.e2.next': 'Next grill night',
+          'eventi.e2.title': 'Grill by reservation,<br><em>on selected evenings.</em>',
+          'eventi.e2.text': 'We fire up the grill on selected evenings, whenever we decide — ask us inside or message us to book.',
           'eventi.e2.cta': 'Weekend menu',
           'eventi.e3.tag': 'On request',
           'eventi.e3.m': 'Months',
@@ -6363,6 +6426,43 @@
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4236e35e641b4f8ca914e34aa352a975"}'></script>
   <!-- End Cloudflare Web Analytics -->
+  <!-- Griglia dinamica: legge griglia.json (modificabile dal pannello /admin). Se il file manca o è errato, resta il contenuto di default. -->
+  <script>
+    (function () {
+      fetch('griglia.json', { cache: 'no-store' })
+        .then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (g) {
+          if (!g) return;
+          var card = document.getElementById('evento-griglia');
+          var badge = document.getElementById('griglia-next');
+          var val = document.getElementById('griglia-next-val');
+          var img = document.getElementById('griglia-photo-img');
+          var src = document.getElementById('griglia-photo-src');
+
+          // Interruttore spento: nascondi tutto il riquadro della griglia dal sito
+          // e centra i riquadri restanti.
+          if (!g.attiva) {
+            if (card) {
+              card.style.display = 'none';
+              if (card.parentNode) card.parentNode.classList.add('is-centered');
+            }
+            return;
+          }
+
+          if (g.foto && img) {
+            if (src && src.parentNode) src.parentNode.removeChild(src);
+            img.removeAttribute('srcset');
+            img.removeAttribute('sizes');
+            img.src = g.foto;
+          }
+          if (g.testo && badge && val) {
+            val.textContent = g.testo;
+            badge.hidden = false;
+          }
+        })
+        .catch(function () { /* nessun file o errore: si tiene il contenuto di default */ });
+    })();
+  </script>
 </body>
 
 </html>
