@@ -1596,7 +1596,7 @@
       color: var(--ink);
     }
 
-    /* Badge dinamico "prossima grigliata" — controllato da griglia.json / pannello /admin.
+    /* Badge dinamico "prossima grigliata" — controllato da griglia.json / pannello /gestione.
        Chip leggero su tinta clay con punto-brace pulsante (design pulito, on-brand). */
     .evento__griglia-next {
       display: inline-flex;
@@ -6469,7 +6469,7 @@
   <!-- Cloudflare Web Analytics -->
   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "4236e35e641b4f8ca914e34aa352a975"}'></script>
   <!-- End Cloudflare Web Analytics -->
-  <!-- Griglia dinamica: legge griglia.json (modificabile dal pannello /admin). Se il file manca o è errato, resta il contenuto di default. -->
+  <!-- Griglia dinamica: legge griglia.json (modificabile dal pannello /gestione). Se il file manca o è errato, resta il contenuto di default. -->
   <script>
     (function () {
       fetch('griglia.json', { cache: 'no-store' })
