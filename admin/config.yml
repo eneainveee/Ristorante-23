@@ -40,12 +40,21 @@ collections:
             name: "attiva"
             widget: "boolean"
             default: false
-            hint: "Attiva quando c'è una grigliata in programma. Disattiva quando non c'è: il sito mostra il testo neutro «su prenotazione»."
-          - label: "Quando (testo libero)"
-            name: "testo"
+            hint: "Attiva quando c'è una grigliata in programma. Disattiva per nascondere del tutto il riquadro della griglia dal sito."
+          - label: "Data della grigliata"
+            name: "data"
+            widget: "datetime"
+            required: false
+            format: "YYYY-MM-DD"
+            date_format: "DD/MM/YYYY"
+            time_format: false
+            picker_utc: false
+            hint: "Scegli il giorno dal calendario. Sul sito appare già scritto per esteso e tradotto da solo (es. «Sabato 5 luglio» · «Samstag, 5. Juli» · «Saturday, 5 July»). Lascia vuoto se non c'è ancora una data."
+          - label: "Nota breve (facoltativa)"
+            name: "nota"
             widget: "string"
             required: false
-            hint: "Es. «Sabato 5 luglio · dalle 19, su prenotazione». Si vede uguale in tutte le lingue."
+            hint: "Appare dopo la data, es. «su prenotazione» oppure «dalle 19». Lascia vuoto se non serve. Si vede uguale in tutte le lingue."
           - label: "Foto della grigliata"
             name: "foto"
             widget: "image"

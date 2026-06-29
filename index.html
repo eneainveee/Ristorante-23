@@ -6212,6 +6212,9 @@
         document.querySelectorAll('.lang-picker__current').forEach(function (el) {
           el.textContent = lang.toUpperCase();
         });
+
+        /* griglia: aggiorna il testo della data nella lingua attiva (dati da griglia.json) */
+        if (typeof window.__t23ApplyGrigliaText === 'function') window.__t23ApplyGrigliaText(lang);
       }
 
       function langFromURL() {
@@ -6495,10 +6498,40 @@
             img.removeAttribute('sizes');
             img.src = g.foto;
           }
-          if (g.testo && badge && val) {
-            val.textContent = g.testo;
-            badge.hidden = false;
+
+          // Data della serata (ISO "YYYY-MM-DD" scelta dal pannello) + nota facoltativa.
+          // La data viene scritta per esteso e tradotta in automatico nella lingua attiva.
+          // `testo` è tenuto solo come fallback per eventuali vecchi dati senza data.
+          var grigliaData = (g.data || '').trim();
+          var grigliaNota = (g.nota || g.testo || '').trim();
+
+          // "2025-07-05" → "Sabato 5 luglio" / "Samstag, 5. Juli" / "Saturday, 5 July"
+          function formatGrigliaDate(iso, lang) {
+            if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return '';
+            var p = iso.split('-');
+            var d = new Date(+p[0], +p[1] - 1, +p[2]); // costruita in locale: niente slittamento UTC
+            if (isNaN(d.getTime())) return '';
+            var loc = { it: 'it-IT', de: 'de-DE', en: 'en-GB' }[lang] || 'it-IT';
+            var s = d.toLocaleDateString(loc, { weekday: 'long', day: 'numeric', month: 'long' });
+            return s.charAt(0).toUpperCase() + s.slice(1); // maiuscola iniziale
           }
+
+          // Compone "Data · nota" nella lingua attiva e mostra/nasconde il badge.
+          window.__t23ApplyGrigliaText = function (lang) {
+            if (!badge || !val) return;
+            var dateStr = formatGrigliaDate(grigliaData, lang);
+            var full = (dateStr && grigliaNota) ? (dateStr + ' · ' + grigliaNota)
+                     : (dateStr || grigliaNota);
+            if (full) {
+              val.textContent = full;
+              badge.hidden = false;
+            } else {
+              badge.hidden = true;
+            }
+          };
+
+          // Applica subito con la lingua attualmente attiva sul sito.
+          window.__t23ApplyGrigliaText(window.__t23Lang || 'it');
         })
         .catch(function () { /* nessun file o errore: si tiene il contenuto di default */ });
     })();
