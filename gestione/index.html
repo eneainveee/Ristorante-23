@@ -1,0 +1,451 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex, nofollow" />
+  <title>Gestione · Ristorante 23</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600&family=Karla:wght@400;500;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --cream: #f6efe2;
+      --card: #fffdf8;
+      --ink: #2c2722;
+      --muted: #8a7f70;
+      --clay: #b7593a;
+      --gold: #b8893f;
+      --line: rgba(120, 96, 60, .18);
+      --serif: 'Playfair Display', Georgia, serif;
+      --sans: 'Karla', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100dvh;
+      font-family: var(--sans);
+      color: var(--ink);
+      background: radial-gradient(120% 120% at 50% 0%, #faf5ec 0%, var(--cream) 55%, #efe5d3 100%);
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+      padding: clamp(18px, 5vw, 56px) 18px 60px;
+    }
+
+    .wrap { width: 100%; max-width: 480px; }
+
+    .brand {
+      text-align: center;
+      margin-bottom: 22px;
+    }
+    .brand .kicker {
+      font-size: 11px;
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--clay);
+      font-weight: 700;
+    }
+    .brand h1 {
+      font-family: var(--serif);
+      font-weight: 600;
+      font-size: clamp(26px, 7vw, 34px);
+      margin: 8px 0 0;
+      letter-spacing: .01em;
+    }
+    .brand .sub { color: var(--muted); font-size: 13.5px; margin-top: 6px; }
+
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: clamp(20px, 5vw, 30px);
+      box-shadow: 0 14px 40px -20px rgba(80, 55, 20, .35), 0 2px 8px -4px rgba(80, 55, 20, .15);
+    }
+
+    label.field { display: block; margin-bottom: 18px; }
+    label.field > .lab {
+      display: block;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: .04em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 7px;
+    }
+    .hint { font-size: 12.5px; color: var(--muted); margin-top: 6px; line-height: 1.45; }
+
+    input[type=password],
+    input[type=date],
+    input[type=text] {
+      width: 100%;
+      font-family: var(--sans);
+      font-size: 16px;
+      color: var(--ink);
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 12px;
+      padding: 12px 14px;
+      transition: border-color .15s, box-shadow .15s;
+    }
+    input:focus {
+      outline: none;
+      border-color: var(--clay);
+      box-shadow: 0 0 0 3px rgba(183, 89, 58, .12);
+    }
+
+    /* Interruttore */
+    .toggle {
+      display: flex; align-items: center; gap: 13px;
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: #fff;
+      cursor: pointer;
+      margin-bottom: 18px;
+    }
+    .toggle input { position: absolute; opacity: 0; pointer-events: none; }
+    .switch {
+      flex: none; width: 46px; height: 27px; border-radius: 999px;
+      background: #d9cdb8; position: relative; transition: background .18s;
+    }
+    .switch::after {
+      content: ''; position: absolute; top: 3px; left: 3px;
+      width: 21px; height: 21px; border-radius: 50%; background: #fff;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, .25); transition: transform .18s;
+    }
+    .toggle input:checked + .switch { background: var(--clay); }
+    .toggle input:checked + .switch::after { transform: translateX(19px); }
+    .toggle .tg-text { font-size: 15px; font-weight: 500; }
+    .toggle .tg-text small { display: block; color: var(--muted); font-weight: 400; font-size: 12.5px; }
+
+    /* Foto */
+    .photo-row { display: flex; align-items: center; gap: 14px; }
+    .thumb {
+      width: 74px; height: 74px; border-radius: 12px; flex: none;
+      background: #efe7d8 center/cover no-repeat;
+      border: 1px solid var(--line);
+      display: flex; align-items: center; justify-content: center;
+      color: var(--muted); font-size: 11px; text-align: center;
+    }
+    .btn-soft {
+      font-family: var(--sans); font-size: 14px; font-weight: 700;
+      color: var(--ink); background: #fff;
+      border: 1px solid var(--line); border-radius: 11px;
+      padding: 9px 14px; cursor: pointer; transition: border-color .15s;
+    }
+    .btn-soft:hover { border-color: var(--clay); }
+    .link-x { background: none; border: none; color: var(--clay); font-size: 12.5px; cursor: pointer; padding: 4px; font-family: var(--sans); }
+
+    /* Anteprima badge */
+    .preview {
+      margin: 4px 0 20px; padding: 13px 15px;
+      border: 1px dashed var(--line); border-radius: 13px;
+      background: rgba(183, 89, 58, .045);
+    }
+    .preview .pv-lab { font-size: 11px; letter-spacing: .12em; text-transform: uppercase; color: var(--muted); font-weight: 700; margin-bottom: 8px; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 9px;
+      padding: 7px 14px; border-radius: 999px;
+      background: rgba(183, 89, 58, .08); border: 1px solid rgba(183, 89, 58, .22);
+    }
+    .badge .dot { width: 7px; height: 7px; border-radius: 50%; background: var(--clay); flex: none; }
+    .badge .b-lab { font-size: 9px; letter-spacing: .16em; text-transform: uppercase; font-weight: 700; color: var(--clay); }
+    .badge .b-val { font-size: 13px; font-weight: 700; }
+    .badge.is-off { opacity: .5; }
+    .preview .pv-off { color: var(--muted); font-size: 13px; }
+
+    /* Bottoni principali */
+    .btn {
+      width: 100%; font-family: var(--sans); font-size: 16px; font-weight: 700;
+      color: #fff; background: var(--clay);
+      border: none; border-radius: 13px; padding: 14px; cursor: pointer;
+      transition: filter .15s, transform .05s;
+    }
+    .btn:hover { filter: brightness(1.06); }
+    .btn:active { transform: translateY(1px); }
+    .btn[disabled] { opacity: .55; cursor: default; filter: none; }
+
+    .status { text-align: center; font-size: 14px; margin-top: 14px; min-height: 20px; }
+    .status.ok { color: #2f7d4f; }
+    .status.err { color: var(--clay); }
+
+    .foot { text-align: center; margin-top: 18px; }
+    .foot button { background: none; border: none; color: var(--muted); font-size: 13px; cursor: pointer; font-family: var(--sans); text-decoration: underline; }
+
+    [hidden] { display: none !important; }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+    <div class="brand">
+      <div class="kicker">Pannello di gestione</div>
+      <h1>Ristorante 23</h1>
+      <div class="sub" id="sub">Accedi per gestire la serata griglia</div>
+    </div>
+
+    <!-- LOGIN -->
+    <form class="card" id="loginCard" autocomplete="on">
+      <label class="field">
+        <span class="lab">Password</span>
+        <input type="password" id="pw" autocomplete="current-password" placeholder="La tua password" />
+        <span class="hint">Inserisci la password una volta: resti collegato ~90 giorni su questo dispositivo.</span>
+      </label>
+      <button class="btn" type="submit" id="loginBtn">Entra</button>
+      <div class="status err" id="loginStatus"></div>
+    </form>
+
+    <!-- EDITOR -->
+    <form class="card" id="editorCard" hidden>
+      <label class="toggle" for="attiva">
+        <input type="checkbox" id="attiva" />
+        <span class="switch" aria-hidden="true"></span>
+        <span class="tg-text">Mostra la prossima grigliata
+          <small>Spegni per nascondere il riquadro dal sito</small></span>
+      </label>
+
+      <label class="field">
+        <span class="lab">Data della grigliata</span>
+        <input type="date" id="data" />
+        <span class="hint">Sul sito appare scritta per esteso e tradotta da sola (es. «Sabato 5 luglio»). Lascia vuota se non c'è ancora una data.</span>
+      </label>
+
+      <label class="field">
+        <span class="lab">Nota breve (facoltativa)</span>
+        <input type="text" id="nota" maxlength="200" placeholder="es. su prenotazione" />
+        <span class="hint">Appare dopo la data. Lascia vuoto se non serve.</span>
+      </label>
+
+      <label class="field">
+        <span class="lab">Foto della grigliata (facoltativa)</span>
+        <div class="photo-row">
+          <div class="thumb" id="thumb">nessuna<br>foto</div>
+          <div>
+            <button type="button" class="btn-soft" id="pickPhoto">Scegli foto…</button>
+            <div><button type="button" class="link-x" id="removePhoto" hidden>✕ togli foto</button></div>
+          </div>
+          <input type="file" id="photo" accept="image/*" hidden />
+        </div>
+        <span class="hint">Viene rimpicciolita in automatico per non appesantire il sito.</span>
+      </label>
+
+      <div class="preview">
+        <div class="pv-lab">Anteprima sul sito</div>
+        <div id="previewBox"></div>
+      </div>
+
+      <button class="btn" type="submit" id="saveBtn">Salva e pubblica</button>
+      <div class="status" id="saveStatus"></div>
+
+      <div class="foot"><button type="button" id="logout">Esci</button></div>
+    </form>
+  </div>
+
+  <script>
+    // URL del Worker (cassaforte). Se Cloudflare assegna un nome diverso, cambialo qui.
+    const API = 'https://ristorante23-gestione.enea-inve.workers.dev';
+
+    const TOK = 'r23g_token', EXP = 'r23g_exp';
+    const $ = (id) => document.getElementById(id);
+
+    // Stato foto: percorso attuale (esistente) + eventuale nuova in base64
+    let fotoEsistente = '';
+    let fotoNuova = null; // { base64, nome }
+
+    /* ---------- viste ---------- */
+    function showLogin(msg) {
+      $('loginCard').hidden = false;
+      $('editorCard').hidden = true;
+      $('sub').textContent = 'Accedi per gestire la serata griglia';
+      $('loginStatus').textContent = msg || '';
+      $('pw').focus();
+    }
+    function showEditor() {
+      $('loginCard').hidden = true;
+      $('editorCard').hidden = false;
+      $('sub').textContent = 'Serata griglia in homepage';
+      loadCurrent();
+    }
+
+    function tokenValid() {
+      const t = localStorage.getItem(TOK), e = +localStorage.getItem(EXP);
+      return t && e && Date.now() < e ? t : null;
+    }
+
+    /* ---------- login ---------- */
+    $('loginCard').addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const pw = $('pw').value;
+      if (!pw) return;
+      const btn = $('loginBtn');
+      btn.disabled = true; btn.textContent = 'Verifico…';
+      $('loginStatus').textContent = '';
+      try {
+        const r = await fetch(API + '/login', {
+          method: 'POST', headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ password: pw })
+        });
+        const j = await r.json().catch(() => ({}));
+        if (r.ok && j.token) {
+          localStorage.setItem(TOK, j.token);
+          localStorage.setItem(EXP, String(Date.now() + (j.expiresInDays || 90) * 864e5));
+          $('pw').value = '';
+          showEditor();
+        } else if (r.status === 401) {
+          $('loginStatus').textContent = 'Password errata.';
+        } else {
+          $('loginStatus').textContent = 'Errore (' + r.status + '). Riprova.';
+        }
+      } catch (e) {
+        $('loginStatus').textContent = 'Connessione al server non riuscita.';
+      } finally {
+        btn.disabled = false; btn.textContent = 'Entra';
+      }
+    });
+
+    /* ---------- carica dati attuali ---------- */
+    async function loadCurrent() {
+      try {
+        const r = await fetch('/griglia.json?cb=' + Date.now(), { cache: 'no-store' });
+        const g = await r.json();
+        $('attiva').checked = !!g.attiva;
+        $('data').value = /^\d{4}-\d{2}-\d{2}$/.test(g.data || '') ? g.data : '';
+        $('nota').value = g.nota || '';
+        fotoEsistente = g.foto || '';
+        fotoNuova = null;
+        renderPhoto();
+      } catch (e) { /* primo avvio o file assente: campi vuoti */ }
+      updatePreview();
+    }
+
+    /* ---------- foto ---------- */
+    $('pickPhoto').addEventListener('click', () => $('photo').click());
+    $('removePhoto').addEventListener('click', () => {
+      fotoEsistente = ''; fotoNuova = null; $('photo').value = ''; renderPhoto(); updatePreview();
+    });
+    $('photo').addEventListener('change', async (ev) => {
+      const file = ev.target.files && ev.target.files[0];
+      if (!file) return;
+      try {
+        const dataUrl = await downscale(file, 1600, 0.82);
+        fotoNuova = { base64: dataUrl.split(',')[1], nome: 'grigliata.jpg', preview: dataUrl };
+        renderPhoto(); updatePreview();
+      } catch (e) { alert('Immagine non valida.'); }
+    });
+    function renderPhoto() {
+      const t = $('thumb');
+      const url = fotoNuova ? fotoNuova.preview : (fotoEsistente ? fotoEsistente : '');
+      if (url) {
+        t.style.backgroundImage = 'url("' + url + (fotoEsistente && !fotoNuova ? '?t=' + Date.now() : '') + '")';
+        t.textContent = '';
+        $('removePhoto').hidden = false;
+      } else {
+        t.style.backgroundImage = 'none';
+        t.innerHTML = 'nessuna<br>foto';
+        $('removePhoto').hidden = true;
+      }
+    }
+    function downscale(file, maxW, quality) {
+      return new Promise((resolve, reject) => {
+        const img = new Image();
+        const url = URL.createObjectURL(file);
+        img.onload = () => {
+          URL.revokeObjectURL(url);
+          let w = img.width, h = img.height;
+          if (w > maxW) { h = Math.round(h * maxW / w); w = maxW; }
+          const c = document.createElement('canvas'); c.width = w; c.height = h;
+          c.getContext('2d').drawImage(img, 0, 0, w, h);
+          resolve(c.toDataURL('image/jpeg', quality));
+        };
+        img.onerror = reject;
+        img.src = url;
+      });
+    }
+
+    /* ---------- anteprima badge (IT) ---------- */
+    function formatDateIT(iso) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(iso)) return '';
+      const p = iso.split('-');
+      const d = new Date(+p[0], +p[1] - 1, +p[2]);
+      if (isNaN(d.getTime())) return '';
+      const s = d.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' });
+      return s.charAt(0).toUpperCase() + s.slice(1);
+    }
+    function updatePreview() {
+      const box = $('previewBox');
+      if (!$('attiva').checked) {
+        box.innerHTML = '<span class="pv-off">Il riquadro griglia è nascosto dal sito.</span>';
+        return;
+      }
+      const dateStr = formatDateIT($('data').value);
+      const nota = $('nota').value.trim();
+      const val = (dateStr && nota) ? (dateStr + ' · ' + nota) : (dateStr || nota);
+      if (!val) {
+        box.innerHTML = '<span class="pv-off">Card visibile, ma senza data: il badge «Prossima grigliata» resta nascosto.</span>';
+        return;
+      }
+      box.innerHTML = '<span class="badge"><span class="dot"></span><span class="b-lab">Prossima grigliata</span>'
+        + '<span class="b-val"></span></span>';
+      box.querySelector('.b-val').textContent = val;
+    }
+    ['change', 'input'].forEach((evt) => {
+      $('attiva').addEventListener(evt, updatePreview);
+      $('data').addEventListener(evt, updatePreview);
+      $('nota').addEventListener(evt, updatePreview);
+    });
+
+    /* ---------- salva ---------- */
+    $('editorCard').addEventListener('submit', async (ev) => {
+      ev.preventDefault();
+      const token = tokenValid();
+      if (!token) return showLogin('Sessione scaduta, rifai l\'accesso.');
+      const btn = $('saveBtn'), st = $('saveStatus');
+      btn.disabled = true; btn.textContent = 'Salvo…'; st.className = 'status'; st.textContent = '';
+      const payload = {
+        attiva: $('attiva').checked,
+        data: $('data').value,
+        nota: $('nota').value.trim(),
+        fotoEsistente: fotoEsistente
+      };
+      if (fotoNuova) { payload.fotoBase64 = fotoNuova.base64; payload.fotoNome = fotoNuova.nome; }
+      try {
+        const r = await fetch(API + '/save', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + token },
+          body: JSON.stringify(payload)
+        });
+        if (r.status === 401) {
+          localStorage.removeItem(TOK); localStorage.removeItem(EXP);
+          return showLogin('Sessione scaduta, rifai l\'accesso.');
+        }
+        const j = await r.json().catch(() => ({}));
+        if (r.ok && j.ok) {
+          st.className = 'status ok';
+          st.textContent = '✓ Salvato! Il sito si aggiorna tra 1-2 minuti.';
+          if (j.saved) { fotoEsistente = j.saved.foto || ''; fotoNuova = null; renderPhoto(); }
+        } else {
+          st.className = 'status err';
+          st.textContent = 'Errore nel salvataggio (' + r.status + ').';
+        }
+      } catch (e) {
+        st.className = 'status err'; st.textContent = 'Connessione al server non riuscita.';
+      } finally {
+        btn.disabled = false; btn.textContent = 'Salva e pubblica';
+      }
+    });
+
+    $('logout').addEventListener('click', () => {
+      localStorage.removeItem(TOK); localStorage.removeItem(EXP);
+      showLogin('Sei uscito.');
+    });
+
+    /* ---------- avvio ---------- */
+    if (tokenValid()) showEditor(); else showLogin();
+  </script>
+</body>
+
+</html>

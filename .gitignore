@@ -20,3 +20,6 @@ node_modules/
 
 # Documenti interni di progetto (non destinati al sito pubblico)
 Documento informazioni/
+
+# Worker Cloudflare del pannello /gestione (si deploya a parte, non sul sito)
+gestione-worker/
