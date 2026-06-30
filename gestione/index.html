@@ -158,6 +158,35 @@
     .badge.is-off { opacity: .5; }
     .preview .pv-off { color: var(--muted); font-size: 13px; }
 
+    /* Anteprima: mini-card come sul sito (foto + badge) */
+    .pv-card {
+      border-radius: 14px; overflow: hidden; background: #fff;
+      border: 1px solid var(--line);
+      box-shadow: 0 10px 26px -18px rgba(80, 55, 20, .45);
+    }
+    .pv-photo {
+      position: relative;
+      aspect-ratio: 800 / 532;
+      background: #efe7d8 center/cover no-repeat;
+    }
+    .pv-tag {
+      position: absolute; top: 10px; left: 10px;
+      background: rgba(44, 39, 34, .68); color: #fff;
+      font-size: 10px; font-weight: 700; letter-spacing: .04em;
+      padding: 4px 10px; border-radius: 999px;
+    }
+    .pv-stamp {
+      position: absolute; bottom: 10px; left: 10px;
+      display: inline-flex; align-items: center; gap: 5px;
+      background: rgba(255, 253, 248, .94); color: var(--clay);
+      font-size: 11px; font-weight: 700;
+      padding: 5px 10px 5px 8px; border-radius: 999px;
+      box-shadow: 0 2px 9px -3px rgba(80, 55, 20, .45);
+    }
+    .pv-stamp svg { width: 13px; height: 13px; }
+    .pv-body { padding: 13px 15px 15px; }
+    .pv-note { font-size: 12px; color: var(--muted); margin-top: 8px; line-height: 1.4; }
+
     /* Bottoni principali */
     .btn {
       width: 100%; font-family: var(--sans); font-size: 16px; font-weight: 700;
@@ -255,6 +284,7 @@
     // Stato foto: percorso attuale (esistente) + eventuale nuova in base64
     let fotoEsistente = '';
     let fotoNuova = null; // { base64, nome }
+    let fotoStamp = Date.now(); // anti-cache stabile: cambia solo quando cambia la foto
 
     /* ---------- viste ---------- */
     function showLogin(msg) {
@@ -317,6 +347,7 @@
         $('nota').value = g.nota || '';
         fotoEsistente = g.foto || '';
         fotoNuova = null;
+        fotoStamp = Date.now();
         renderPhoto();
       } catch (e) { /* primo avvio o file assente: campi vuoti */ }
       updatePreview();
@@ -340,7 +371,7 @@
       const t = $('thumb');
       const url = fotoNuova ? fotoNuova.preview : (fotoEsistente ? fotoEsistente : '');
       if (url) {
-        t.style.backgroundImage = 'url("' + url + (fotoEsistente && !fotoNuova ? '?t=' + Date.now() : '') + '")';
+        t.style.backgroundImage = 'url("' + url + (fotoEsistente && !fotoNuova ? '?t=' + fotoStamp : '') + '")';
         t.textContent = '';
         $('removePhoto').hidden = false;
       } else {
@@ -375,6 +406,15 @@
       const s = d.toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' });
       return s.charAt(0).toUpperCase() + s.slice(1);
     }
+    // Foto mostrata nell'anteprima: la nuova caricata, oppure quella salvata,
+    // oppure la foto predefinita della griglia che il sito usa di default.
+    const DEFAULT_PHOTO = '/Immagini/eventi/griglia-opt-800w.jpg';
+    function previewPhotoUrl() {
+      if (fotoNuova) return fotoNuova.preview;
+      if (fotoEsistente) return fotoEsistente + '?t=' + fotoStamp;
+      return DEFAULT_PHOTO;
+    }
+
     function updatePreview() {
       const box = $('previewBox');
       if (!$('attiva').checked) {
@@ -384,13 +424,28 @@
       const dateStr = formatDateIT($('data').value);
       const nota = $('nota').value.trim();
       const val = (dateStr && nota) ? (dateStr + ' · ' + nota) : (dateStr || nota);
-      if (!val) {
-        box.innerHTML = '<span class="pv-off">Card visibile, ma senza data: il badge «Prossima grigliata» resta nascosto.</span>';
-        return;
-      }
-      box.innerHTML = '<span class="badge"><span class="dot"></span><span class="b-lab">Prossima grigliata</span>'
-        + '<span class="b-val"></span></span>';
-      box.querySelector('.b-val').textContent = val;
+      const url = previewPhotoUrl();
+      const isDefault = !fotoNuova && !fotoEsistente;
+
+      const flame = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" '
+        + 'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>';
+
+      const badgeHtml = val
+        ? '<span class="badge"><span class="dot"></span><span class="b-lab">Prossima grigliata</span><span class="b-val"></span></span>'
+        : '<span class="pv-off">Card visibile, ma senza data: il badge «Prossima grigliata» resta nascosto.</span>';
+
+      box.innerHTML =
+        '<div class="pv-card">'
+        + '<div class="pv-photo" id="pvPhoto">'
+        + '<span class="pv-tag">In terrazza</span>'
+        + '<span class="pv-stamp">' + flame + 'Griglia</span>'
+        + '</div>'
+        + '<div class="pv-body">' + badgeHtml + '</div>'
+        + '</div>'
+        + (isDefault ? '<div class="pv-note">Nessuna foto caricata: sul sito resta la foto predefinita qui sopra.</div>' : '');
+
+      $('pvPhoto').style.backgroundImage = 'url("' + url + '")';
+      if (val) box.querySelector('.b-val').textContent = val;
     }
     ['change', 'input'].forEach((evt) => {
       $('attiva').addEventListener(evt, updatePreview);
@@ -426,7 +481,7 @@
         if (r.ok && j.ok) {
           st.className = 'status ok';
           st.textContent = '✓ Salvato! Il sito si aggiorna tra 1-2 minuti.';
-          if (j.saved) { fotoEsistente = j.saved.foto || ''; fotoNuova = null; renderPhoto(); }
+          if (j.saved) { fotoEsistente = j.saved.foto || ''; fotoNuova = null; fotoStamp = Date.now(); renderPhoto(); updatePreview(); }
         } else {
           st.className = 'status err';
           st.textContent = 'Errore nel salvataggio (' + r.status + ').';
