@@ -2018,132 +2018,185 @@
       font-weight: 700;
     }
 
-    /* Triptych — the recurring 23 */
-    .feat23__triptych {
+    /* Timeline — the story of the recurring 23 */
+    .feat23__timeline {
       position: relative;
       z-index: 2;
-      margin-top: clamp(46px, 6vw, 84px);
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
+      max-width: 880px;
+      margin: clamp(46px, 6vw, 84px) auto 0;
+    }
+
+    .feat23__timeline::before {
+      content: "";
+      position: absolute;
+      left: 50%;
+      top: 0;
+      bottom: 0;
+      width: 1px;
+      transform: translateX(-.5px);
+      background: linear-gradient(180deg, transparent, rgba(217, 162, 75, .45) 14%, rgba(217, 162, 75, .45) 86%, transparent);
     }
 
     .feat23__moment {
       position: relative;
-      text-align: center;
-      padding: clamp(8px, 2vw, 22px) clamp(14px, 3vw, 34px);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      column-gap: clamp(72px, 10vw, 130px);
+      padding: clamp(22px, 3vw, 36px) 0;
     }
 
-    .feat23__moment + .feat23__moment::before {
-      content: "";
-      position: absolute;
-      left: 0;
-      top: 14%;
-      bottom: 14%;
-      width: 1px;
-      background: linear-gradient(180deg, transparent, rgba(235, 239, 231, .16) 22%, rgba(235, 239, 231, .16) 78%, transparent);
-    }
-
+    /* The 23 sits on the line as a recurring chapter mark; the ink
+       backdrop breaks the line around it */
     .feat23__big {
-      display: block;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      padding: clamp(10px, 1.4vw, 16px) 0;
+      background: var(--ink);
       font-family: var(--serif);
       font-style: italic;
       font-weight: 700;
-      line-height: .9;
-      font-size: clamp(72px, 9vw, 124px);
+      line-height: 1;
+      font-size: clamp(40px, 4.4vw, 58px);
       letter-spacing: -.03em;
       color: var(--gold-bright);
     }
 
-    .feat23__moment h4 {
-      margin: 16px 0 0;
+    .feat23__text {
+      align-self: center;
+    }
+
+    .feat23__moment:nth-child(odd) .feat23__text {
+      grid-column: 1;
+      justify-self: end;
+      text-align: right;
+    }
+
+    .feat23__moment:nth-child(even) .feat23__text {
+      grid-column: 2;
+      justify-self: start;
+      text-align: left;
+    }
+
+    .feat23__text h4 {
+      margin: 0;
       font-family: var(--serif);
       font-weight: 700;
       font-size: clamp(18px, 1.6vw, 22px);
+      line-height: 1.3;
       color: #EBEFE7;
     }
 
-    .feat23__moment p {
-      margin: 9px auto 0;
-      max-width: 26ch;
+    .feat23__text p {
+      margin: 8px 0 0;
+      max-width: 30ch;
       color: #A8AEA7;
       font-size: 14.5px;
       line-height: 1.65;
     }
 
-    /* Triptych stagger reveal (container stays put, moments rise) */
-    .feat23__triptych.reveal {
+    .feat23__moment:nth-child(odd) .feat23__text p {
+      margin-left: auto;
+    }
+
+    /* Timeline reveal — the line draws in, moments enter from their side */
+    .feat23__timeline.reveal {
       opacity: 1;
       transform: none;
     }
 
-    .feat23__triptych .feat23__moment {
+    .feat23__timeline.reveal::before {
+      transform: translateX(-.5px) scaleY(0);
+      transform-origin: top;
+      transition: transform 1.1s var(--ease-in-out);
+    }
+
+    .feat23__timeline.is-in::before {
+      transform: translateX(-.5px) scaleY(1);
+    }
+
+    .feat23__timeline .feat23__moment {
       opacity: 0;
-      transform: translateY(16px);
+      transform: translate(var(--tx, 0), var(--ty, 0));
       transition: opacity .6s var(--ease-out), transform .6s var(--ease-out);
     }
 
-    .feat23__triptych.is-in .feat23__moment {
+    .feat23__timeline .feat23__moment:nth-child(odd) {
+      --tx: -18px;
+    }
+
+    .feat23__timeline .feat23__moment:nth-child(even) {
+      --tx: 18px;
+    }
+
+    .feat23__timeline.is-in .feat23__moment {
       opacity: 1;
       transform: none;
     }
 
-    .feat23__triptych.is-in .feat23__moment:nth-child(1) {
-      transition-delay: 60ms;
+    .feat23__timeline.is-in .feat23__moment:nth-child(1) {
+      transition-delay: 160ms;
     }
 
-    .feat23__triptych.is-in .feat23__moment:nth-child(2) {
-      transition-delay: 150ms;
+    .feat23__timeline.is-in .feat23__moment:nth-child(2) {
+      transition-delay: 330ms;
     }
 
-    .feat23__triptych.is-in .feat23__moment:nth-child(3) {
-      transition-delay: 240ms;
+    .feat23__timeline.is-in .feat23__moment:nth-child(3) {
+      transition-delay: 500ms;
     }
 
     @media (max-width: 620px) {
-      .feat23__triptych {
-        grid-template-columns: 1fr;
+
+      /* Left rail: the line moves to the left, all moments read downward */
+      .feat23__timeline {
         margin-top: clamp(34px, 9vw, 52px);
       }
 
-      /* Each moment becomes a compact row: recurring 23 on the left, text on the right */
-      .feat23__moment {
-        display: grid;
-        grid-template-columns: auto 1fr;
-        column-gap: clamp(16px, 5vw, 22px);
-        align-items: center;
-        text-align: left;
-        padding: clamp(18px, 5vw, 24px) 2px;
+      .feat23__timeline::before {
+        left: 27px;
       }
 
-      .feat23__moment + .feat23__moment::before {
-        left: 0;
-        right: 0;
-        top: 0;
-        bottom: auto;
-        width: auto;
-        height: 1px;
-        background: linear-gradient(90deg, rgba(235, 239, 231, .18), rgba(235, 239, 231, .05) 78%, transparent);
+      .feat23__moment {
+        grid-template-columns: 54px 1fr;
+        column-gap: clamp(16px, 5vw, 22px);
+        padding: clamp(16px, 4.5vw, 22px) 0;
       }
 
       .feat23__big {
+        position: static;
+        transform: none;
         grid-column: 1;
-        grid-row: 1 / span 2;
+        grid-row: 1;
+        justify-self: center;
         align-self: center;
-        font-size: clamp(54px, 17vw, 74px);
+        padding: 12px 0;
+        font-size: clamp(32px, 9.5vw, 40px);
       }
 
-      .feat23__moment h4 {
+      .feat23__moment:nth-child(odd) .feat23__text,
+      .feat23__moment:nth-child(even) .feat23__text {
         grid-column: 2;
         grid-row: 1;
-        margin: 0;
+        justify-self: start;
+        text-align: left;
       }
 
-      .feat23__moment p {
-        grid-column: 2;
-        grid-row: 2;
-        margin: 5px 0 0;
+      .feat23__moment:nth-child(odd) .feat23__text p {
+        margin-left: 0;
+      }
+
+      .feat23__text p {
         max-width: none;
         font-size: 15px;
+      }
+
+      .feat23__timeline .feat23__moment:nth-child(odd),
+      .feat23__timeline .feat23__moment:nth-child(even) {
+        --tx: 0;
+        --ty: 14px;
       }
     }
 
@@ -2167,19 +2220,19 @@
         margin-top: clamp(12px, 2vh, 20px);
       }
 
-      .feat23__triptych {
+      .feat23__timeline {
         margin-top: clamp(26px, 4.6vh, 64px);
       }
 
+      .feat23__moment {
+        padding: clamp(14px, 2.8vh, 32px) 0;
+      }
+
       .feat23__big {
-        font-size: clamp(60px, 13vh, 120px);
+        font-size: clamp(36px, 6.5vh, 56px);
       }
 
-      .feat23__moment h4 {
-        margin-top: clamp(10px, 1.6vh, 16px);
-      }
-
-      .feat23__moment p {
+      .feat23__text p {
         margin-top: clamp(6px, 1vh, 9px);
       }
 
@@ -2191,13 +2244,6 @@
       .feat23__quote::before {
         margin-bottom: clamp(16px, 2.4vh, 32px);
       }
-    }
-
-    .feat23__grid--placeholder {
-      grid-template-columns: 1fr;
-      text-align: center;
-      justify-items: center;
-      min-height: clamp(280px, 36vw, 420px);
     }
 
     .feat23__quote {
@@ -2227,49 +2273,6 @@
     .feat23__quote em {
       font-style: italic;
       color: var(--gold-bright);
-    }
-
-    .feat23__list {
-      display: grid;
-      gap: 0;
-      margin: 6px 0 0;
-      padding: 0;
-      list-style: none;
-    }
-
-    .feat23__item {
-      display: grid;
-      grid-template-columns: 64px 1fr;
-      align-items: start;
-      gap: 22px;
-      padding: 22px 0;
-      border-top: 1px solid rgba(235, 239, 231, .14);
-    }
-
-    .feat23__item:last-child {
-      border-bottom: 1px solid rgba(235, 239, 231, .14);
-    }
-
-    .feat23__num {
-      font-family: var(--serif);
-      font-style: italic;
-      color: var(--gold-bright);
-      font-size: 28px;
-    }
-
-    .feat23__item h4 {
-      margin: 0 0 6px;
-      font-family: var(--serif);
-      font-weight: 700;
-      font-size: 22px;
-      color: #EBEFE7;
-    }
-
-    .feat23__item p {
-      margin: 0;
-      color: #A8AEA7;
-      font-size: 15.5px;
-      line-height: 1.7;
     }
 
     /* ---------- Info pratiche ---------- */
@@ -3481,30 +3484,6 @@
       transition-delay: 100ms;
     }
 
-    /* Feat23 items stagger inside their list once revealed */
-    .feat23__list .feat23__item {
-      opacity: 0;
-      transform: translateY(12px);
-      transition: opacity .55s var(--ease-out), transform .55s var(--ease-out);
-    }
-
-    .feat23__list.is-in .feat23__item {
-      opacity: 1;
-      transform: translateY(0);
-    }
-
-    .feat23__list.is-in .feat23__item:nth-child(1) {
-      transition-delay: 80ms;
-    }
-
-    .feat23__list.is-in .feat23__item:nth-child(2) {
-      transition-delay: 160ms;
-    }
-
-    .feat23__list.is-in .feat23__item:nth-child(3) {
-      transition-delay: 240ms;
-    }
-
     /* Strip items stagger */
     .hero__strip .strip-item {
       opacity: 0;
@@ -3587,8 +3566,8 @@
       .hero__copy>*,
       .hero__visual,
       .hero__strip .strip-item,
-      .feat23__list .feat23__item,
-      .feat23__triptych .feat23__moment {
+      .feat23__timeline::before,
+      .feat23__timeline .feat23__moment {
         opacity: 1 !important;
         transform: none !important;
         filter: none !important;
@@ -3601,7 +3580,6 @@
     @media (max-width: 1024px) {
 
       .about__grid,
-      .feat23__grid,
       .info__grid {
         grid-template-columns: 1fr;
         gap: 48px;
@@ -4207,21 +4185,27 @@
           <p class="feat23__lead" data-i18n-html="feat23.lead">Il <strong>23</strong> racchiude i momenti più importanti della nostra vita. Quando è arrivato il momento di dare un nome al ristorante, la scelta è stata naturale.</p>
         </div>
 
-        <div class="feat23__triptych reveal">
+        <div class="feat23__timeline reveal">
           <div class="feat23__moment">
             <span class="feat23__big" aria-hidden="true">23</span>
-            <h4 data-i18n="feat23.m1.t">La data in cui ci siamo sposati</h4>
-            <p data-i18n="feat23.m1.d">L'inizio del nostro cammino insieme, come famiglia.</p>
+            <div class="feat23__text">
+              <h4 data-i18n="feat23.m1.t">La data in cui ci siamo sposati</h4>
+              <p data-i18n="feat23.m1.d">L'inizio del nostro cammino insieme, come famiglia.</p>
+            </div>
           </div>
           <div class="feat23__moment">
             <span class="feat23__big" aria-hidden="true">23</span>
-            <h4 data-i18n="feat23.m2.t">Il giorno in cui è nata la nostra primogenita</h4>
-            <p data-i18n="feat23.m2.d">Un evento che ha cambiato per sempre le nostre vite.</p>
+            <div class="feat23__text">
+              <h4 data-i18n="feat23.m2.t">Il giorno in cui è nata la nostra primogenita</h4>
+              <p data-i18n="feat23.m2.d">Un evento che ha cambiato per sempre le nostre vite.</p>
+            </div>
           </div>
           <div class="feat23__moment">
             <span class="feat23__big" aria-hidden="true">23</span>
-            <h4 data-i18n="feat23.m3.t">La data presunta</h4>
-            <p data-i18n="feat23.m3.d">Della nostra secondogenita, che attendiamo con immensa gioia.</p>
+            <div class="feat23__text">
+              <h4 data-i18n="feat23.m3.t">La data presunta</h4>
+              <p data-i18n="feat23.m3.d">Della nostra secondogenita, che attendiamo con immensa gioia.</p>
+            </div>
           </div>
         </div>
 
