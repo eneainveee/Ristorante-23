@@ -97,6 +97,25 @@
       box-shadow: 0 0 0 3px rgba(183, 89, 58, .12);
     }
 
+    /* Su Safari iOS il campo data ha una larghezza intrinseca nativa che
+       ignora width:100% e sfora lo schermo; qui l'aspetto nativo viene
+       azzerato e il campo vincolato al contenitore */
+    input[type=date] {
+      -webkit-appearance: none;
+      appearance: none;
+      display: block;
+      min-width: 0;
+      max-width: 100%;
+      min-height: 48px;
+      overflow: hidden;
+      text-align: left;
+    }
+
+    input[type=date]::-webkit-date-and-time-value {
+      text-align: left;
+      margin: 0;
+    }
+
     /* Interruttore */
     .toggle {
       display: flex; align-items: center; gap: 13px;
