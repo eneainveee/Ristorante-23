@@ -916,6 +916,34 @@
       overflow: hidden;
     }
 
+    /* Foto griglia personalizzata (es. locandina caricata dal pannello /gestione):
+       diventa cliccabile e si apre a schermo intero. Il badge segnala che è apribile. */
+    .evento__photo.is-openable {
+      cursor: zoom-in;
+    }
+
+    .evento__zoom {
+      position: absolute;
+      top: 12px;
+      right: 12px;
+      z-index: 2;
+      width: 34px;
+      height: 34px;
+      display: grid;
+      place-items: center;
+      color: #F4F2EE;
+      background: rgba(20, 17, 15, .45);
+      -webkit-backdrop-filter: blur(10px);
+      backdrop-filter: blur(10px);
+      border-radius: 999px;
+      pointer-events: none;
+    }
+
+    .evento__zoom svg {
+      width: 15px;
+      height: 15px;
+    }
+
     .hero__slides .hero__slide {
       flex: 0 0 100%;
       width: 100%;
@@ -6481,6 +6509,64 @@
             img.removeAttribute('srcset');
             img.removeAttribute('sizes');
             img.src = g.foto;
+
+            // Foto personalizzata (es. locandina con i dettagli della serata):
+            // cliccando la foto si apre a schermo intero, invece di seguire il
+            // link della card verso #menu. Con la foto di default non succede nulla.
+            var photoBox = img.closest ? img.closest('.evento__photo') : null;
+            if (photoBox) {
+              photoBox.classList.add('is-openable');
+
+              var zoomBadge = document.createElement('span');
+              zoomBadge.className = 'evento__zoom';
+              zoomBadge.setAttribute('aria-hidden', 'true');
+              zoomBadge.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="15 3 21 3 21 9"/><polyline points="9 21 3 21 3 15"/><line x1="21" y1="3" x2="14" y2="10"/><line x1="3" y1="21" x2="10" y2="14"/></svg>';
+              photoBox.appendChild(zoomBadge);
+
+              var lb = document.createElement('div');
+              lb.className = 'lightbox';
+              lb.id = 'griglia-lightbox';
+              lb.setAttribute('aria-hidden', 'true');
+              lb.setAttribute('role', 'dialog');
+              lb.setAttribute('aria-modal', 'true');
+              lb.setAttribute('aria-label', 'Locandina della grigliata');
+              lb.innerHTML =
+                '<button class="lightbox__close" type="button" aria-label="Chiudi">' +
+                '<svg width="18" height="18" viewBox="0 0 20 20" fill="none" aria-hidden="true"><path d="M4 4L16 16M16 4L4 16" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" /></svg>' +
+                '</button>' +
+                '<div class="lightbox__slides"><img class="lightbox__slide" alt="Locandina della prossima grigliata" loading="lazy" decoding="async" /></div>';
+              lb.querySelector('img').src = g.foto;
+              document.body.appendChild(lb);
+
+              var lbOpen = false;
+              function openGrigliaLb() {
+                if (lbOpen) return;
+                lbOpen = true;
+                lb.classList.add('is-open');
+                lb.setAttribute('aria-hidden', 'false');
+                document.body.classList.add('lightbox-open');
+              }
+              function closeGrigliaLb() {
+                if (!lbOpen) return;
+                lbOpen = false;
+                lb.classList.remove('is-open');
+                lb.setAttribute('aria-hidden', 'true');
+                document.body.classList.remove('lightbox-open');
+              }
+
+              photoBox.addEventListener('click', function (e) {
+                e.preventDefault();
+                e.stopPropagation();
+                openGrigliaLb();
+              });
+              lb.querySelector('.lightbox__close').addEventListener('click', closeGrigliaLb);
+              lb.addEventListener('click', function (e) {
+                if (e.target === lb || e.target.classList.contains('lightbox__slides')) closeGrigliaLb();
+              });
+              document.addEventListener('keydown', function (e) {
+                if (lbOpen && e.key === 'Escape') closeGrigliaLb();
+              });
+            }
           }
 
           // Data della serata (ISO "YYYY-MM-DD" scelta dal pannello) + nota facoltativa.
