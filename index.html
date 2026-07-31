@@ -1172,6 +1172,76 @@
       }
     }
 
+    /* Hero closure notice — same shape as hero__alert, clay accent */
+    .hero__notice {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 6px 18px 6px 6px;
+      margin-bottom: 14px;
+      background: rgba(254, 246, 241, .92);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(183, 89, 58, .4);
+      border-radius: 999px;
+      box-shadow:
+        0 1px 0 rgba(254, 252, 246, .9) inset,
+        0 8px 24px -10px rgba(20, 17, 15, .12);
+      max-width: 100%;
+    }
+
+    .hero__notice-chip {
+      display: inline-flex;
+      align-items: center;
+      padding: 5px 11px;
+      background: var(--clay);
+      color: #FEFCF6;
+      border-radius: 999px;
+      font-family: var(--sans);
+      font-size: 9.5px;
+      font-weight: 700;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      flex-shrink: 0;
+    }
+
+    .hero__notice-text {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 8px;
+      font-family: var(--sans);
+      font-size: 13px;
+      color: var(--ink-soft);
+      line-height: 1.3;
+      min-width: 0;
+      flex-wrap: wrap;
+    }
+
+    .hero__notice-text strong {
+      font-family: var(--serif);
+      font-style: italic;
+      font-weight: 400;
+      font-size: 16px;
+      color: var(--clay);
+    }
+
+    @media (max-width: 640px) {
+      .hero__notice {
+        gap: 10px;
+        padding: 5px 14px 5px 5px;
+        margin-bottom: 12px;
+      }
+
+      .hero__notice-text {
+        font-size: 12px;
+        gap: 2px 6px;
+      }
+
+      .hero__notice-text strong {
+        font-size: 14px;
+      }
+    }
+
     /* Hero info strip — 3-col minimal cards */
     .hero__strip {
       margin-top: clamp(28px, 4vh, 48px);
@@ -2594,6 +2664,25 @@
       max-width: 560px;
     }
 
+    .reserve__notice {
+      max-width: 640px;
+      margin: 28px auto 0;
+      padding: 16px 20px;
+      background: rgba(183, 89, 58, .07);
+      border: 1px solid rgba(183, 89, 58, .3);
+      border-left: 3px solid var(--clay);
+      border-radius: 8px;
+      color: var(--ink-soft);
+      font-size: 15px;
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    .reserve__notice strong {
+      color: var(--clay);
+      font-weight: 700;
+    }
+
     .reserve-form {
       position: relative;
       display: grid;
@@ -4014,6 +4103,14 @@
       <div class="container">
         <div class="hero__inner">
           <div class="hero__copy">
+            <div class="hero__notice" id="heroNotice">
+              <span class="hero__notice-chip" data-i18n="hero.noticeChip">AVVISO</span>
+              <span class="hero__notice-text">
+                <strong data-i18n="hero.noticeDate">Sabato 1 agosto</strong>
+                <span data-i18n="hero.noticeText">cucina chiusa tutto il giorno, ristorante chiuso dalle 16:00 per un
+                  evento privato</span>
+              </span>
+            </div>
             <a class="hero__alert" href="#eventi">
               <span class="hero__alert-chip" aria-hidden="true">
                 <span class="dot"></span>
@@ -5044,6 +5141,10 @@
             Compila il modulo e ti ricontattiamo per confermare.
             Oppure, più semplicemente, chiamaci.
           </p>
+          <div class="reserve__notice" id="reserveNotice" data-i18n-html="reserve.notice">
+            <strong>Sabato 1 agosto:</strong> vi informiamo che la cucina resterà chiusa tutto il giorno e, a partire
+            dalle ore 16:00, il ristorante sarà chiuso per un evento privato. Grazie per la comprensione.
+          </div>
         </div>
 
         <form class="reserve-form reveal" id="reserveForm" novalidate>
@@ -5571,6 +5672,9 @@
           /* hero */
           'hero.alertTitle': 'WM 2026',
           'hero.alertText': 'direkt auf der Terrasse',
+          'hero.noticeChip': 'HINWEIS',
+          'hero.noticeDate': 'Samstag, 1. August',
+          'hero.noticeText': 'Küche den ganzen Tag geschlossen, Restaurant ab 16:00 Uhr wegen einer privaten Veranstaltung geschlossen',
           'hero.title': '<span class="nowrap">Pizza <span class="amp">&amp;</span> Küche</span><br class="br-desktop" /> <span class="nowrap">im Ristorante <span class="num">23</span></span>',
           'hero.sub': '<strong>Restaurant für alle, im Tennis Club Locarno.</strong> Eingebettet in den Bosco Isolino und nur einen Steinwurf vom See entfernt: Pizza aus dem Holzofen, Grillabende am Wochenende und mediterrane Küche.',
           'hero.bookBtn': 'Tisch reservieren',
@@ -5787,6 +5891,7 @@
           'reserve.eyebrow': 'Reservierungen',
           'reserve.title': 'Ein Tisch im <em>Ristorante 23</em>.',
           'reserve.lead': 'Füllen Sie das Formular aus und wir melden uns zur Bestätigung. Oder rufen Sie uns einfach an.',
+          'reserve.notice': '<strong>Samstag, 1. August:</strong> Wir informieren Sie, dass die Küche den ganzen Tag geschlossen bleibt und das Restaurant ab 16:00 Uhr wegen einer privaten Veranstaltung geschlossen ist. Vielen Dank für Ihr Verständnis.',
           'form.name': 'Vor- und Nachname',
           'form.name.ph': 'Max Muster',
           'form.tel': 'Telefon',
@@ -5839,6 +5944,9 @@
           /* hero */
           'hero.alertTitle': 'World Cup 2026',
           'hero.alertText': 'directly on the terrace',
+          'hero.noticeChip': 'NOTICE',
+          'hero.noticeDate': 'Saturday, August 1',
+          'hero.noticeText': 'kitchen closed all day, restaurant closed from 4:00 pm for a private event',
           'hero.title': '<span class="nowrap">Pizza <span class="amp">&amp;</span> kitchen</span><br class="br-desktop" /> <span class="nowrap">at Ristorante <span class="num">23</span></span>',
           'hero.sub': '<strong>Restaurant open to the public, inside the Tennis Club Locarno.</strong> Nestled in the Bosco Isolino woods, a stone\'s throw from the lake: wood-fired pizza, weekend grill nights and Mediterranean cuisine.',
           'hero.bookBtn': 'Book a table',
@@ -6055,6 +6163,7 @@
           'reserve.eyebrow': 'Reservations',
           'reserve.title': 'A table at <em>Ristorante 23</em>.',
           'reserve.lead': 'Fill in the form and we\'ll get back to you to confirm. Or just give us a call.',
+          'reserve.notice': '<strong>Saturday, August 1:</strong> please note that the kitchen will be closed all day and, from 4:00 pm, the restaurant will be closed for a private event. Thank you for your understanding.',
           'form.name': 'First and last name',
           'form.name.ph': 'John Smith',
           'form.tel': 'Phone',
@@ -6247,6 +6356,17 @@
         ((saved === 'de' || saved === 'it' || saved === 'en') ? saved : DEFAULT_LANG);
       applyLang(initial);
       syncURLForLang(initial);
+
+      // Avviso chiusura sabato 1 agosto 2026: si nasconde da solo il giorno dopo
+      (function () {
+        var closureEnd = new Date('2026-08-02T00:00:00+02:00');
+        if (new Date() >= closureEnd) {
+          ['heroNotice', 'reserveNotice'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+          });
+        }
+      })();
 
       document.querySelectorAll('.mobile-drawer__lang button, .lang-picker__menu button').forEach(function (btn) {
         btn.addEventListener('click', function () {
