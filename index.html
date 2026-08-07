@@ -6175,9 +6175,9 @@
       applyLang(initial);
       syncURLForLang(initial);
 
-      // Avviso evento privato 7-8 agosto 2026: si nasconde da solo il giorno dopo
+      // Avviso evento privato 7-8 agosto 2026: si nasconde da solo sabato 8 sera tardi
       (function () {
-        var closureEnd = new Date('2026-08-09T00:00:00+02:00');
+        var closureEnd = new Date('2026-08-08T23:30:00+02:00');
         if (new Date() >= closureEnd) {
           ['heroNotice', 'reserveNotice'].forEach(function (id) {
             var el = document.getElementById(id);
