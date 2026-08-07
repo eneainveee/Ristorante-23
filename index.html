@@ -1096,6 +1096,11 @@
       margin-bottom: 2px;
     }
 
+    .hero__notice-text .hl {
+      color: var(--clay);
+      font-weight: 700;
+    }
+
     @media (max-width: 640px) {
       .hero__notice {
         max-width: 100%;
@@ -3973,6 +3978,21 @@
       <div class="container">
         <div class="hero__inner">
           <div class="hero__copy">
+            <div class="hero__notice" id="heroNotice">
+              <svg class="hero__notice-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="9" />
+                <line x1="12" y1="7.5" x2="12" y2="13" />
+                <line x1="12" y1="16" x2="12.01" y2="16" />
+              </svg>
+              <span class="hero__notice-text">
+                <strong data-i18n="hero.noticeDate">Venerdì 7 e sabato 8 agosto</strong>
+                <span data-i18n-html="hero.noticeText">Gentili clienti, vi informiamo che a pranzo la cucina resta
+                  regolarmente aperta fino alle 14:00; <span class="hl">venerdì 7</span> e <span class="hl">sabato 8
+                    agosto</span>, a partire dalle ore 16:00, il ristorante sarà chiuso per un evento privato.
+                  Grazie per la comprensione.</span>
+              </span>
+            </div>
             <h1 class="hero__title" data-i18n-html="hero.title">
               <span class="nowrap">Pizza <span class="amp">&amp;</span> cucina</span><br class="br-desktop" />
               <span class="nowrap">al Ristorante <span class="num">23</span></span>
@@ -4954,6 +4974,11 @@
             Compila il modulo e ti ricontattiamo per confermare.
             Oppure, più semplicemente, chiamaci.
           </p>
+          <div class="reserve__notice" id="reserveNotice" data-i18n-html="reserve.notice">
+            Gentili clienti, vi informiamo che a pranzo la cucina resta regolarmente aperta fino alle 14:00;
+            <strong>venerdì 7</strong> e <strong>sabato 8 agosto</strong>, a partire dalle ore 16:00, il ristorante
+            sarà chiuso per un evento privato. Grazie per la comprensione.
+          </div>
         </div>
 
         <form class="reserve-form reveal" id="reserveForm" novalidate>
@@ -5479,6 +5504,8 @@
           'drawer.eyebrow': 'Navigation',
           'drawer.bookBtn': 'Tisch reservieren',
           /* hero */
+          'hero.noticeDate': 'Freitag, 7. und Samstag, 8. August',
+          'hero.noticeText': 'Liebe Gäste, wir informieren Sie, dass die Küche mittags regulär bis 14:00 Uhr geöffnet bleibt; am <span class="hl">Freitag, 7.</span> und <span class="hl">Samstag, 8. August</span> ist das Restaurant ab 16:00 Uhr wegen einer privaten Veranstaltung geschlossen. Vielen Dank für Ihr Verständnis.',
           'hero.title': '<span class="nowrap">Pizza <span class="amp">&amp;</span> Küche</span><br class="br-desktop" /> <span class="nowrap">im Ristorante <span class="num">23</span></span>',
           'hero.sub': '<strong>Restaurant für alle, im Tennis Club Locarno.</strong> Eingebettet in den Bosco Isolino und nur einen Steinwurf vom See entfernt: Pizza aus dem Holzofen, Grillabende am Wochenende und mediterrane Küche.',
           'hero.bookBtn': 'Tisch reservieren',
@@ -5690,6 +5717,7 @@
           'reserve.eyebrow': 'Reservierungen',
           'reserve.title': 'Ein Tisch im <em>Ristorante 23</em>.',
           'reserve.lead': 'Füllen Sie das Formular aus und wir melden uns zur Bestätigung. Oder rufen Sie uns einfach an.',
+          'reserve.notice': 'Liebe Gäste, wir informieren Sie, dass die Küche mittags regulär bis 14:00 Uhr geöffnet bleibt; am <strong>Freitag, 7.</strong> und <strong>Samstag, 8. August</strong> ist das Restaurant ab 16:00 Uhr wegen einer privaten Veranstaltung geschlossen. Vielen Dank für Ihr Verständnis.',
           'form.name': 'Vor- und Nachname',
           'form.name.ph': 'Max Muster',
           'form.tel': 'Telefon',
@@ -5740,6 +5768,8 @@
           'drawer.eyebrow': 'Navigation',
           'drawer.bookBtn': 'Book a table',
           /* hero */
+          'hero.noticeDate': 'Friday, August 7 & Saturday, August 8',
+          'hero.noticeText': 'Dear guests, please note that the kitchen remains open as usual for lunch until 2:00 pm; on <span class="hl">Friday, August 7</span> and <span class="hl">Saturday, August 8</span>, from 4:00 pm, the restaurant will be closed for a private event. Thank you for your understanding.',
           'hero.title': '<span class="nowrap">Pizza <span class="amp">&amp;</span> kitchen</span><br class="br-desktop" /> <span class="nowrap">at Ristorante <span class="num">23</span></span>',
           'hero.sub': '<strong>Restaurant open to the public, inside the Tennis Club Locarno.</strong> Nestled in the Bosco Isolino woods, a stone\'s throw from the lake: wood-fired pizza, weekend grill nights and Mediterranean cuisine.',
           'hero.bookBtn': 'Book a table',
@@ -5951,6 +5981,7 @@
           'reserve.eyebrow': 'Reservations',
           'reserve.title': 'A table at <em>Ristorante 23</em>.',
           'reserve.lead': 'Fill in the form and we\'ll get back to you to confirm. Or just give us a call.',
+          'reserve.notice': 'Dear guests, please note that the kitchen remains open as usual for lunch until 2:00 pm; on <strong>Friday, August 7</strong> and <strong>Saturday, August 8</strong>, from 4:00 pm, the restaurant will be closed for a private event. Thank you for your understanding.',
           'form.name': 'First and last name',
           'form.name.ph': 'John Smith',
           'form.tel': 'Phone',
@@ -6143,6 +6174,17 @@
         ((saved === 'de' || saved === 'it' || saved === 'en') ? saved : DEFAULT_LANG);
       applyLang(initial);
       syncURLForLang(initial);
+
+      // Avviso evento privato 7-8 agosto 2026: si nasconde da solo il giorno dopo
+      (function () {
+        var closureEnd = new Date('2026-08-09T00:00:00+02:00');
+        if (new Date() >= closureEnd) {
+          ['heroNotice', 'reserveNotice'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+          });
+        }
+      })();
 
       document.querySelectorAll('.mobile-drawer__lang button, .lang-picker__menu button').forEach(function (btn) {
         btn.addEventListener('click', function () {
