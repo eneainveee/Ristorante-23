@@ -5573,9 +5573,10 @@
             Oppure, più semplicemente, chiamaci.
           </p>
           <div class="reserve__notice" id="reserveNotice" data-i18n-html="reserve.notice">
-            <strong>Scegli dove prenotare.</strong> Al coperto alla <strong>Morettina</strong> (Via alla Morettina 10)
-            per pranzo e cena, oppure all'esterno al <strong>Tennis Club</strong> (Via Ballerini 1),
-            solo a pranzo, dal lunedì al venerdì, fino al 31 ottobre.
+            <strong>Scegli dove prenotare.</strong> Al coperto alla <strong>Morettina</strong> (Via alla Morettina 10),
+            pranzo e cena <strong>dal 5 ottobre</strong>. Oppure all'esterno al <strong>Tennis Club</strong>
+            (Via Ballerini 1): pranzo e cena <strong>fino al 4 ottobre</strong>, poi solo pranzo dal lunedì al
+            venerdì, fino al 31 ottobre.
           </div>
         </div>
 
@@ -5615,7 +5616,7 @@
                 <span class="rf-place__card">
                   <span class="place-num place-num--2">2</span>
                   <span class="rf-place__txt"><b data-i18n="form.place.out">All'esterno · Tennis Club</b>
-                    <small data-i18n="form.place.outSub">Solo pranzo, lun–ven, fino al 31 ottobre</small></span>
+                    <small data-i18n="form.place.outSub">Pranzo e cena fino al 4 ottobre, poi solo pranzo lun–ven fino al 31</small></span>
                 </span>
               </label>
             </div>
@@ -6032,39 +6033,57 @@
       }
 
       var dateInput = f.querySelector('input[name="data"]');
-      if (dateInput) {
-        dateInput.min = localISODate();
-        dateInput.addEventListener('focus', function () { dateInput.min = localISODate(); });
-      }
 
-      // Sede: all'esterno (Tennis Club) si prenota solo a pranzo, lun–ven
-      var OUTDOOR_LAST_DAY = '2026-10-31'; // stagione all'esterno prolungata fino a fine ottobre
+      // Sedi:
+      // - al coperto (Morettina): si prenota dal 5 ottobre, pranzo e cena
+      // - all'esterno (Tennis Club): fino al 4 ottobre pranzo e cena tutti i giorni;
+      //   dal 5 ottobre solo pranzo, lun–ven, fino a fine ottobre
+      var INDOOR_FIRST_DAY = '2026-10-05';
+      var OUTDOOR_LAST_DAY = '2026-10-31';
       var dinner = document.getElementById('rfDinner');
       var timeSel = f.querySelector('select[name="ora"]');
       function isOutside() {
         var r = f.querySelector('input[name="sede"]:checked');
         return r && r.value === 'esterno';
       }
+      function minDate() {
+        var today = localISODate();
+        return (!isOutside() && today < INDOOR_FIRST_DAY) ? INDOOR_FIRST_DAY : today;
+      }
+      function outsideLunchOnly() {
+        // senza data scelta vale la regola di oggi
+        var d = (dateInput && dateInput.value) || localISODate();
+        return isOutside() && d >= INDOOR_FIRST_DAY;
+      }
       function syncPlace() {
-        var out = isOutside();
+        if (dateInput) {
+          dateInput.min = minDate();
+          dateInput.max = isOutside() ? OUTDOOR_LAST_DAY : '';
+        }
         if (dinner) {
-          dinner.disabled = out;
-          dinner.hidden = out;
-          if (out && timeSel && timeSel.selectedOptions[0] && timeSel.selectedOptions[0].parentNode === dinner) {
+          var lunchOnly = outsideLunchOnly();
+          dinner.disabled = lunchOnly;
+          dinner.hidden = lunchOnly;
+          if (lunchOnly && timeSel && timeSel.selectedOptions[0] && timeSel.selectedOptions[0].parentNode === dinner) {
             timeSel.value = '';
           }
         }
-        checkWeekday();
+        checkDate();
       }
-      function checkWeekday() {
+      function checkDate() {
         if (!dateInput) return;
         var msg = '';
-        if (isOutside() && dateInput.value) {
-          var day = new Date(dateInput.value + 'T12:00:00').getDay();
-          if (dateInput.value > OUTDOOR_LAST_DAY) {
+        var v = dateInput.value;
+        if (v) {
+          if (!isOutside() && v < INDOOR_FIRST_DAY) {
+            msg = tWa('form.place.early', 'Alla Morettina, al coperto, si prenota dal 5 ottobre.');
+          } else if (isOutside() && v > OUTDOOR_LAST_DAY) {
             msg = tWa('form.place.late', 'All\'esterno al Tennis Club si prenota solo fino al 31 ottobre.');
-          } else if (day === 0 || day === 6) {
-            msg = tWa('form.place.weekend', 'All\'esterno al Tennis Club si prenota solo dal lunedì al venerdì.');
+          } else if (isOutside() && v >= INDOOR_FIRST_DAY) {
+            var day = new Date(v + 'T12:00:00').getDay();
+            if (day === 0 || day === 6) {
+              msg = tWa('form.place.weekend', 'Dal 5 ottobre, all\'esterno al Tennis Club si prenota solo dal lunedì al venerdì.');
+            }
           }
         }
         dateInput.setCustomValidity(msg);
@@ -6072,7 +6091,11 @@
       f.querySelectorAll('input[name="sede"]').forEach(function (r) {
         r.addEventListener('change', syncPlace);
       });
-      if (dateInput) dateInput.addEventListener('change', checkWeekday);
+      if (dateInput) {
+        dateInput.addEventListener('change', syncPlace);
+        dateInput.addEventListener('focus', function () { dateInput.min = minDate(); });
+      }
+      syncPlace();
 
       function formatDate(iso) {
         if (!iso) return '';
@@ -6098,8 +6121,8 @@
         if (data.email) lines.push(tWa('wa.email', 'Email') + ': ' + data.email);
         lines.push(
           tWa('wa.place', 'Sede') + ': ' + (data.sede === 'esterno'
-            ? tWa('form.place.out', 'All\'esterno · Tennis Club')
-            : tWa('form.place.in', 'Al coperto · Morettina')),
+            ? tWa('wa.place.out', 'ALL\'ESTERNO – Tennis Club Locarno, Via Ballerini 1')
+            : tWa('wa.place.in', 'ALL\'INTERNO – Morettina, Via alla Morettina 10')),
           tWa('wa.date', 'Data') + ': ' + formatDate(data.data),
           tWa('wa.time', 'Ora') + ': ' + (data.ora || ''),
           tWa('wa.people', 'Persone') + ': ' + (data.persone || '')
@@ -6113,8 +6136,7 @@
 
       f.addEventListener('submit', function (e) {
         e.preventDefault();
-        if (dateInput) dateInput.min = localISODate();
-        checkWeekday();
+        syncPlace();
         if (!f.checkValidity()) { f.reportValidity(); return; }
 
         var fd = new FormData(f);
@@ -6403,7 +6425,7 @@
           'reserve.eyebrow': 'Reservierungen',
           'reserve.title': 'Ein Tisch im <em>Ristorante 23</em>.',
           'reserve.lead': 'Füllen Sie das Formular aus und wir melden uns zur Bestätigung. Oder rufen Sie uns einfach an.',
-          'reserve.notice': '<strong>Wählen Sie, wo Sie reservieren.</strong> Drinnen an der <strong>Morettina</strong> (Via alla Morettina 10) für Mittag- und Abendessen, oder draussen im <strong>Tennis Club</strong> (Via Ballerini 1), nur mittags, von Montag bis Freitag, bis 31. Oktober.',
+          'reserve.notice': '<strong>Wählen Sie, wo Sie reservieren.</strong> Drinnen an der <strong>Morettina</strong> (Via alla Morettina 10), Mittag- und Abendessen <strong>ab 5. Oktober</strong>. Oder draussen im <strong>Tennis Club</strong> (Via Ballerini 1): Mittag- und Abendessen <strong>bis 4. Oktober</strong>, danach nur mittags von Montag bis Freitag, bis 31. Oktober.',
           'form.name': 'Vor- und Nachname',
           'form.name.ph': 'Max Muster',
           'form.tel': 'Telefon',
@@ -6416,8 +6438,9 @@
           'form.place.in': 'Drinnen · Morettina',
           'form.place.inSub': 'Mittag- und Abendessen, ab 5. Oktober',
           'form.place.out': 'Draussen · Tennis Club',
-          'form.place.outSub': 'Nur mittags, Mo–Fr, bis 31. Oktober',
-          'form.place.weekend': 'Draussen im Tennis Club kann nur von Montag bis Freitag reserviert werden.',
+          'form.place.outSub': 'Mittag- und Abendessen bis 4. Oktober, danach nur mittags Mo–Fr bis 31.',
+          'form.place.weekend': 'Ab 5. Oktober kann draussen im Tennis Club nur von Montag bis Freitag reserviert werden.',
+          'form.place.early': 'Drinnen an der Morettina kann ab 5. Oktober reserviert werden.',
           'form.place.late': 'Draussen im Tennis Club kann nur bis 31. Oktober reserviert werden.',
           'form.people': 'Personen',
           'form.notes': 'Hinweise <em>(optional)</em>',
@@ -6442,6 +6465,8 @@
           'wa.phone': 'Telefon',
           'wa.email': 'E-Mail',
           'wa.place': 'Ort',
+          'wa.place.out': 'DRAUSSEN – Tennis Club Locarno, Via Ballerini 1',
+          'wa.place.in': 'DRINNEN – Morettina, Via alla Morettina 10',
           'wa.date': 'Datum',
           'wa.time': 'Uhrzeit',
           'wa.people': 'Personen',
@@ -6699,7 +6724,7 @@
           'reserve.eyebrow': 'Reservations',
           'reserve.title': 'A table at <em>Ristorante 23</em>.',
           'reserve.lead': 'Fill in the form and we\'ll get back to you to confirm. Or just give us a call.',
-          'reserve.notice': '<strong>Choose where to book.</strong> Indoors at the <strong>Morettina</strong> (Via alla Morettina 10) for lunch and dinner, or outdoors at the <strong>Tennis Club</strong> (Via Ballerini 1), lunch only, Monday to Friday, until 31 October.',
+          'reserve.notice': '<strong>Choose where to book.</strong> Indoors at the <strong>Morettina</strong> (Via alla Morettina 10), lunch and dinner <strong>from 5 October</strong>. Or outdoors at the <strong>Tennis Club</strong> (Via Ballerini 1): lunch and dinner <strong>until 4 October</strong>, then lunch only Monday to Friday, until 31 October.',
           'form.name': 'First and last name',
           'form.name.ph': 'John Smith',
           'form.tel': 'Phone',
@@ -6712,8 +6737,9 @@
           'form.place.in': 'Indoors · Morettina',
           'form.place.inSub': 'Lunch and dinner, from 5 October',
           'form.place.out': 'Outdoors · Tennis Club',
-          'form.place.outSub': 'Lunch only, Mon–Fri, until 31 October',
-          'form.place.weekend': 'Outdoors at the Tennis Club can only be booked Monday to Friday.',
+          'form.place.outSub': 'Lunch and dinner until 4 October, then lunch only Mon–Fri until the 31st',
+          'form.place.weekend': 'From 5 October, outdoors at the Tennis Club can only be booked Monday to Friday.',
+          'form.place.early': 'Indoors at the Morettina can be booked from 5 October.',
           'form.place.late': 'Outdoors at the Tennis Club can only be booked until 31 October.',
           'form.people': 'People',
           'form.notes': 'Notes <em>(optional)</em>',
@@ -6738,6 +6764,8 @@
           'wa.phone': 'Phone',
           'wa.email': 'Email',
           'wa.place': 'Venue',
+          'wa.place.out': 'OUTDOORS – Tennis Club Locarno, Via Ballerini 1',
+          'wa.place.in': 'INDOORS – Morettina, Via alla Morettina 10',
           'wa.date': 'Date',
           'wa.time': 'Time',
           'wa.people': 'People',
