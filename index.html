@@ -1101,16 +1101,71 @@
       font-weight: 700;
     }
 
-    .hero__notice-text a {
-      color: var(--clay);
-      font-weight: 700;
-      text-decoration: underline;
-      text-underline-offset: 2px;
-      white-space: nowrap;
+    .hero__notice-places {
+      list-style: none;
+      margin: 8px 0 12px;
+      padding: 0;
+      display: grid;
+      gap: 6px;
     }
 
-    .hero__notice-text[hidden] {
-      display: none;
+    .hero__notice-places li {
+      display: flex;
+      align-items: flex-start;
+      gap: 9px;
+    }
+
+    .hero__notice-places .place-num {
+      margin-top: 1px;
+    }
+
+    .hero__notice-places b {
+      color: var(--ink);
+      font-weight: 700;
+    }
+
+    .hero__notice-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .hero__notice-links a {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      min-height: 34px;
+      padding: 0 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(183, 89, 58, .4);
+      color: var(--clay);
+      font-size: 13px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: background .2s var(--ease-out), transform .2s var(--ease-out);
+    }
+
+    .hero__notice-links a::after {
+      content: "→";
+    }
+
+    .hero__notice-links a:hover {
+      background: rgba(183, 89, 58, .1);
+    }
+
+    .hero__notice-links a:active {
+      transform: scale(.97);
+    }
+
+    .hero__notice-links a.is-primary {
+      background: var(--clay);
+      border-color: var(--clay);
+      color: var(--bg-3);
+    }
+
+    .hero__notice-links a.is-primary:hover {
+      background: #a14d31;
     }
 
     @media (max-width: 640px) {
@@ -1414,6 +1469,116 @@
       .eventi__grid.is-centered .evento__text {
         text-align: left;
       }
+    }
+
+    /* Se la griglia è spenta, l'evento rimasto occupa tutta la riga */
+    @media (min-width: 641px) {
+      .eventi__grid.has-single .evento:not(.evento--news) {
+        grid-column: 1 / -1;
+      }
+    }
+
+    /* Novità: riquadro grafico "aperti tutto l'inverno" */
+    .evento__photo.evento__art {
+      display: grid;
+      place-items: center;
+      background: radial-gradient(120% 90% at 30% 20%, #3b2d20 0%, #1b1612 70%);
+      color: var(--bg-3);
+    }
+
+    .evento__art-inner {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 14px;
+      padding: 56px 24px;
+      text-align: center;
+    }
+
+    .evento__art-ico {
+      width: 30px;
+      height: 30px;
+      color: var(--gold-bright);
+    }
+
+    .evento__art-big {
+      font-family: var(--serif);
+      font-size: clamp(30px, 3vw, 42px);
+      line-height: 1.05;
+      font-weight: 700;
+    }
+
+    .evento__art-big em {
+      color: var(--gold-bright);
+      font-weight: 400;
+    }
+
+    .evento__art-places {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 8px 16px;
+      font: 600 11px/1 var(--sans);
+      letter-spacing: .16em;
+      text-transform: uppercase;
+      color: rgba(254, 252, 246, .8);
+    }
+
+    .evento__art-places > span {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      white-space: nowrap;
+    }
+
+    /* Novità: badge "Prossimamente" ben visibile sulla foto */
+    .evento__soon {
+      position: absolute;
+      left: 16px;
+      top: 54px;
+      padding: 9px 16px;
+      border-radius: 999px;
+      background: var(--gold-bright);
+      color: var(--ink);
+      font: 700 12px/1 var(--sans);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, .3);
+    }
+
+    /* "Novità · Prossimamente": un'unica etichetta chiara, "Prossimamente" in terracotta */
+    .evento__labels {
+      position: absolute;
+      top: 16px;
+      left: 16px;
+      display: flex;
+      align-items: stretch;
+      border-radius: 999px;
+      background: rgba(254, 252, 246, 0.94);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      box-shadow: 0 4px 14px rgba(0, 0, 0, .14);
+    }
+
+    .evento__labels .evento__tag {
+      position: static;
+      background: none;
+      backdrop-filter: none;
+      -webkit-backdrop-filter: none;
+    }
+
+    .evento__labels .evento__soon {
+      position: static;
+      display: inline-flex;
+      align-items: center;
+      padding: 7px 12px 7px 11px;
+      border-left: 1px solid rgba(20, 17, 15, .12);
+      border-radius: 0;
+      background: none;
+      box-shadow: none;
+      color: var(--clay);
+      font: 700 10.5px/1 var(--sans);
+      letter-spacing: .14em;
     }
 
     .evento {
@@ -2488,6 +2653,208 @@
       font-feature-settings: "tnum";
     }
 
+    .places-intro {
+      margin: -6px 0 0;
+      font-size: 14.5px;
+      color: var(--ink-soft);
+    }
+
+    .place-num {
+      display: inline-grid;
+      place-items: center;
+      flex: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--bg-3);
+      font-family: var(--serif);
+      font-size: 11.5px;
+      font-weight: 700;
+      font-style: normal;
+      line-height: 1;
+      letter-spacing: 0;
+    }
+
+    .place-num--2 {
+      background: var(--clay);
+    }
+
+    .place-num--lg {
+      width: 34px;
+      height: 34px;
+      font-size: 17px;
+    }
+
+    .place {
+      border: 1px solid var(--glass-line);
+      border-left: 3px solid var(--gold);
+      border-radius: var(--radius);
+      background: var(--bg);
+      padding: 16px 18px 6px;
+    }
+
+    .place--2 {
+      border-left-color: var(--clay);
+      padding-bottom: 14px;
+    }
+
+    .place__head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 10px;
+    }
+
+    .place__id {
+      flex: 1;
+      min-width: 0;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .place__kind {
+      font-family: var(--sans);
+      font-weight: 600;
+      font-size: 10.5px;
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+
+    .place__addr {
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--ink);
+    }
+
+    .place__map {
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      flex: none;
+      padding: 6px 11px;
+      border: 1px solid var(--glass-line);
+      border-radius: 999px;
+      background: var(--bg-3);
+      color: var(--ink);
+      font: 600 12px/1 var(--sans);
+      cursor: pointer;
+      transition: background .2s, color .2s, border-color .2s;
+    }
+
+    .place__map svg {
+      width: 13px;
+      height: 13px;
+    }
+
+    .place__map:hover {
+      background: var(--ink);
+      color: var(--bg-3);
+      border-color: var(--ink);
+    }
+
+    .place .hours-table {
+      margin-top: 0;
+    }
+
+    .place .hours-row:last-child {
+      border-bottom: 0;
+    }
+
+    .place .hours-note {
+      margin: 8px 0 0;
+    }
+
+    @media (max-width: 640px) {
+      .place {
+        padding: 14px 14px 4px;
+      }
+
+      .place--2 {
+        padding-bottom: 12px;
+      }
+
+      .place__head {
+        gap: 10px;
+      }
+
+      .place-num--lg {
+        width: 28px;
+        height: 28px;
+        font-size: 15px;
+      }
+
+      .place__kind {
+        letter-spacing: .12em;
+      }
+
+      .place__addr {
+        font-size: 17px;
+      }
+
+      .place__map {
+        padding: 8px;
+      }
+
+      .place__map span {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip: rect(0 0 0 0);
+        white-space: nowrap;
+      }
+
+      .place .hours-row {
+        font-size: 13.5px;
+      }
+    }
+
+    .map-switch {
+      display: inline-flex;
+      gap: 4px;
+      padding: 4px;
+      border-radius: 999px;
+      background: var(--bg-2);
+    }
+
+    .map-switch__btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 6px 13px 6px 6px;
+      border: 0;
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      font: 600 12.5px/1 var(--sans);
+      cursor: pointer;
+      transition: background .2s, color .2s, box-shadow .2s;
+    }
+
+    .map-switch__btn.is-active {
+      background: var(--bg-3);
+      color: var(--ink);
+      box-shadow: var(--shadow-sm);
+    }
+
+    .map-switch__btn:not(.is-active) .place-num {
+      opacity: .55;
+    }
+
+    .hours-note {
+      text-align: left;
+      hyphens: manual;
+      font-size: 13.5px;
+      color: var(--ink-mute);
+      line-height: 1.55;
+      margin: 0;
+    }
+
     .hours-row .closed {
       color: var(--clay);
       font-style: italic;
@@ -2594,6 +2961,90 @@
 
     .rf-row--3 {
       grid-template-columns: 1.1fr 1fr 1fr;
+    }
+
+    .rf-place {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      min-width: 0;
+    }
+
+    .rf-place legend {
+      padding: 0;
+      margin-bottom: 8px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .rf-place__opts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+
+    .rf-place__opt {
+      position: relative;
+      cursor: pointer;
+    }
+
+    .rf-place__opt input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .rf-place__card {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      height: 100%;
+      padding: 12px 14px;
+      background: #fff;
+      border: 1px solid rgba(20, 17, 15, .12);
+      border-radius: 6px;
+      transition: border-color .2s var(--ease-out), box-shadow .2s var(--ease-out);
+    }
+
+    .rf-place__opt:hover .rf-place__card {
+      border-color: rgba(20, 17, 15, .22);
+    }
+
+    .rf-place__opt input:checked+.rf-place__card {
+      border-color: var(--ink);
+      box-shadow: 0 0 0 1px var(--ink);
+    }
+
+    .rf-place__opt input:focus-visible+.rf-place__card {
+      outline: 2px solid var(--clay);
+      outline-offset: 2px;
+    }
+
+    .rf-place__txt {
+      display: grid;
+      gap: 2px;
+      line-height: 1.3;
+    }
+
+    .rf-place__txt b {
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .rf-place__txt small {
+      font-size: 12.5px;
+      color: var(--ink-mute);
+    }
+
+    @media (max-width: 520px) {
+      .rf-place__opts {
+        grid-template-columns: 1fr;
+      }
     }
 
     .rf-field {
@@ -3784,6 +4235,18 @@
         aspect-ratio: 5 / 4;
       }
     }
+    /* Desktop: la mappa riempie in altezza la colonna, allineata alla card degli orari */
+    @media (min-width: 1025px) {
+      #informazioni .info-map__embed {
+        flex: 1 1 auto;
+      }
+
+      #informazioni .info-map__embed iframe {
+        height: 100%;
+        min-height: 320px;
+        aspect-ratio: auto;
+      }
+    }
   </style>
 
   <!-- Structured data — Restaurant / LocalBusiness -->
@@ -3824,12 +4287,10 @@
     },
     "hasMap": "https://maps.google.com/?q=Via+alla+Morettina+10,+6600+Locarno",
     "openingHoursSpecification": [
-      {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
-        "opens": "08:30",
-        "closes": "22:30"
-      }
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "08:30", "closes": "14:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "16:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "16:00", "closes": "22:30" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "17:00", "closes": "22:30" }
     ],
     "menu": "https://ristorante23.ch/#menu",
     "hasMenu": "https://ristorante23.ch/#menu",
@@ -3883,7 +4344,7 @@
         <a href="#filosofia" data-i18n="nav.restaurant">Il ristorante</a>
         <a href="#menu" data-i18n="nav.menu">Menu</a>
         <a href="#eventi" data-i18n="nav.eventi">Eventi</a>
-        <a href="#informazioni" data-i18n="nav.orari">Orari &amp; Sede</a>
+        <a href="#informazioni" data-i18n="nav.orari">Orari &amp; Sedi</a>
         <a href="#prenota" data-i18n="nav.prenota">Prenota</a>
       </nav>
       <div class="top-cta">
@@ -3953,7 +4414,7 @@
         <a href="#filosofia" data-drawer-close data-i18n="nav.restaurant">Il ristorante</a>
         <a href="#menu" data-drawer-close data-i18n="nav.menu">Menu</a>
         <a href="#eventi" data-drawer-close data-i18n="nav.eventi">Eventi</a>
-        <a href="#informazioni" data-drawer-close data-i18n="nav.orari">Orari &amp; Sede</a>
+        <a href="#informazioni" data-drawer-close data-i18n="nav.orari">Orari &amp; Sedi</a>
       </nav>
       <div class="mobile-drawer__lang" role="group" aria-label="Seleziona lingua">
         <button type="button" data-lang="it" aria-pressed="true" aria-label="Italiano">IT</button>
@@ -3996,26 +4457,29 @@
                 <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                 <circle cx="12" cy="10" r="3" />
               </svg>
-              <span class="hero__notice-text" data-move-phase="before">
-                <strong data-i18n="hero.move.before.title">Dal 1° ottobre ci trovi alla Morettina</strong>
-                <span data-i18n-html="hero.move.before.text">Per la stagione invernale il ristorante si sposta nella
-                  sede interna, in <span class="hl">Via alla Morettina 10</span>, Locarno. Fino al 30 settembre vi aspettiamo come
-                  sempre in Via Ballerini 1. <a href="#informazioni">Vedi la mappa</a></span>
-              </span>
-              <span class="hero__notice-text" data-move-phase="after" hidden>
-                <strong data-i18n="hero.move.after.title">Stagione invernale: siamo alla Morettina</strong>
-                <span data-i18n-html="hero.move.after.text">Dal 1° ottobre il ristorante vi aspetta nella sede
-                  interna, in <span class="hl">Via alla Morettina 10</span>, Locarno. <a href="#informazioni">Vedi la mappa</a></span>
-              </span>
+              <div class="hero__notice-text">
+                <strong data-i18n="hero.notice.title">Quest'inverno restiamo aperti, in due sedi</strong>
+                <ul class="hero__notice-places">
+                  <li><span class="place-num">1</span><span><b data-i18n="hero.notice.p1">Ristorante &amp; pizzeria</b>
+                      <span data-i18n="hero.notice.p1sub">al coperto, Via alla Morettina 10 · pranzo e cena</span></span></li>
+                  <li><span class="place-num place-num--2">2</span><span><b data-i18n="hero.notice.p2">Caffetteria e pranzo</b>
+                      <span data-i18n="hero.notice.p2sub">al Tennis Club, Via Ballerini 1 · lun–ven 8:30–14:00</span></span></li>
+                </ul>
+                <div class="hero__notice-links">
+                  <a href="#informazioni" data-i18n="hero.notice.hours">Orari e sedi</a>
+                  <a href="novita.html" class="is-primary" data-i18n="hero.notice.news">Tutte le novità</a>
+                </div>
+              </div>
             </div>
             <h1 class="hero__title" data-i18n-html="hero.title">
               <span class="nowrap">Pizza <span class="amp">&amp;</span> cucina</span><br class="br-desktop" />
               <span class="nowrap">al Ristorante <span class="num">23</span></span>
             </h1>
             <p class="hero__sub" data-i18n-html="hero.sub">
-              <strong>Ristorante aperto al pubblico, all'interno del Tennis Club Locarno.</strong>
-              Immerso nel Bosco Isolino, a pochi passi dal Lago Maggiore e dal centro città:
-              pizza al forno a legna, grigliate nel weekend e cucina mediterranea.
+              <strong>Ristorante aperto al pubblico, al Tennis Club Locarno e ora anche al coperto.</strong>
+              Quest'inverno ristorante e pizzeria ti aspettano nella sala interna alla Morettina, mentre al club,
+              immerso nel Bosco Isolino, il ristorante resta aperto per colazione e pranzo
+              con il menu del giorno.
             </p>
             <div class="hero__cta">
               <a class="btn btn--primary" href="#prenota">
@@ -4108,7 +4572,7 @@
               </svg>
             </span>
             <div>
-              <small data-i18n="hero.strip.seasonLabel">Stagione invernale · dal 1° ottobre</small>
+              <small data-i18n="hero.strip.seasonLabel">Stagione invernale · dal 5 ottobre</small>
               <strong><a href="https://maps.apple.com/?q=Via+alla+Morettina+10,+6600+Locarno" target="_blank"
                   rel="noopener">Via alla Morettina 10, Locarno</a></strong>
             </div>
@@ -4816,22 +5280,100 @@
       <div class="container">
         <header class="eventi__head">
           <div>
-            <span class="eyebrow" data-i18n="eventi.eyebrow">Eventi &amp; occasioni</span>
+            <span class="eyebrow" data-i18n="eventi.eyebrow">Novità &amp; eventi</span>
             <h2 class="section-title" data-i18n-html="eventi.title">Cosa <em>succede</em><br>al Ristorante <span
                 class="num">23</span><span class="dot">.</span></h2>
           </div>
           <div>
             <p class="section-lead" data-i18n="eventi.lead">
-              Grigliate nel weekend, spazi riservabili per occasioni speciali.
+              Le ultime novità, le grigliate nel weekend e gli spazi riservabili per occasioni speciali.
             </p>
             <div class="eventi__meta">
-              <span data-i18n="eventi.meta.count">2 eventi attivi</span>
+              <span data-i18n="eventi.meta.count">2 novità</span>
               <span>Locarno · TI</span>
             </div>
           </div>
         </header>
 
         <div class="eventi__grid is-centered">
+
+          <a class="evento evento--news reveal" href="novita.html">
+            <div class="evento__photo evento__art">
+              <div class="evento__art-inner">
+                <svg class="evento__art-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M12 2v20M4.9 4.9l14.2 14.2M2 12h20M4.9 19.1 19.1 4.9" />
+                  <path d="M9 4l3 3 3-3M9 20l3-3 3 3M4 9l3 3-3 3M20 9l-3 3 3 3" />
+                </svg>
+                <span class="evento__art-big" data-i18n-html="eventi.e0.art">Aperti<br><em>tutto l'inverno</em></span>
+                <span class="evento__art-places"><span><span class="place-num">1</span>Morettina</span>
+                  <span><span class="place-num place-num--2">2</span>Tennis Club</span></span>
+              </div>
+              <span class="evento__tag" data-i18n="eventi.e1.tag">Novità</span>
+            </div>
+            <div class="evento__body">
+              <h3 class="evento__title" data-i18n-html="eventi.e0.title">Quest'inverno<br><em>restiamo aperti.</em></h3>
+              <p class="evento__text" data-i18n="eventi.e0.text">È la novità di quest'anno: d'inverno non chiudiamo.
+                Dal 5 ottobre ristorante e pizzeria ti aspettano alla Morettina, in Via alla Morettina 10, mentre al
+                Tennis Club la caffetteria resta aperta dal lunedì al venerdì, 8:30–14:00.</p>
+              <div class="evento__cta">
+                <span data-i18n="eventi.e0.cta">Tutte le novità dell'inverno</span>
+                <span class="arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
+
+          <a class="evento evento--news evento--soon reveal" href="https://www.instagram.com/ventitre_tennis/" target="_blank"
+            rel="noopener">
+            <div class="evento__photo">
+              <picture>
+                <source type="image/webp"
+                  srcset="Immagini/pizza-delivery-scatole-opt-640w.webp 640w, Immagini/pizza-delivery-scatole-opt-1280w.webp 1280w"
+                  sizes="(max-width: 640px) 100vw, 50vw" />
+                <img src="Immagini/pizza-delivery-scatole-opt-1280w.jpg"
+                  srcset="Immagini/pizza-delivery-scatole-opt-640w.jpg 640w, Immagini/pizza-delivery-scatole-opt-1280w.jpg 1280w"
+                  sizes="(max-width: 640px) 100vw, 50vw" alt="Cartoni per pizza da asporto impilati"
+                  loading="lazy" decoding="async" />
+              </picture>
+              <div class="evento__labels">
+                <span class="evento__tag" data-i18n="eventi.e1.tag">Novità</span>
+                <span class="evento__soon" data-i18n="eventi.e1.soon">Prossimamente</span>
+              </div>
+              <div class="evento__stamp">
+                <span class="d"><svg class="stamp-ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                    stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path d="M3 10.5 12 3l9 7.5" />
+                    <path d="M5 9.5V20h14V9.5" />
+                    <path d="M10 20v-6h4v6" />
+                  </svg></span>
+                <span class="m" data-i18n="eventi.e1.m">Presto</span>
+              </div>
+            </div>
+            <div class="evento__body">
+              <h3 class="evento__title" data-i18n-html="eventi.e1.title">Pizza delivery,<br><em>in arrivo
+                  prossimamente.</em></h3>
+              <p class="evento__griglia-next"><span class="ev-next-dot" aria-hidden="true"></span><span
+                  class="ev-next-text"><span class="ev-next-label" data-i18n="eventi.e1.nextLabel">Partenza</span><span
+                    class="ev-next-val" data-i18n="eventi.e1.nextVal">Data in arrivo, restate sintonizzati</span></span></p>
+              <p class="evento__text" data-i18n="eventi.e1.text">Stiamo preparando una novità: la nostra pizza al forno
+                a legna consegnata direttamente a casa tua. Il servizio non è ancora attivo, la data di partenza la
+                annunceremo qui e su Instagram.</p>
+              <div class="evento__cta">
+                <span data-i18n="eventi.e1.cta">Seguici su Instagram</span>
+                <span class="arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
 
           <a class="evento reveal" id="evento-griglia" href="#menu">
             <div class="evento__photo">
@@ -4921,28 +5463,33 @@
       <div class="container">
         <div class="section-head">
           <div>
-            <span class="eyebrow" data-i18n="info.eyebrow">Orari &amp; Sede</span>
+            <span class="eyebrow" data-i18n="info.eyebrow">Orari &amp; Sedi</span>
             <h2 class="section-title" data-i18n-html="info.title">Vieni a <em>trovarci</em>.</h2>
           </div>
           <p class="section-lead" data-i18n="info.lead">
-            Dal 1° ottobre, per la stagione invernale, ci trovi nella sede interna alla Morettina.
-            D'estate torniamo nella sede storica del club.
+            Dal 5 ottobre ristorante e pizzeria sono nella sede invernale alla Morettina. Al Tennis Club
+            resta aperta la caffetteria nei giorni feriali. D'estate torniamo tutti nella sede storica del club.
           </p>
         </div>
 
         <div class="info__grid">
-          <figure class="info-map reveal" aria-label="Mappa sede invernale">
+          <figure class="info-map reveal" id="infoMap" aria-label="Mappa delle sedi">
             <figcaption class="info-map__head">
-              <span class="info-map__tag" data-i18n="info.map.tag">Stagione invernale · dal 1° ottobre</span>
-              <span class="info-map__addr">Via alla Morettina 10 · 6600 Locarno</span>
+              <div class="map-switch" role="group" aria-label="Scegli la sede">
+                <button type="button" class="map-switch__btn is-active" aria-pressed="true"
+                  data-map-place="morettina"><span class="place-num">1</span><span>Morettina</span></button>
+                <button type="button" class="map-switch__btn" aria-pressed="false" data-map-place="club"><span
+                    class="place-num place-num--2">2</span><span>Tennis Club</span></button>
+              </div>
+              <span class="info-map__addr" id="mapAddr">Via alla Morettina 10 · 6600 Locarno</span>
             </figcaption>
             <div class="info-map__embed">
-              <iframe
+              <iframe id="mapFrame"
                 src="https://maps.google.com/maps?q=46.1646957,8.7842865&amp;t=k&amp;z=16&amp;ie=UTF8&amp;iwloc=&amp;output=embed"
                 title="Mappa della sede invernale del Ristorante 23 in Via alla Morettina 10, Locarno" loading="lazy"
                 referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
             </div>
-            <a class="info-map__cta" href="https://maps.google.com/?q=Via+alla+Morettina+10,+6600+Locarno"
+            <a class="info-map__cta" id="mapCta" href="https://maps.google.com/?q=Via+alla+Morettina+10,+6600+Locarno"
               target="_blank" rel="noopener">
               <span data-i18n="info.map.cta">Apri in Google Maps</span>
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -4954,21 +5501,54 @@
 
           <div class="info-card reveal">
             <h3 data-i18n="info.hours.title">Orari di apertura</h3>
-            <div class="hours-table">
-              <div class="hours-row"><b data-i18n="info.day.mon">Lunedì</b><span>08:30 — 22:30</span></div>
-              <div class="hours-row"><b data-i18n="info.day.tue">Martedì</b><span>08:30 — 22:30</span></div>
-              <div class="hours-row"><b data-i18n="info.day.wed">Mercoledì</b><span>08:30 — 22:30</span></div>
-              <div class="hours-row"><b data-i18n="info.day.thu">Giovedì</b><span>08:30 — 22:30</span></div>
-              <div class="hours-row"><b data-i18n="info.day.fri">Venerdì</b><span data-i18n="info.hours.fri">08:30 —
-                  22:30</span></div>
-              <div class="hours-row"><b data-i18n="info.day.sat">Sabato</b><span data-i18n="info.hours.sat">08:30 —
-                  22:30</span></div>
-              <div class="hours-row"><b data-i18n="info.day.sun">Domenica</b><span>08:30 — 22:30</span></div>
+            <p class="places-intro" data-i18n-html="info.places.intro">Quest'inverno ci trovi in <strong>due
+                sedi</strong>, con orari diversi:</p>
+            <div class="place">
+              <div class="place__head">
+                <span class="place-num place-num--lg">1</span>
+                <div class="place__id">
+                  <span class="place__kind">Via alla Morettina 10</span>
+                  <strong class="place__addr" data-i18n="info.hours.restLabel">Ristorante &amp; pizzeria</strong>
+                </div>
+                <button type="button" class="place__map" data-map-place="morettina">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg><span data-i18n="info.place.map">Mappa</span></button>
+              </div>
+              <div class="hours-table">
+                <div class="hours-row"><b data-i18n="info.day.mon">Lunedì</b><span>08:30–14:00 · 16:00–20:00</span></div>
+                <div class="hours-row"><b data-i18n="info.day.tue">Martedì</b><span>08:30–14:00 · 16:00–22:30</span></div>
+                <div class="hours-row"><b data-i18n="info.day.wed">Mercoledì</b><span>08:30–14:00 · 16:00–22:30</span></div>
+                <div class="hours-row"><b data-i18n="info.day.thu">Giovedì</b><span>08:30–14:00 · 16:00–22:30</span></div>
+                <div class="hours-row"><b data-i18n="info.day.fri">Venerdì</b><span>08:30–14:00 · 16:00–22:30</span></div>
+                <div class="hours-row"><b data-i18n="info.day.sat">Sabato</b><span>08:30–14:00 · 17:00–22:30</span></div>
+                <div class="hours-row"><b data-i18n="info.day.sun">Domenica</b><span class="closed"
+                    data-i18n="info.closed">Chiuso</span></div>
+              </div>
             </div>
-            <p class="hours-note" style="font-size:13.5px;color:var(--ink-mute);margin:4px 0 0;line-height:1.55;"
-              data-i18n-html="info.hours.note">
-              Cucina aperta <strong>fino alle 21:15</strong>, con pausa <strong>dalle 14:00 alle 17:00</strong>:
-              dalla colazione all'aperitivo, a pranzo e a cena.
+            <div class="place place--2">
+              <div class="place__head">
+                <span class="place-num place-num--lg place-num--2">2</span>
+                <div class="place__id">
+                  <span class="place__kind">Via Ballerini 1</span>
+                  <strong class="place__addr" data-i18n="info.hours.cafeLabel">Caffetteria e pranzo al Tennis Club Locarno</strong>
+                </div>
+                <button type="button" class="place__map" data-map-place="club">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                    stroke-linejoin="round" aria-hidden="true">
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                    <circle cx="12" cy="10" r="3" />
+                  </svg><span data-i18n="info.place.map">Mappa</span></button>
+              </div>
+              <div class="hours-table">
+                <div class="hours-row"><b data-i18n="info.day.monFri">Lunedì – Venerdì</b><span>08:30–14:00</span></div>
+              </div>
+              <p class="hours-note" data-i18n-html="info.hours.cafeNote">Servizio caffetteria e, a pranzo,
+                solo <strong>menu del giorno</strong> a <strong>CHF 16.–</strong>.</p>
+            </div>
+            <p class="hours-note" data-i18n-html="info.hours.note">
               Per gruppi e occasioni speciali ti chiediamo di chiamarci,
               così possiamo prepararci come si deve.
             </p>
@@ -4990,8 +5570,9 @@
             Oppure, più semplicemente, chiamaci.
           </p>
           <div class="reserve__notice" id="reserveNotice" data-i18n-html="reserve.notice">
-            <strong>Dal 1° ottobre</strong> il ristorante si sposta nella sede invernale, in
-            <strong>Via alla Morettina 10</strong>, Locarno. Le prenotazioni da quella data sono per la nuova sede.
+            <strong>Scegli dove prenotare.</strong> Al coperto alla <strong>Morettina</strong> (Via alla Morettina 10)
+            per pranzo e cena, oppure all'esterno al <strong>Tennis Club</strong> (Via Ballerini 1),
+            solo a pranzo, dal lunedì al venerdì.
           </div>
         </div>
 
@@ -5014,6 +5595,28 @@
               <input type="email" name="email" autocomplete="email" placeholder="mario@email.ch" />
             </label>
           </div>
+
+          <fieldset class="rf-place">
+            <legend data-i18n="form.place">Dove</legend>
+            <div class="rf-place__opts">
+              <label class="rf-place__opt">
+                <input type="radio" name="sede" value="coperto" checked />
+                <span class="rf-place__card">
+                  <span class="place-num">1</span>
+                  <span class="rf-place__txt"><b data-i18n="form.place.in">Al coperto · Morettina</b>
+                    <small data-i18n="form.place.inSub">Pranzo e cena</small></span>
+                </span>
+              </label>
+              <label class="rf-place__opt">
+                <input type="radio" name="sede" value="esterno" />
+                <span class="rf-place__card">
+                  <span class="place-num place-num--2">2</span>
+                  <span class="rf-place__txt"><b data-i18n="form.place.out">All'esterno · Tennis Club</b>
+                    <small data-i18n="form.place.outSub">Solo pranzo, lun–ven</small></span>
+                </span>
+              </label>
+            </div>
+          </fieldset>
 
           <div class="rf-row rf-row--3">
             <label class="rf-field">
@@ -5039,7 +5642,7 @@
                   <option>13:45</option>
                   <option>14:00</option>
                 </optgroup>
-                <optgroup label="Cena" data-i18n-label="form.dinner">
+                <optgroup label="Cena" data-i18n-label="form.dinner" id="rfDinner">
                   <option>18:00</option>
                   <option>18:15</option>
                   <option>18:30</option>
@@ -5167,7 +5770,7 @@
             <li><a href="#filosofia" data-i18n="nav.restaurant">Il ristorante</a></li>
             <li><a href="#menu" data-i18n="nav.menu">Menu</a></li>
             <li><a href="#eventi" data-i18n="nav.eventi">Eventi</a></li>
-            <li><a href="#informazioni" data-i18n="nav.orari">Orari &amp; Sede</a></li>
+            <li><a href="#informazioni" data-i18n="nav.orari">Orari &amp; Sedi</a></li>
             <li><a href="#prenota" data-i18n="nav.prenota">Prenota</a></li>
           </ul>
         </div>
@@ -5431,6 +6034,40 @@
         dateInput.addEventListener('focus', function () { dateInput.min = localISODate(); });
       }
 
+      // Sede: all'esterno (Tennis Club) si prenota solo a pranzo, lun–ven
+      var dinner = document.getElementById('rfDinner');
+      var timeSel = f.querySelector('select[name="ora"]');
+      function isOutside() {
+        var r = f.querySelector('input[name="sede"]:checked');
+        return r && r.value === 'esterno';
+      }
+      function syncPlace() {
+        var out = isOutside();
+        if (dinner) {
+          dinner.disabled = out;
+          dinner.hidden = out;
+          if (out && timeSel && timeSel.selectedOptions[0] && timeSel.selectedOptions[0].parentNode === dinner) {
+            timeSel.value = '';
+          }
+        }
+        checkWeekday();
+      }
+      function checkWeekday() {
+        if (!dateInput) return;
+        var msg = '';
+        if (isOutside() && dateInput.value) {
+          var day = new Date(dateInput.value + 'T12:00:00').getDay();
+          if (day === 0 || day === 6) {
+            msg = tWa('form.place.weekend', 'All\'esterno al Tennis Club si prenota solo dal lunedì al venerdì.');
+          }
+        }
+        dateInput.setCustomValidity(msg);
+      }
+      f.querySelectorAll('input[name="sede"]').forEach(function (r) {
+        r.addEventListener('change', syncPlace);
+      });
+      if (dateInput) dateInput.addEventListener('change', checkWeekday);
+
       function formatDate(iso) {
         if (!iso) return '';
         var parts = iso.split('-');
@@ -5454,6 +6091,9 @@
         ];
         if (data.email) lines.push(tWa('wa.email', 'Email') + ': ' + data.email);
         lines.push(
+          tWa('wa.place', 'Sede') + ': ' + (data.sede === 'esterno'
+            ? tWa('form.place.out', 'All\'esterno · Tennis Club')
+            : tWa('form.place.in', 'Al coperto · Morettina')),
           tWa('wa.date', 'Data') + ': ' + formatDate(data.data),
           tWa('wa.time', 'Ora') + ': ' + (data.ora || ''),
           tWa('wa.people', 'Persone') + ': ' + (data.persone || '')
@@ -5468,6 +6108,7 @@
       f.addEventListener('submit', function (e) {
         e.preventDefault();
         if (dateInput) dateInput.min = localISODate();
+        checkWeekday();
         if (!f.checkValidity()) { f.reportValidity(); return; }
 
         var fd = new FormData(f);
@@ -5475,6 +6116,7 @@
           nome: (fd.get('nome') || '').toString().trim(),
           tel: (fd.get('tel') || '').toString().trim(),
           email: (fd.get('email') || '').toString().trim(),
+          sede: (fd.get('sede') || '').toString(),
           data: (fd.get('data') || '').toString().trim(),
           ora: (fd.get('ora') || '').toString().trim(),
           persone: (fd.get('persone') || '').toString().trim(),
@@ -5512,23 +6154,26 @@
           'nav.restaurant': 'Restaurant',
           'nav.menu': 'Speisekarte',
           'nav.eventi': 'Events',
-          'nav.orari': 'Zeiten & Ort',
+          'nav.orari': 'Zeiten & Standorte',
           'nav.prenota': 'Reservieren',
           'topbar.bookBtn': 'Reservieren',
           'drawer.eyebrow': 'Navigation',
           'drawer.bookBtn': 'Tisch reservieren',
           /* hero */
           'hero.title': '<span class="nowrap">Pizza <span class="amp">&amp;</span> Küche</span><br class="br-desktop" /> <span class="nowrap">im Ristorante <span class="num">23</span></span>',
-          'hero.sub': '<strong>Restaurant für alle, im Tennis Club Locarno.</strong> Eingebettet in den Bosco Isolino und nur einen Steinwurf vom See entfernt: Pizza aus dem Holzofen, Grillabende am Wochenende und mediterrane Küche.',
+          'hero.sub': '<strong>Restaurant für alle, im Tennis Club Locarno – und jetzt auch drinnen.</strong> Diesen Winter erwarten Sie Restaurant und Pizzeria im Innenraum an der Morettina, während im Club, eingebettet in den Bosco Isolino, das Restaurant für Frühstück und Mittagessen mit dem Tagesmenü geöffnet bleibt.',
           'hero.bookBtn': 'Tisch reservieren',
           'hero.discoverBtn': 'Unsere Küche entdecken',
           'hero.photoTag': 'Foto · Sommerterrasse',
           'hero.strip.openLabel': 'Heute geöffnet',
-          'hero.move.before.title': 'Ab 1. Oktober finden Sie uns an der Morettina',
-          'hero.move.before.text': 'Für die Wintersaison zieht das Restaurant ins Innenlokal an der <span class="hl">Via alla Morettina 10</span>, Locarno. Bis zum 30. September erwarten wir Sie wie gewohnt an der Via Ballerini 1. <a href="#informazioni">Karte ansehen</a>',
-          'hero.move.after.title': 'Wintersaison: Wir sind an der Morettina',
-          'hero.move.after.text': 'Seit dem 1. Oktober erwartet Sie das Restaurant im Innenlokal an der <span class="hl">Via alla Morettina 10</span>, Locarno. <a href="#informazioni">Karte ansehen</a>',
-          'hero.strip.seasonLabel': 'Wintersaison · ab 1. Oktober',
+          'hero.strip.seasonLabel': 'Wintersaison · ab 5. Oktober',
+          'hero.notice.title': 'Diesen Winter bleiben wir offen, an zwei Standorten',
+          'hero.notice.p1': 'Restaurant & Pizzeria',
+          'hero.notice.p1sub': 'drinnen, Via alla Morettina 10 · Mittag- und Abendessen',
+          'hero.notice.p2': 'Caffetteria & Mittagessen',
+          'hero.notice.p2sub': 'im Tennis Club, Via Ballerini 1 · Mo–Fr 8:30–14:00',
+          'hero.notice.hours': 'Zeiten & Standorte',
+          'hero.notice.news': 'Alle Neuigkeiten',
           'hero.strip.bookLabel': 'Online reservieren',
           'hero.strip.bookText': 'Antwort via WhatsApp',
           /* about/filosofia */
@@ -5697,10 +6342,22 @@
           'menu.foot': 'Die Speisekarte ist fix, mit saisonalen Gerichten und Spezialitäten außer der Karte.<br />Bei Allergien und Unverträglichkeiten sprechen Sie uns im Service an oder vermerken Sie es im Reservierungshinweis.',
           'menu.bookBtn': 'Tisch reservieren',
           /* eventi */
-          'eventi.eyebrow': 'Events & Anlässe',
+          'eventi.eyebrow': 'News & Events',
           'eventi.title': 'Was im Ristorante <span class="num">23</span> <em>läuft</em><span class="dot">.</span>',
-          'eventi.lead': 'Wochenend-Grill, reservierbare Räume für besondere Anlässe.',
-          'eventi.meta.count': '2 laufende Events',
+          'eventi.lead': 'Die neuesten News, Grillabende am Wochenende und reservierbare Räume für besondere Anlässe.',
+          'eventi.meta.count': '2 Neuheiten',
+          'eventi.e0.art': 'Den ganzen<br><em>Winter geöffnet</em>',
+          'eventi.e0.title': 'Diesen Winter<br><em>bleiben wir offen.</em>',
+          'eventi.e0.text': 'Das ist die Neuheit dieses Jahres: Im Winter schließen wir nicht. Ab dem 5. Oktober erwarten Sie Restaurant und Pizzeria an der Morettina, Via alla Morettina 10, während die Caffetteria im Tennis Club von Montag bis Freitag, 8:30–14:00, geöffnet bleibt.',
+          'eventi.e0.cta': 'Alle Winter-Neuigkeiten',
+          'eventi.e1.tag': 'Neu',
+          'eventi.e1.soon': 'Demnächst',
+          'eventi.e1.m': 'Bald',
+          'eventi.e1.title': 'Pizza-Lieferdienst,<br><em>demnächst bei Ihnen.</em>',
+          'eventi.e1.nextLabel': 'Start',
+          'eventi.e1.nextVal': 'Datum folgt, bleiben Sie dran',
+          'eventi.e1.text': 'Wir bereiten eine Neuheit vor: unsere Pizza aus dem Holzofen, direkt zu Ihnen nach Hause geliefert. Der Dienst ist noch nicht aktiv, den Starttermin geben wir hier und auf Instagram bekannt.',
+          'eventi.e1.cta': 'Folgen Sie uns auf Instagram',
           'eventi.e2.tag': 'Auf der Terrasse',
           'eventi.e2.m': 'Grill',
           'eventi.e2.next': 'Nächster Grillabend',
@@ -5713,10 +6370,10 @@
           'eventi.e3.text': 'Rufen Sie uns an oder schreiben Sie uns — wir sagen Ihnen, wie es geht.',
           'eventi.e3.cta': 'Anrufen 091 751 11 16',
           /* info */
-          'info.eyebrow': 'Zeiten & Ort',
+          'info.eyebrow': 'Zeiten & Standorte',
           'info.title': 'Besuchen Sie <em>uns</em>.',
-          'info.lead': 'Ab dem 1. Oktober finden Sie uns für die Wintersaison im Innenlokal an der Morettina. Im Sommer sind wir wieder am historischen Sitz des Clubs.',
-          'info.map.tag': 'Wintersaison · ab 1. Oktober',
+          'info.lead': 'Ab dem 5. Oktober sind Restaurant und Pizzeria im Wintersitz an der Morettina. Im Tennis Club bleibt die Caffetteria an Werktagen geöffnet. Im Sommer sind wir alle wieder am historischen Sitz des Clubs.',
+          'info.map.tag': 'Wintersaison · ab 5. Oktober',
           'info.map.cta': 'In Google Maps öffnen',
           'info.hours.title': 'Öffnungszeiten',
           'info.day.mon': 'Montag',
@@ -5726,14 +6383,19 @@
           'info.day.fri': 'Freitag',
           'info.day.sat': 'Samstag',
           'info.day.sun': 'Sonntag',
-          'info.hours.fri': '08:30 — 22:30',
-          'info.hours.sat': '08:30 — 22:30',
-          'info.hours.note': 'Küche <strong>bis 21:15 Uhr</strong> geöffnet, mit Pause <strong>von 14:00 bis 17:00 Uhr</strong>: vom Frühstück bis zum Aperitif, zu Mittag und Abend. Für Gruppen und besondere Anlässe bitten wir Sie um einen Anruf, damit wir uns richtig vorbereiten können.',
+          'info.day.monFri': 'Montag – Freitag',
+          'info.closed': 'Geschlossen',
+          'info.places.intro': 'Diesen Winter finden Sie uns an <strong>zwei Standorten</strong>, mit unterschiedlichen Zeiten:',
+          'info.place.map': 'Karte',
+          'info.hours.restLabel': 'Restaurant & Pizzeria',
+          'info.hours.cafeLabel': 'Caffetteria & Mittagessen im Tennis Club Locarno',
+          'info.hours.cafeNote': 'Caffetteria und mittags nur <strong>Tagesmenü</strong> zu <strong>CHF 16.–</strong>.',
+          'info.hours.note': 'Für Gruppen und besondere Anlässe bitten wir Sie um einen Anruf, damit wir uns richtig vorbereiten können.',
           /* reserve */
           'reserve.eyebrow': 'Reservierungen',
           'reserve.title': 'Ein Tisch im <em>Ristorante 23</em>.',
           'reserve.lead': 'Füllen Sie das Formular aus und wir melden uns zur Bestätigung. Oder rufen Sie uns einfach an.',
-          'reserve.notice': '<strong>Ab dem 1. Oktober</strong> zieht das Restaurant in den Wintersitz an der <strong>Via alla Morettina 10</strong>, Locarno. Reservierungen ab diesem Datum gelten für den neuen Standort.',
+          'reserve.notice': '<strong>Wählen Sie, wo Sie reservieren.</strong> Drinnen an der <strong>Morettina</strong> (Via alla Morettina 10) für Mittag- und Abendessen, oder draussen im <strong>Tennis Club</strong> (Via Ballerini 1), nur mittags, von Montag bis Freitag.',
           'form.name': 'Vor- und Nachname',
           'form.name.ph': 'Max Muster',
           'form.tel': 'Telefon',
@@ -5742,6 +6404,12 @@
           'form.time': 'Uhrzeit',
           'form.lunch': 'Mittag',
           'form.dinner': 'Abend',
+          'form.place': 'Wo',
+          'form.place.in': 'Drinnen · Morettina',
+          'form.place.inSub': 'Mittag- und Abendessen',
+          'form.place.out': 'Draussen · Tennis Club',
+          'form.place.outSub': 'Nur mittags, Mo–Fr',
+          'form.place.weekend': 'Draussen im Tennis Club kann nur von Montag bis Freitag reserviert werden.',
           'form.people': 'Personen',
           'form.notes': 'Hinweise <em>(optional)</em>',
           'form.notes.ph': 'Allergien, Tisch im Schatten, Geburtstag…',
@@ -5764,6 +6432,7 @@
           'wa.name': 'Name',
           'wa.phone': 'Telefon',
           'wa.email': 'E-Mail',
+          'wa.place': 'Ort',
           'wa.date': 'Datum',
           'wa.time': 'Uhrzeit',
           'wa.people': 'Personen',
@@ -5778,23 +6447,26 @@
           'nav.restaurant': 'Restaurant',
           'nav.menu': 'Menu',
           'nav.eventi': 'Events',
-          'nav.orari': 'Hours & Location',
+          'nav.orari': 'Hours & Locations',
           'nav.prenota': 'Book',
           'topbar.bookBtn': 'Book',
           'drawer.eyebrow': 'Navigation',
           'drawer.bookBtn': 'Book a table',
           /* hero */
           'hero.title': '<span class="nowrap">Pizza <span class="amp">&amp;</span> kitchen</span><br class="br-desktop" /> <span class="nowrap">at Ristorante <span class="num">23</span></span>',
-          'hero.sub': '<strong>Restaurant open to the public, inside the Tennis Club Locarno.</strong> Nestled in the Bosco Isolino woods, a stone\'s throw from the lake: wood-fired pizza, weekend grill nights and Mediterranean cuisine.',
+          'hero.sub': '<strong>Restaurant open to the public, at the Tennis Club Locarno – and now indoors too.</strong> This winter the restaurant and pizzeria welcome you in the indoor dining room at the Morettina, while at the club, nestled in the Bosco Isolino, the restaurant stays open for breakfast and lunch with the dish of the day.',
           'hero.bookBtn': 'Book a table',
           'hero.discoverBtn': 'Discover our kitchen',
           'hero.photoTag': 'Photo · Summer terrace',
           'hero.strip.openLabel': 'Open today',
-          'hero.move.before.title': 'From 1 October you\'ll find us at the Morettina',
-          'hero.move.before.text': 'For the winter season the restaurant moves to its indoor venue at <span class="hl">Via alla Morettina 10</span>, Locarno. Until 30 September we\'re at Via Ballerini 1 as usual. <a href="#informazioni">See the map</a>',
-          'hero.move.after.title': 'Winter season: we\'re at the Morettina',
-          'hero.move.after.text': 'Since 1 October the restaurant welcomes you at its indoor venue at <span class="hl">Via alla Morettina 10</span>, Locarno. <a href="#informazioni">See the map</a>',
-          'hero.strip.seasonLabel': 'Winter season · from 1 October',
+          'hero.strip.seasonLabel': 'Winter season · from 5 October',
+          'hero.notice.title': 'This winter we stay open, in two places',
+          'hero.notice.p1': 'Restaurant & pizzeria',
+          'hero.notice.p1sub': 'indoors, Via alla Morettina 10 · lunch and dinner',
+          'hero.notice.p2': 'Café & lunch',
+          'hero.notice.p2sub': 'at the Tennis Club, Via Ballerini 1 · Mon–Fri 8:30–14:00',
+          'hero.notice.hours': 'Hours & locations',
+          'hero.notice.news': 'All the news',
           'hero.strip.bookLabel': 'Book online',
           'hero.strip.bookText': 'Reply via WhatsApp',
           /* about/filosofia */
@@ -5963,10 +6635,22 @@
           'menu.foot': 'The menu is fixed, with seasonal dishes and off-menu specials.<br />For allergies or intolerances, please tell our staff or add a note when booking.',
           'menu.bookBtn': 'Book a table',
           /* eventi */
-          'eventi.eyebrow': 'Events & happenings',
+          'eventi.eyebrow': 'News & events',
           'eventi.title': 'What\'s <em>on</em> at Ristorante <span class="num">23</span><span class="dot">.</span>',
-          'eventi.lead': 'Weekend grill, reservable spaces for special occasions.',
-          'eventi.meta.count': '2 ongoing events',
+          'eventi.lead': 'The latest news, weekend grill nights and bookable spaces for special occasions.',
+          'eventi.meta.count': '2 new',
+          'eventi.e0.art': 'Open<br><em>all winter</em>',
+          'eventi.e0.title': 'This winter<br><em>we stay open.</em>',
+          'eventi.e0.text': 'It\'s this year\'s big news: we don\'t close for the winter. From 5 October the restaurant and pizzeria welcome you at the Morettina, Via alla Morettina 10, while the café at the Tennis Club stays open Monday to Friday, 8:30–14:00.',
+          'eventi.e0.cta': 'All the winter news',
+          'eventi.e1.tag': 'New',
+          'eventi.e1.soon': 'Coming soon',
+          'eventi.e1.m': 'Soon',
+          'eventi.e1.title': 'Pizza delivery,<br><em>coming soon.</em>',
+          'eventi.e1.nextLabel': 'Launch',
+          'eventi.e1.nextVal': 'Date to be announced, stay tuned',
+          'eventi.e1.text': 'We\'re preparing something new: our wood-fired pizza delivered straight to your home. The service isn\'t live yet, we\'ll announce the start date here and on Instagram.',
+          'eventi.e1.cta': 'Follow us on Instagram',
           'eventi.e2.tag': 'On the terrace',
           'eventi.e2.m': 'Grill',
           'eventi.e2.next': 'Next grill night',
@@ -5979,10 +6663,10 @@
           'eventi.e3.text': 'Call or write to us — we\'ll tell you how it works.',
           'eventi.e3.cta': 'Call 091 751 11 16',
           /* info */
-          'info.eyebrow': 'Hours & location',
+          'info.eyebrow': 'Hours & locations',
           'info.title': 'Come <em>visit us</em>.',
-          'info.lead': 'From 1 October, for the winter season, you\'ll find us at our indoor venue at the Morettina. In summer we\'re back at the club\'s historic home.',
-          'info.map.tag': 'Winter season · from 1 October',
+          'info.lead': 'From 5 October the restaurant and pizzeria are at our winter venue at the Morettina. At the Tennis Club the café stays open on weekdays. In summer we\'re all back at the club\'s historic home.',
+          'info.map.tag': 'Winter season · from 5 October',
           'info.map.cta': 'Open in Google Maps',
           'info.hours.title': 'Opening hours',
           'info.day.mon': 'Monday',
@@ -5992,14 +6676,19 @@
           'info.day.fri': 'Friday',
           'info.day.sat': 'Saturday',
           'info.day.sun': 'Sunday',
-          'info.hours.fri': '08:30 — 22:30',
-          'info.hours.sat': '08:30 — 22:30',
-          'info.hours.note': 'Kitchen open <strong>until 21:15</strong>, with a break <strong>from 14:00 to 17:00</strong>: from breakfast to aperitif, at lunch and dinner. For groups and special occasions please call ahead so we can prepare properly.',
+          'info.day.monFri': 'Monday – Friday',
+          'info.closed': 'Closed',
+          'info.places.intro': 'This winter you\'ll find us in <strong>two places</strong>, with different hours:',
+          'info.place.map': 'Map',
+          'info.hours.restLabel': 'Restaurant & pizzeria',
+          'info.hours.cafeLabel': 'Café & lunch at the Tennis Club Locarno',
+          'info.hours.cafeNote': 'Café service and, at lunch, <strong>dish of the day</strong> only, at <strong>CHF 16</strong>.',
+          'info.hours.note': 'For groups and special occasions please call ahead so we can prepare properly.',
           /* reserve */
           'reserve.eyebrow': 'Reservations',
           'reserve.title': 'A table at <em>Ristorante 23</em>.',
           'reserve.lead': 'Fill in the form and we\'ll get back to you to confirm. Or just give us a call.',
-          'reserve.notice': '<strong>From 1 October</strong> the restaurant moves to its winter venue at <strong>Via alla Morettina 10</strong>, Locarno. Bookings from that date are for the new location.',
+          'reserve.notice': '<strong>Choose where to book.</strong> Indoors at the <strong>Morettina</strong> (Via alla Morettina 10) for lunch and dinner, or outdoors at the <strong>Tennis Club</strong> (Via Ballerini 1), lunch only, Monday to Friday.',
           'form.name': 'First and last name',
           'form.name.ph': 'John Smith',
           'form.tel': 'Phone',
@@ -6008,6 +6697,12 @@
           'form.time': 'Time',
           'form.lunch': 'Lunch',
           'form.dinner': 'Dinner',
+          'form.place': 'Where',
+          'form.place.in': 'Indoors · Morettina',
+          'form.place.inSub': 'Lunch and dinner',
+          'form.place.out': 'Outdoors · Tennis Club',
+          'form.place.outSub': 'Lunch only, Mon–Fri',
+          'form.place.weekend': 'Outdoors at the Tennis Club can only be booked Monday to Friday.',
           'form.people': 'People',
           'form.notes': 'Notes <em>(optional)</em>',
           'form.notes.ph': 'Allergies, table in the shade, birthday…',
@@ -6030,6 +6725,7 @@
           'wa.name': 'Name',
           'wa.phone': 'Phone',
           'wa.email': 'Email',
+          'wa.place': 'Venue',
           'wa.date': 'Date',
           'wa.time': 'Time',
           'wa.people': 'People',
@@ -6193,18 +6889,59 @@
       applyLang(initial);
       syncURLForLang(initial);
 
-      // Trasloco nella sede invernale (Morettina) dal 1° ottobre 2026:
-      // prima mostra "ci spostiamo", poi "siamo alla Morettina"; l'avviso in alto sparisce dal 1° novembre.
+      // Mappa con due sedi: Morettina (ristorante) e Tennis Club (caffetteria)
       (function () {
-        var now = new Date();
-        var moveDate = new Date('2026-10-01T00:00:00+02:00');
-        var heroEnd = new Date('2026-11-01T00:00:00+01:00');
-        var phase = now >= moveDate ? 'after' : 'before';
-        document.querySelectorAll('[data-move-phase]').forEach(function (el) {
-          el.hidden = el.getAttribute('data-move-phase') !== phase;
+        var PLACES = {
+          morettina: {
+            q: '46.1646957,8.7842865',
+            addr: 'Via alla Morettina 10 · 6600 Locarno',
+            link: 'https://maps.google.com/?q=Via+alla+Morettina+10,+6600+Locarno',
+            title: 'Mappa della sede invernale del Ristorante 23 in Via alla Morettina 10, Locarno'
+          },
+          club: {
+            q: '46.1659012,8.8020105',
+            addr: 'Via Francesco Ballerini 1 · 6600 Locarno',
+            link: 'https://maps.google.com/?q=Via+Francesco+Ballerini+1,+6600+Locarno',
+            title: 'Mappa della caffetteria del Ristorante 23 al Tennis Club Locarno, Via Francesco Ballerini 1'
+          }
+        };
+        var frame = document.getElementById('mapFrame');
+        var addr = document.getElementById('mapAddr');
+        var cta = document.getElementById('mapCta');
+        var map = document.getElementById('infoMap');
+        if (!frame || !map) return;
+        var current = 'morettina';
+        function show(key) {
+          var p = PLACES[key];
+          if (!p) return;
+          if (key !== current) {
+            frame.src = 'https://maps.google.com/maps?q=' + p.q + '&t=k&z=16&ie=UTF8&iwloc=&output=embed';
+            frame.title = p.title;
+            if (addr) addr.textContent = p.addr;
+            if (cta) cta.href = p.link;
+            current = key;
+          }
+          map.querySelectorAll('.map-switch__btn').forEach(function (b) {
+            var on = b.getAttribute('data-map-place') === key;
+            b.classList.toggle('is-active', on);
+            b.setAttribute('aria-pressed', on ? 'true' : 'false');
+          });
+        }
+        document.querySelectorAll('[data-map-place]').forEach(function (btn) {
+          btn.addEventListener('click', function () {
+            show(btn.getAttribute('data-map-place'));
+            if (!map.contains(btn)) {
+              var r = map.getBoundingClientRect();
+              if (r.top < 0 || r.bottom > window.innerHeight) map.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            }
+          });
         });
+      })();
+
+      // Avviso invernale in alto: sparisce dal 1° novembre
+      (function () {
         var hero = document.getElementById('heroNotice');
-        if (hero && now >= heroEnd) hero.style.display = 'none';
+        if (hero && new Date() >= new Date('2026-11-01T00:00:00+01:00')) hero.style.display = 'none';
       })();
 
       document.querySelectorAll('.mobile-drawer__lang button, .lang-picker__menu button').forEach(function (btn) {
@@ -6460,7 +7197,7 @@
           if (!g.attiva) {
             if (card) {
               card.style.display = 'none';
-              if (card.parentNode) card.parentNode.classList.add('is-centered');
+              if (card.parentNode) card.parentNode.classList.add('is-centered', 'has-single');
             }
             return;
           }

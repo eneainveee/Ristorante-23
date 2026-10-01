@@ -1,0 +1,739 @@
+<!doctype html>
+<html lang="it">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <meta name="theme-color" content="#FAF6EC" />
+  <title>Novità d'inverno · Ristorante 23</title>
+  <meta name="description"
+    content="Le novità dell'inverno al Ristorante 23 di Locarno: ristorante e pizzeria al coperto alla Morettina, caffetteria e pranzo al Tennis Club, prenotazioni e pizza delivery in arrivo." />
+  <link rel="canonical" href="https://ristorante23.ch/novita.html" />
+  <link rel="icon" type="image/png" sizes="32x32" href="Logo/favicon-32.png" />
+  <link rel="stylesheet" href="fonts.css" />
+  <link rel="stylesheet" href="legal.css" />
+  <style>
+    :root {
+      --gold-bright: #D9A24B;
+      --clay: #B7593A;
+      --card-line: rgba(20, 17, 15, .08);
+      --ease-out: cubic-bezier(0.23, 1, 0.32, 1);
+    }
+
+    .legal-top .legal-container,
+    .legal-footer .legal-container,
+    .nv-wrap {
+      max-width: 1040px;
+    }
+
+    .legal-top .legal-container {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .lang {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      margin-left: auto;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .04em;
+    }
+
+    .lang button {
+      font: inherit;
+      padding: 4px 8px;
+      border: 0;
+      border-radius: 6px;
+      background: none;
+      color: inherit;
+      opacity: .55;
+      cursor: pointer;
+    }
+
+    .lang button[aria-pressed="true"] {
+      opacity: 1;
+      background: rgba(20, 17, 15, .08);
+    }
+
+    .nv-wrap {
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* Hero */
+    .nv-hero {
+      background: radial-gradient(120% 90% at 30% 20%, #3b2d20 0%, #1b1612 70%);
+      color: var(--bg-3);
+      padding: clamp(40px, 6vw, 64px) 0 clamp(36px, 5vw, 52px);
+    }
+
+    .nv-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .22em;
+      text-transform: uppercase;
+      color: var(--gold-bright);
+      margin: 0 0 14px;
+    }
+
+    .nv-eyebrow svg {
+      width: 18px;
+      height: 18px;
+    }
+
+    .nv-hero h1 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: clamp(36px, 5.6vw, 56px);
+      line-height: 1.02;
+      letter-spacing: -.015em;
+      margin: 0 0 14px;
+    }
+
+    .nv-hero h1 em {
+      color: var(--gold-bright);
+      font-weight: 400;
+    }
+
+    .nv-hero p {
+      max-width: 640px;
+      font-size: 16.5px;
+      line-height: 1.6;
+      color: rgba(254, 252, 246, .82);
+      margin: 0;
+    }
+
+    /* In breve */
+    .nv-facts {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 1px;
+      margin-top: 28px;
+      background: rgba(254, 252, 246, .14);
+      border: 1px solid rgba(254, 252, 246, .14);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .nv-facts div {
+      padding: 14px 16px;
+      background: #241c16;
+    }
+
+    .nv-facts b {
+      display: block;
+      font-family: var(--serif);
+      font-size: 19px;
+      font-weight: 700;
+      color: var(--gold-bright);
+      line-height: 1.2;
+    }
+
+    .nv-facts span {
+      font-size: 13px;
+      line-height: 1.4;
+      color: rgba(254, 252, 246, .75);
+    }
+
+    /* Griglia contenuti */
+    .nv-main {
+      padding: clamp(28px, 4vw, 44px) 0 clamp(44px, 6vw, 64px);
+    }
+
+    .nv-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+    }
+
+    .nv-card {
+      background: var(--bg-3);
+      border: 1px solid var(--card-line);
+      border-radius: 8px;
+      padding: clamp(20px, 2.6vw, 26px);
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .nv-card__head {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .num,
+    .nv-ico {
+      display: inline-grid;
+      place-items: center;
+      flex: none;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      background: var(--gold);
+      color: var(--bg-3);
+      font-family: var(--serif);
+      font-size: 15px;
+      font-weight: 700;
+    }
+
+    .num--2 {
+      background: var(--clay);
+    }
+
+    .nv-ico {
+      background: var(--ink);
+    }
+
+    .nv-ico svg {
+      width: 15px;
+      height: 15px;
+    }
+
+    .nv-tag {
+      display: block;
+      font-size: 10.5px;
+      font-weight: 700;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      color: var(--clay);
+      margin-bottom: 2px;
+    }
+
+    .nv-card h2 {
+      font-family: var(--serif);
+      font-weight: 700;
+      font-size: 21px;
+      line-height: 1.18;
+      margin: 0;
+    }
+
+    .nv-addr {
+      display: block;
+      font-size: 13px;
+      color: var(--ink-mute);
+      margin-top: 3px;
+    }
+
+    .nv-points {
+      list-style: none;
+      margin: 0 0 14px;
+      padding: 0;
+      display: grid;
+      gap: 6px;
+      font-size: 14.5px;
+      line-height: 1.45;
+      color: var(--ink-soft);
+    }
+
+    .nv-points li {
+      position: relative;
+      padding-left: 18px;
+    }
+
+    .nv-points li::before {
+      content: "";
+      position: absolute;
+      left: 3px;
+      top: .62em;
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: var(--gold);
+    }
+
+    .nv-points strong {
+      color: var(--ink);
+    }
+
+    .nv-hours {
+      margin: 0 0 14px;
+      border-top: 1px solid var(--line);
+      font-size: 14px;
+    }
+
+    .nv-hours div {
+      display: flex;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 7px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nv-hours b {
+      font-weight: 600;
+      white-space: nowrap;
+    }
+
+    .nv-hours span {
+      font-variant-numeric: tabular-nums;
+      color: var(--ink-soft);
+      text-align: right;
+    }
+
+    .nv-hours .closed {
+      color: var(--clay);
+      font-style: italic;
+    }
+
+    .nv-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: auto;
+    }
+
+    .nv-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      min-height: 38px;
+      padding: 0 15px;
+      border-radius: 999px;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      font-size: 13.5px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: background .2s var(--ease-out), transform .2s var(--ease-out);
+    }
+
+    .nv-btn:hover {
+      color: var(--ink);
+      background: rgba(20, 17, 15, .05);
+    }
+
+    .nv-btn:active {
+      transform: scale(.97);
+    }
+
+    .nv-btn--primary,
+    .nv-btn--primary:hover {
+      background: var(--ink);
+      border-color: var(--ink);
+      color: var(--bg-3);
+    }
+
+    .nv-btn--primary:hover {
+      background: #2a2420;
+    }
+
+    .nv-btn svg {
+      width: 14px;
+      height: 14px;
+    }
+
+    /* Delivery con foto */
+    .nv-card--soon {
+      padding: 0;
+      overflow: hidden;
+      border-style: dashed;
+      border-color: rgba(20, 17, 15, .2);
+    }
+
+    .nv-photo {
+      display: block;
+      aspect-ratio: 16 / 7;
+      overflow: hidden;
+    }
+
+    .nv-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .nv-card--soon .nv-card__body {
+      padding: clamp(18px, 2.4vw, 24px);
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .nv-text {
+      margin: 8px 0 14px;
+      font-size: 14.5px;
+      line-height: 1.55;
+      color: var(--ink-soft);
+    }
+
+    .nv-contact {
+      margin-top: 16px;
+      padding: 16px 20px;
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      background: var(--bg-3);
+      border: 1px solid var(--card-line);
+      border-radius: 8px;
+      font-size: 14.5px;
+      color: var(--ink-soft);
+    }
+
+    .nv-contact p {
+      margin: 0;
+    }
+
+    @media (max-width: 800px) {
+      .nv-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .nv-facts {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .nv-btn {
+        transition: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="legal-top">
+    <div class="legal-container">
+      <a class="legal-brand" href="index.html" aria-label="Torna alla home">
+        <img src="Logo/logo-mark.png" alt="" width="44" height="44" />
+        <span>Ristorante 23<small>Tennis Club Locarno</small></span>
+      </a>
+      <span class="lang" role="group" aria-label="Lingua">
+        <button type="button" data-lang="it" aria-pressed="true">IT</button>
+        <button type="button" data-lang="de" aria-pressed="false">DE</button>
+        <button type="button" data-lang="en" aria-pressed="false">EN</button>
+      </span>
+      <a class="legal-back" href="index.html" data-i18n="back">← Torna al sito</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="nv-hero">
+      <div class="nv-wrap">
+        <p class="nv-eyebrow">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
+            stroke-linejoin="round" aria-hidden="true">
+            <path d="M12 2v20M4.9 4.9l14.2 14.2M2 12h20M4.9 19.1 19.1 4.9" />
+            <path d="M9 4l3 3 3-3M9 20l3-3 3 3M4 9l3 3-3 3M20 9l-3 3 3 3" />
+          </svg>
+          <span data-i18n="eyebrow">Novità · Inverno 2026/27</span>
+        </p>
+        <h1 data-i18n-html="title">Quest'inverno <em>restiamo aperti.</em></h1>
+        <p data-i18n="lead">È la novità di quest'anno: d'inverno non chiudiamo. Dal 5 ottobre ci trovi in due sedi a
+          Locarno, una al coperto e una al Tennis Club, ognuna con i suoi orari. Ecco tutto quello che cambia.</p>
+        <div class="nv-facts">
+          <div><b data-i18n="f1.b">5 ottobre</b><span data-i18n="f1.s">inizio della stagione invernale</span></div>
+          <div><b data-i18n="f2.b">2 sedi</b><span data-i18n="f2.s">Morettina al coperto e Tennis Club Isolino</span></div>
+          <div><b data-i18n="f3.b">CHF 16.–</b><span data-i18n="f3.s">il menu del giorno al Tennis Club</span></div>
+          <div><b data-i18n="f4.b">Presto</b><span data-i18n="f4.s">la pizza consegnata a casa</span></div>
+        </div>
+      </div>
+    </section>
+
+    <div class="nv-main">
+      <div class="nv-wrap">
+        <div class="nv-grid">
+
+          <!-- 1 · Morettina -->
+          <article class="nv-card">
+            <div class="nv-card__head">
+              <span class="num">1</span>
+              <div>
+                <span class="nv-tag" data-i18n="m.tag">Al coperto · dal 5 ottobre</span>
+                <h2 data-i18n="m.title">Ristorante &amp; pizzeria</h2>
+                <span class="nv-addr">Via alla Morettina 10 · 6600 Locarno</span>
+              </div>
+            </div>
+            <ul class="nv-points">
+              <li data-i18n-html="m.l1">Sala interna, calda e raccolta, per <strong>pranzo e cena</strong></li>
+              <li data-i18n-html="m.l2">Pizza al <strong>forno a legna</strong>, anche senza glutine</li>
+              <li data-i18n-html="m.l3">Caffè e colazione dalle <strong>8:30</strong></li>
+            </ul>
+            <div class="nv-hours">
+              <div><b data-i18n="d.mon">Lunedì</b><span>08:30–14:00 · 16:00–20:00</span></div>
+              <div><b data-i18n="d.tueFri">Martedì – Venerdì</b><span>08:30–14:00 · 16:00–22:30</span></div>
+              <div><b data-i18n="d.sat">Sabato</b><span>08:30–14:00 · 17:00–22:30</span></div>
+              <div><b data-i18n="d.sun">Domenica</b><span class="closed" data-i18n="closed">Chiuso</span></div>
+            </div>
+            <div class="nv-links">
+              <a class="nv-btn" href="https://maps.google.com/?q=Via+alla+Morettina+10,+6600+Locarno" target="_blank"
+                rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg><span data-i18n="map">Mappa</span></a>
+              <a class="nv-btn" href="index.html#menu" data-i18n="menu">Vedi il menu</a>
+            </div>
+          </article>
+
+          <!-- 2 · Tennis Club -->
+          <article class="nv-card">
+            <div class="nv-card__head">
+              <span class="num num--2">2</span>
+              <div>
+                <span class="nv-tag" data-i18n="c.tag">All'esterno · lunedì – venerdì</span>
+                <h2 data-i18n="c.title">Caffetteria e pranzo al Tennis Club Locarno</h2>
+                <span class="nv-addr">Via Francesco Ballerini 1 · 6600 Locarno</span>
+              </div>
+            </div>
+            <ul class="nv-points">
+              <li data-i18n-html="c.l1">Al club non chiudiamo: <strong>colazione e caffè</strong> dal mattino</li>
+              <li data-i18n-html="c.l2">A pranzo il <strong>menu del giorno</strong> a <strong>CHF 16.–</strong></li>
+              <li data-i18n-html="c.l3">Immersi nel <strong>Bosco Isolino</strong>, a due passi dal lago</li>
+            </ul>
+            <div class="nv-hours">
+              <div><b data-i18n="d.monFri">Lunedì – Venerdì</b><span>08:30–14:00</span></div>
+              <div><b data-i18n="d.weekend">Sabato e domenica</b><span class="closed" data-i18n="closed">Chiuso</span></div>
+            </div>
+            <div class="nv-links">
+              <a class="nv-btn" href="https://maps.google.com/?q=Via+Francesco+Ballerini+1,+6600+Locarno"
+                target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
+                  <circle cx="12" cy="10" r="3" />
+                </svg><span data-i18n="map">Mappa</span></a>
+            </div>
+          </article>
+
+          <!-- 3 · Prenotazioni -->
+          <article class="nv-card">
+            <div class="nv-card__head">
+              <span class="nv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <rect x="3" y="5" width="18" height="16" rx="2" />
+                  <path d="M16 3v4M8 3v4M3 10h18" />
+                </svg></span>
+              <div>
+                <span class="nv-tag" data-i18n="r.tag">Prenotazioni</span>
+                <h2 data-i18n="r.title">Scegli tu dove prenotare</h2>
+              </div>
+            </div>
+            <ul class="nv-points">
+              <li data-i18n-html="r.l1">Nel modulo online scegli la sede: <strong>al coperto</strong> o <strong>all'esterno</strong></li>
+              <li data-i18n-html="r.l2">Morettina: <strong>pranzo e cena</strong>, da lunedì a sabato</li>
+              <li data-i18n-html="r.l3">Tennis Club: <strong>solo pranzo</strong>, da lunedì a venerdì</li>
+              <li data-i18n-html="r.l4">La richiesta parte su <strong>WhatsApp</strong>; per gruppi e occasioni speciali chiamaci</li>
+            </ul>
+            <div class="nv-links">
+              <a class="nv-btn nv-btn--primary" href="index.html#prenota" data-i18n="r.book">Prenota un tavolo</a>
+              <a class="nv-btn" href="tel:+41917511116"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path
+                    d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" />
+                </svg>091 751 11 16</a>
+            </div>
+          </article>
+
+          <!-- 4 · Pizza delivery -->
+          <article class="nv-card nv-card--soon">
+            <picture class="nv-photo">
+              <source type="image/webp"
+                srcset="Immagini/pizza-delivery-scatole-opt-640w.webp 640w, Immagini/pizza-delivery-scatole-opt-1280w.webp 1280w"
+                sizes="(max-width: 800px) 100vw, 500px" />
+              <img src="Immagini/pizza-delivery-scatole-opt-640w.jpg"
+                srcset="Immagini/pizza-delivery-scatole-opt-640w.jpg 640w, Immagini/pizza-delivery-scatole-opt-1280w.jpg 1280w"
+                sizes="(max-width: 800px) 100vw, 500px" alt="Cartoni per pizza da asporto impilati" loading="lazy"
+                decoding="async" />
+            </picture>
+            <div class="nv-card__body">
+              <span class="nv-tag" data-i18n="d2.tag">Prossimamente</span>
+              <h2 data-i18n="d2.title">Pizza delivery, in arrivo</h2>
+              <p class="nv-text" data-i18n="d2.text">La nostra pizza al forno a legna consegnata direttamente a casa
+                tua. Il servizio non è ancora attivo: la data di partenza la annunceremo qui e su Instagram.</p>
+              <div class="nv-links">
+                <a class="nv-btn" href="https://www.instagram.com/ventitre_tennis/" target="_blank" rel="noopener"
+                  data-i18n="d2.cta">Seguici su Instagram</a>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="nv-contact">
+          <p data-i18n-html="contact">Domande? Chiamaci al <a href="tel:+41917511116">091 751 11 16</a> o scrivi a
+            <a href="mailto:venti_tre@outlook.com">venti_tre@outlook.com</a>.</p>
+          <a class="nv-btn" href="index.html" data-i18n="back">← Torna al sito</a>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <footer class="legal-footer">
+    <div class="legal-container">
+      <p>© Ristorante 23 · Locarno</p>
+      <p><a href="tel:+41917511116">091 751 11 16</a> · <a href="mailto:venti_tre@outlook.com">venti_tre@outlook.com</a></p>
+    </div>
+  </footer>
+
+  <script>
+    (function () {
+      var STORAGE_KEY = 'tennis23.lang';
+      var T = {
+        it: {
+          pageTitle: "Novità d'inverno · Ristorante 23",
+          back: '← Torna al sito',
+          eyebrow: 'Novità · Inverno 2026/27',
+          title: "Quest'inverno <em>restiamo aperti.</em>",
+          lead: "È la novità di quest'anno: d'inverno non chiudiamo. Dal 5 ottobre ci trovi in due sedi a Locarno, una al coperto e una al Tennis Club, ognuna con i suoi orari. Ecco tutto quello che cambia.",
+          'f1.b': '5 ottobre', 'f1.s': 'inizio della stagione invernale',
+          'f2.b': '2 sedi', 'f2.s': 'Morettina al coperto e Tennis Club Isolino',
+          'f3.b': 'CHF 16.–', 'f3.s': 'il menu del giorno al Tennis Club',
+          'f4.b': 'Presto', 'f4.s': 'la pizza consegnata a casa',
+          'm.tag': 'Al coperto · dal 5 ottobre',
+          'm.title': 'Ristorante & pizzeria',
+          'm.l1': 'Sala interna, calda e raccolta, per <strong>pranzo e cena</strong>',
+          'm.l2': 'Pizza al <strong>forno a legna</strong>, anche senza glutine',
+          'm.l3': 'Caffè e colazione dalle <strong>8:30</strong>',
+          'c.tag': "All'esterno · lunedì – venerdì",
+          'c.title': 'Caffetteria e pranzo al Tennis Club Locarno',
+          'c.l1': 'Al club non chiudiamo: <strong>colazione e caffè</strong> dal mattino',
+          'c.l2': 'A pranzo il <strong>menu del giorno</strong> a <strong>CHF 16.–</strong>',
+          'c.l3': 'Immersi nel <strong>Bosco Isolino</strong>, a due passi dal lago',
+          'r.tag': 'Prenotazioni',
+          'r.title': 'Scegli tu dove prenotare',
+          'r.l1': "Nel modulo online scegli la sede: <strong>al coperto</strong> o <strong>all'esterno</strong>",
+          'r.l2': 'Morettina: <strong>pranzo e cena</strong>, da lunedì a sabato',
+          'r.l3': 'Tennis Club: <strong>solo pranzo</strong>, da lunedì a venerdì',
+          'r.l4': 'La richiesta parte su <strong>WhatsApp</strong>; per gruppi e occasioni speciali chiamaci',
+          'r.book': 'Prenota un tavolo',
+          'd2.tag': 'Prossimamente',
+          'd2.title': 'Pizza delivery, in arrivo',
+          'd2.text': 'La nostra pizza al forno a legna consegnata direttamente a casa tua. Il servizio non è ancora attivo: la data di partenza la annunceremo qui e su Instagram.',
+          'd2.cta': 'Seguici su Instagram',
+          contact: 'Domande? Chiamaci al <a href="tel:+41917511116">091 751 11 16</a> o scrivi a <a href="mailto:venti_tre@outlook.com">venti_tre@outlook.com</a>.',
+          map: 'Mappa', menu: 'Vedi il menu', closed: 'Chiuso',
+          'd.mon': 'Lunedì', 'd.tueFri': 'Martedì – Venerdì', 'd.sat': 'Sabato', 'd.sun': 'Domenica',
+          'd.monFri': 'Lunedì – Venerdì', 'd.weekend': 'Sabato e domenica'
+        },
+        de: {
+          pageTitle: 'Winter-Neuigkeiten · Ristorante 23',
+          back: '← Zurück zur Website',
+          eyebrow: 'Neuigkeiten · Winter 2026/27',
+          title: 'Diesen Winter <em>bleiben wir offen.</em>',
+          lead: 'Das ist die Neuheit dieses Jahres: Im Winter schließen wir nicht. Ab dem 5. Oktober finden Sie uns an zwei Standorten in Locarno, einem drinnen und einem im Tennis Club, jeder mit eigenen Öffnungszeiten. Hier alles, was sich ändert.',
+          'f1.b': '5. Oktober', 'f1.s': 'Beginn der Wintersaison',
+          'f2.b': '2 Standorte', 'f2.s': 'Morettina drinnen und Tennis Club Isolino',
+          'f3.b': 'CHF 16.–', 'f3.s': 'das Tagesmenü im Tennis Club',
+          'f4.b': 'Bald', 'f4.s': 'Pizza nach Hause geliefert',
+          'm.tag': 'Drinnen · ab 5. Oktober',
+          'm.title': 'Restaurant & Pizzeria',
+          'm.l1': 'Warmer, gemütlicher Innenraum für <strong>Mittag- und Abendessen</strong>',
+          'm.l2': 'Pizza aus dem <strong>Holzofen</strong>, auch glutenfrei',
+          'm.l3': 'Kaffee und Frühstück ab <strong>8:30</strong>',
+          'c.tag': 'Draussen · Montag – Freitag',
+          'c.title': 'Caffetteria & Mittagessen im Tennis Club Locarno',
+          'c.l1': 'Im Club schließen wir nicht: <strong>Frühstück und Kaffee</strong> ab dem Morgen',
+          'c.l2': 'Mittags das <strong>Tagesmenü</strong> zu <strong>CHF 16.–</strong>',
+          'c.l3': 'Eingebettet in den <strong>Bosco Isolino</strong>, nahe am See',
+          'r.tag': 'Reservierungen',
+          'r.title': 'Sie wählen, wo Sie reservieren',
+          'r.l1': 'Im Online-Formular wählen Sie den Ort: <strong>drinnen</strong> oder <strong>draussen</strong>',
+          'r.l2': 'Morettina: <strong>Mittag- und Abendessen</strong>, Montag bis Samstag',
+          'r.l3': 'Tennis Club: <strong>nur mittags</strong>, Montag bis Freitag',
+          'r.l4': 'Die Anfrage geht per <strong>WhatsApp</strong>; für Gruppen und besondere Anlässe rufen Sie uns an',
+          'r.book': 'Tisch reservieren',
+          'd2.tag': 'Demnächst',
+          'd2.title': 'Pizza-Lieferservice, bald da',
+          'd2.text': 'Unsere Pizza aus dem Holzofen direkt zu Ihnen nach Hause. Der Service ist noch nicht aktiv: den Starttermin geben wir hier und auf Instagram bekannt.',
+          'd2.cta': 'Folgen Sie uns auf Instagram',
+          contact: 'Fragen? Rufen Sie uns an unter <a href="tel:+41917511116">091 751 11 16</a> oder schreiben Sie an <a href="mailto:venti_tre@outlook.com">venti_tre@outlook.com</a>.',
+          map: 'Karte', menu: 'Zur Speisekarte', closed: 'Geschlossen',
+          'd.mon': 'Montag', 'd.tueFri': 'Dienstag – Freitag', 'd.sat': 'Samstag', 'd.sun': 'Sonntag',
+          'd.monFri': 'Montag – Freitag', 'd.weekend': 'Samstag und Sonntag'
+        },
+        en: {
+          pageTitle: 'Winter news · Ristorante 23',
+          back: '← Back to the site',
+          eyebrow: 'News · Winter 2026/27',
+          title: 'This winter <em>we stay open.</em>',
+          lead: "It's this year's big news: we don't close for the winter. From 5 October you'll find us in two places in Locarno, one indoors and one at the Tennis Club, each with its own hours. Here's everything that changes.",
+          'f1.b': '5 October', 'f1.s': 'start of the winter season',
+          'f2.b': '2 venues', 'f2.s': 'Morettina indoors and Tennis Club Isolino',
+          'f3.b': 'CHF 16', 'f3.s': 'dish of the day at the Tennis Club',
+          'f4.b': 'Soon', 'f4.s': 'pizza delivered to your door',
+          'm.tag': 'Indoors · from 5 October',
+          'm.title': 'Restaurant & pizzeria',
+          'm.l1': 'A warm, cosy indoor dining room for <strong>lunch and dinner</strong>',
+          'm.l2': '<strong>Wood-fired</strong> pizza, gluten-free too',
+          'm.l3': 'Coffee and breakfast from <strong>8:30</strong>',
+          'c.tag': 'Outdoors · Monday – Friday',
+          'c.title': 'Café & lunch at the Tennis Club Locarno',
+          'c.l1': "We don't close at the club: <strong>breakfast and coffee</strong> from the morning",
+          'c.l2': 'At lunch the <strong>dish of the day</strong> at <strong>CHF 16</strong>',
+          'c.l3': 'Nestled in the <strong>Bosco Isolino</strong>, close to the lake',
+          'r.tag': 'Bookings',
+          'r.title': 'You choose where to book',
+          'r.l1': 'In the online form you pick the venue: <strong>indoors</strong> or <strong>outdoors</strong>',
+          'r.l2': 'Morettina: <strong>lunch and dinner</strong>, Monday to Saturday',
+          'r.l3': 'Tennis Club: <strong>lunch only</strong>, Monday to Friday',
+          'r.l4': 'Your request is sent via <strong>WhatsApp</strong>; for groups and special occasions, give us a call',
+          'r.book': 'Book a table',
+          'd2.tag': 'Coming soon',
+          'd2.title': 'Pizza delivery, on its way',
+          'd2.text': "Our wood-fired pizza delivered straight to your door. The service isn't live yet: we'll announce the start date here and on Instagram.",
+          'd2.cta': 'Follow us on Instagram',
+          contact: 'Questions? Call us on <a href="tel:+41917511116">091 751 11 16</a> or write to <a href="mailto:venti_tre@outlook.com">venti_tre@outlook.com</a>.',
+          map: 'Map', menu: 'See the menu', closed: 'Closed',
+          'd.mon': 'Monday', 'd.tueFri': 'Tuesday – Friday', 'd.sat': 'Saturday', 'd.sun': 'Sunday',
+          'd.monFri': 'Monday – Friday', 'd.weekend': 'Saturday and Sunday'
+        }
+      };
+
+      function apply(lang) {
+        var d = T[lang] || T.it;
+        document.documentElement.lang = lang;
+        document.title = d.pageTitle;
+        document.querySelectorAll('[data-i18n]').forEach(function (el) {
+          var k = el.getAttribute('data-i18n');
+          if (d[k] != null) el.textContent = d[k];
+        });
+        document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
+          var k = el.getAttribute('data-i18n-html');
+          if (d[k] != null) el.innerHTML = d[k];
+        });
+        document.querySelectorAll('.lang button').forEach(function (b) {
+          b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false');
+        });
+        // I link verso la home mantengono la lingua scelta
+        document.querySelectorAll('a[href^="index.html"]').forEach(function (a) {
+          var hash = a.getAttribute('href').split('#')[1];
+          a.setAttribute('href', 'index.html' + (lang === 'it' ? '' : '?lang=' + lang) + (hash ? '#' + hash : ''));
+        });
+      }
+
+      var lang = null;
+      try {
+        var p = new URLSearchParams(location.search).get('lang');
+        if (T[p]) lang = p;
+      } catch (e) { }
+      if (!lang) {
+        try { var s = localStorage.getItem(STORAGE_KEY); if (T[s]) lang = s; } catch (e) { }
+      }
+      apply(lang || 'it');
+
+      document.querySelectorAll('.lang button').forEach(function (b) {
+        b.addEventListener('click', function () {
+          var l = b.getAttribute('data-lang');
+          try { localStorage.setItem(STORAGE_KEY, l); } catch (e) { }
+          apply(l);
+        });
+      });
+    })();
+  </script>
+</body>
+
+</html>
