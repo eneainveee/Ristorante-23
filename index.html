@@ -3137,6 +3137,146 @@
       border-color: rgba(20, 17, 15, .22);
     }
 
+    .rf-date {
+      position: relative;
+    }
+
+    .rf-date #rfDate {
+      cursor: pointer;
+      caret-color: transparent;
+      padding-right: 40px;
+    }
+
+    .rf-date__ico {
+      position: absolute;
+      right: 14px;
+      bottom: 14px;
+      width: 18px;
+      height: 18px;
+      color: var(--ink-mute);
+      pointer-events: none;
+    }
+
+    .rf-cal {
+      position: absolute;
+      top: calc(100% + 6px);
+      left: 0;
+      z-index: 30;
+      width: 300px;
+      max-width: calc(100vw - 32px);
+      padding: 14px;
+      background: #fff;
+      border: 1px solid rgba(20, 17, 15, .12);
+      border-radius: 10px;
+      box-shadow: 0 18px 40px -12px rgba(20, 17, 15, .28);
+      transform-origin: top left;
+      animation: rfCalIn .16s var(--ease-out);
+    }
+
+    .rf-cal[hidden] {
+      display: none;
+    }
+
+    @keyframes rfCalIn {
+      from {
+        opacity: 0;
+        transform: scale(.97) translateY(-4px);
+      }
+    }
+
+    .rf-cal__head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 8px;
+    }
+
+    .rf-cal__month {
+      font-family: var(--serif);
+      font-size: 16px;
+      font-weight: 700;
+      text-transform: capitalize;
+    }
+
+    .rf-cal__nav {
+      width: 34px;
+      height: 34px;
+      border: 0;
+      border-radius: 50%;
+      background: none;
+      font-size: 22px;
+      line-height: 1;
+      color: var(--ink);
+      cursor: pointer;
+    }
+
+    .rf-cal__nav:hover:not(:disabled) {
+      background: rgba(20, 17, 15, .06);
+    }
+
+    .rf-cal__nav:disabled {
+      opacity: .25;
+      cursor: default;
+    }
+
+    .rf-cal__dow,
+    .rf-cal__grid {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 2px;
+    }
+
+    .rf-cal__dow span {
+      padding: 4px 0;
+      text-align: center;
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: .06em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+
+    .rf-cal__day {
+      aspect-ratio: 1;
+      border: 0;
+      border-radius: 50%;
+      background: none;
+      font: 500 14px/1 var(--sans);
+      color: var(--ink);
+      cursor: pointer;
+      transition: background .15s var(--ease-out);
+    }
+
+    .rf-cal__day:hover:not(:disabled) {
+      background: rgba(182, 135, 58, .16);
+    }
+
+    .rf-cal__day:disabled {
+      color: rgba(20, 17, 15, .22);
+      text-decoration: line-through;
+      cursor: default;
+    }
+
+    .rf-cal__day.is-today {
+      box-shadow: inset 0 0 0 1px rgba(20, 17, 15, .25);
+    }
+
+    .rf-cal__day.is-selected {
+      background: var(--ink);
+      color: var(--bg-3);
+    }
+
+    .rf-cal__day:focus-visible {
+      outline: 2px solid var(--clay);
+      outline-offset: 1px;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .rf-cal {
+        animation: none;
+      }
+    }
+
     .rf-field input:focus,
     .rf-field select:focus,
     .rf-field textarea:focus {
@@ -5628,10 +5768,27 @@
           </fieldset>
 
           <div class="rf-row rf-row--3">
-            <label class="rf-field">
-              <span data-i18n="form.date">Data</span>
-              <input type="date" name="data" required />
-            </label>
+            <div class="rf-field rf-date">
+              <span id="rfDateLabel" data-i18n="form.date">Data</span>
+              <input type="text" id="rfDate" required autocomplete="off" inputmode="none"
+                placeholder="Scegli una data" data-i18n-ph="form.date.ph" aria-labelledby="rfDateLabel"
+                aria-haspopup="dialog" aria-expanded="false" aria-controls="rfCal" />
+              <svg class="rf-date__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="3" y="5" width="18" height="16" rx="2" />
+                <path d="M16 3v4M8 3v4M3 10h18" />
+              </svg>
+              <input type="hidden" name="data" />
+              <div class="rf-cal" id="rfCal" role="dialog" aria-labelledby="rfDateLabel" hidden>
+                <div class="rf-cal__head">
+                  <button type="button" class="rf-cal__nav" data-cal="prev" aria-label="Mese precedente">‹</button>
+                  <strong class="rf-cal__month" aria-live="polite"></strong>
+                  <button type="button" class="rf-cal__nav" data-cal="next" aria-label="Mese successivo">›</button>
+                </div>
+                <div class="rf-cal__dow"></div>
+                <div class="rf-cal__grid"></div>
+              </div>
+            </div>
             <label class="rf-field">
               <span data-i18n="form.time">Ora</span>
               <select name="ora" required>
@@ -6037,7 +6194,9 @@
         return d.getFullYear() + '-' + String(d.getMonth() + 1).padStart(2, '0') + '-' + String(d.getDate()).padStart(2, '0');
       }
 
-      var dateInput = f.querySelector('input[name="data"]');
+      var dateInput = f.querySelector('input[name="data"]');   // valore ISO (nascosto)
+      var dateField = document.getElementById('rfDate');         // campo visibile
+      var cal = document.getElementById('rfCal');
 
       // Sedi:
       // - al coperto (Morettina): si prenota dal 5 ottobre, pranzo e cena
@@ -6055,16 +6214,25 @@
         var today = localISODate();
         return (!isOutside() && today < INDOOR_FIRST_DAY) ? INDOOR_FIRST_DAY : today;
       }
+      function maxDate() {
+        return isOutside() ? OUTDOOR_LAST_DAY : '';
+      }
+      function isSelectable(iso) {
+        if (iso < minDate()) return false;
+        if (maxDate() && iso > maxDate()) return false;
+        var day = new Date(iso + 'T12:00:00').getDay();
+        if (isOutside() && iso >= INDOOR_FIRST_DAY && (day === 0 || day === 6)) return false; // Tennis Club: lun–ven
+        if (!isOutside() && day === 0) return false; // Morettina: domenica chiuso
+        return true;
+      }
       function outsideLunchOnly() {
         // senza data scelta vale la regola di oggi
-        var d = (dateInput && dateInput.value) || localISODate();
+        var d = dateInput.value || localISODate();
         return isOutside() && d >= INDOOR_FIRST_DAY;
       }
       function syncPlace() {
-        if (dateInput) {
-          dateInput.min = minDate();
-          dateInput.max = isOutside() ? OUTDOOR_LAST_DAY : '';
-        }
+        // una data non più valida per la sede scelta viene tolta
+        if (dateInput.value && !isSelectable(dateInput.value)) setDate('');
         if (dinner) {
           var lunchOnly = outsideLunchOnly();
           dinner.disabled = lunchOnly;
@@ -6073,32 +6241,116 @@
             timeSel.value = '';
           }
         }
-        checkDate();
-      }
-      function checkDate() {
-        if (!dateInput) return;
-        var msg = '';
-        var v = dateInput.value;
-        if (v) {
-          if (!isOutside() && v < INDOOR_FIRST_DAY) {
-            msg = tWa('form.place.early', 'Alla Morettina, al coperto, si prenota dal 5 ottobre.');
-          } else if (isOutside() && v > OUTDOOR_LAST_DAY) {
-            msg = tWa('form.place.late', 'All\'esterno al Tennis Club si prenota solo fino al 31 ottobre.');
-          } else if (isOutside() && v >= INDOOR_FIRST_DAY) {
-            var day = new Date(v + 'T12:00:00').getDay();
-            if (day === 0 || day === 6) {
-              msg = tWa('form.place.weekend', 'Dal 5 ottobre, all\'esterno al Tennis Club si prenota solo dal lunedì al venerdì.');
-            }
-          }
-        }
-        dateInput.setCustomValidity(msg);
+        if (!cal.hidden) renderCal();
       }
       f.querySelectorAll('input[name="sede"]').forEach(function (r) {
         r.addEventListener('change', syncPlace);
       });
-      if (dateInput) {
-        dateInput.addEventListener('change', syncPlace);
-        dateInput.addEventListener('focus', function () { dateInput.min = minDate(); });
+
+      // Calendario: le date non prenotabili sono disattivate
+      function curLang() { return window.__t23Lang || 'it'; }
+      function locale() { return { it: 'it-CH', de: 'de-CH', en: 'en-GB' }[curLang()] || 'it-CH'; }
+      function isoOf(y, m, d) {
+        return y + '-' + String(m + 1).padStart(2, '0') + '-' + String(d).padStart(2, '0');
+      }
+      function labelOf(iso) {
+        if (!iso) return '';
+        return new Date(iso + 'T12:00:00').toLocaleDateString(locale(), { weekday: 'long', day: 'numeric', month: 'long' });
+      }
+      function setDate(iso) {
+        dateInput.value = iso;
+        dateField.value = labelOf(iso);
+        dateField.setCustomValidity('');
+      }
+      var view = null; // { y, m }
+      function renderCal() {
+        var y = view.y, m = view.m;
+        cal.querySelector('.rf-cal__month').textContent =
+          new Date(y, m, 1).toLocaleDateString(locale(), { month: 'long', year: 'numeric' });
+        var dow = cal.querySelector('.rf-cal__dow');
+        dow.innerHTML = '';
+        for (var i = 0; i < 7; i++) {
+          var sp = document.createElement('span');
+          sp.textContent = new Date(2026, 0, 5 + i).toLocaleDateString(locale(), { weekday: 'short' }).replace('.', '').slice(0, 2);
+          dow.appendChild(sp);
+        }
+        var grid = cal.querySelector('.rf-cal__grid');
+        grid.innerHTML = '';
+        var lead = (new Date(y, m, 1).getDay() + 6) % 7; // settimana da lunedì
+        for (var k = 0; k < lead; k++) grid.appendChild(document.createElement('span'));
+        var days = new Date(y, m + 1, 0).getDate();
+        var today = localISODate();
+        for (var d = 1; d <= days; d++) {
+          var iso = isoOf(y, m, d);
+          var b = document.createElement('button');
+          b.type = 'button';
+          b.className = 'rf-cal__day';
+          b.textContent = d;
+          b.dataset.iso = iso;
+          b.setAttribute('aria-label', labelOf(iso));
+          if (iso === today) b.classList.add('is-today');
+          if (iso === dateInput.value) { b.classList.add('is-selected'); b.setAttribute('aria-pressed', 'true'); }
+          b.disabled = !isSelectable(iso);
+          grid.appendChild(b);
+        }
+        var min = minDate(), max = maxDate();
+        cal.querySelector('[data-cal="prev"]').disabled = isoOf(y, m, 1) <= min;
+        cal.querySelector('[data-cal="next"]').disabled = !!max && isoOf(y, m, days) >= max;
+      }
+      function openCal(fromKeyboard) {
+        var base = dateInput.value || minDate();
+        view = { y: +base.slice(0, 4), m: +base.slice(5, 7) - 1 };
+        renderCal();
+        cal.hidden = false;
+        dateField.setAttribute('aria-expanded', 'true');
+        if (fromKeyboard) {
+          var target = cal.querySelector('.rf-cal__day.is-selected') || cal.querySelector('.rf-cal__day:not(:disabled)');
+          if (target) target.focus({ preventScroll: true });
+        }
+      }
+      function closeCal(refocus) {
+        if (cal.hidden) return;
+        cal.hidden = true;
+        dateField.setAttribute('aria-expanded', 'false');
+        if (refocus) dateField.focus({ preventScroll: true });
+      }
+      dateField.addEventListener('click', function () { cal.hidden ? openCal() : closeCal(); });
+      dateField.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ' || e.key === 'ArrowDown') { e.preventDefault(); openCal(true); }
+        else if (e.key === 'Escape') closeCal();
+        else if (e.key !== 'Tab') e.preventDefault(); // niente digitazione: solo calendario
+      });
+      dateField.addEventListener('input', function () { dateField.value = labelOf(dateInput.value); });
+      cal.addEventListener('click', function (e) {
+        var nav = e.target.closest('[data-cal]');
+        if (nav && !nav.disabled) {
+          view.m += nav.dataset.cal === 'next' ? 1 : -1;
+          if (view.m < 0) { view.m = 11; view.y--; }
+          if (view.m > 11) { view.m = 0; view.y++; }
+          renderCal();
+          return;
+        }
+        var day = e.target.closest('.rf-cal__day');
+        if (day && !day.disabled) {
+          setDate(day.dataset.iso);
+          closeCal(true);
+          syncPlace();
+        }
+      });
+      cal.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') { e.preventDefault(); closeCal(true); }
+      });
+      document.addEventListener('click', function (e) {
+        if (!cal.hidden && !e.target.closest('.rf-date')) closeCal();
+      });
+      // al cambio lingua aggiorna l'etichetta della data scelta
+      new MutationObserver(function () {
+        dateField.value = labelOf(dateInput.value);
+        if (!cal.hidden) renderCal();
+      }).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
+
+      function checkDate() {
+        dateField.setCustomValidity(dateInput.value ? '' : tWa('form.date.missing', 'Scegli una data dal calendario.'));
       }
       syncPlace();
 
@@ -6142,6 +6394,7 @@
       f.addEventListener('submit', function (e) {
         e.preventDefault();
         syncPlace();
+        checkDate();
         if (!f.checkValidity()) { f.reportValidity(); return; }
 
         var fd = new FormData(f);
@@ -6436,6 +6689,8 @@
           'form.tel': 'Telefon',
           'form.email': 'E-Mail <em>(optional)</em>',
           'form.date': 'Datum',
+          'form.date.ph': 'Datum wählen',
+          'form.date.missing': 'Bitte wählen Sie ein Datum im Kalender.',
           'form.time': 'Uhrzeit',
           'form.lunch': 'Mittag',
           'form.dinner': 'Abend',
@@ -6735,6 +6990,8 @@
           'form.tel': 'Phone',
           'form.email': 'Email <em>(optional)</em>',
           'form.date': 'Date',
+          'form.date.ph': 'Choose a date',
+          'form.date.missing': 'Please choose a date from the calendar.',
           'form.time': 'Time',
           'form.lunch': 'Lunch',
           'form.dinner': 'Dinner',
