@@ -4463,7 +4463,7 @@
                   <li><span class="place-num">1</span><span><b data-i18n="hero.notice.p1">Ristorante &amp; pizzeria</b>
                       <span data-i18n="hero.notice.p1sub">al coperto, Via alla Morettina 10 · pranzo e cena</span></span></li>
                   <li><span class="place-num place-num--2">2</span><span><b data-i18n="hero.notice.p2">Caffetteria e pranzo</b>
-                      <span data-i18n="hero.notice.p2sub">al Tennis Club, Via Ballerini 1 · lun–ven 8:30–14:00</span></span></li>
+                      <span data-i18n="hero.notice.p2sub">al Tennis Club, Via Ballerini 1 · lun–ven 8:30–14:00 · prolungato fino al 31 ottobre</span></span></li>
                 </ul>
                 <div class="hero__notice-links">
                   <a href="#informazioni" data-i18n="hero.notice.hours">Orari e sedi</a>
@@ -4477,9 +4477,9 @@
             </h1>
             <p class="hero__sub" data-i18n-html="hero.sub">
               <strong>Ristorante aperto al pubblico, al Tennis Club Locarno e ora anche al coperto.</strong>
-              Quest'inverno ristorante e pizzeria ti aspettano nella sala interna alla Morettina, mentre al club,
-              immerso nel Bosco Isolino, il ristorante resta aperto per colazione e pranzo
-              con il menu del giorno.
+              Quest'inverno ristorante e pizzeria ti aspettano nella sala interna alla Morettina, e al club,
+              immerso nel Bosco Isolino, abbiamo prolungato la stagione all'esterno fino a fine ottobre:
+              il ristorante resta aperto per colazione e pranzo con il menu del giorno.
             </p>
             <div class="hero__cta">
               <a class="btn btn--primary" href="#prenota">
@@ -5314,8 +5314,9 @@
             <div class="evento__body">
               <h3 class="evento__title" data-i18n-html="eventi.e0.title">Quest'inverno<br><em>restiamo aperti.</em></h3>
               <p class="evento__text" data-i18n="eventi.e0.text">È la novità di quest'anno: d'inverno non chiudiamo.
-                Dal 5 ottobre ristorante e pizzeria ti aspettano alla Morettina, in Via alla Morettina 10, mentre al
-                Tennis Club la caffetteria resta aperta dal lunedì al venerdì, 8:30–14:00.</p>
+                Dal 5 ottobre ristorante e pizzeria ti aspettano alla Morettina, in Via alla Morettina 10. E al Tennis
+                Club abbiamo prolungato la stagione all'esterno fino a fine ottobre: caffetteria e pranzo dal lunedì
+                al venerdì, 8:30–14:00.</p>
               <div class="evento__cta">
                 <span data-i18n="eventi.e0.cta">Tutte le novità dell'inverno</span>
                 <span class="arrow" aria-hidden="true">
@@ -5467,8 +5468,9 @@
             <h2 class="section-title" data-i18n-html="info.title">Vieni a <em>trovarci</em>.</h2>
           </div>
           <p class="section-lead" data-i18n="info.lead">
-            Dal 5 ottobre ristorante e pizzeria sono nella sede invernale alla Morettina. Al Tennis Club
-            resta aperta la caffetteria nei giorni feriali. D'estate torniamo tutti nella sede storica del club.
+            Dal 5 ottobre ristorante e pizzeria sono nella sede invernale alla Morettina. Al Tennis Club abbiamo
+            prolungato la stagione all'esterno fino a fine ottobre, con caffetteria e pranzo nei giorni feriali.
+            D'estate torniamo tutti nella sede storica del club.
           </p>
         </div>
 
@@ -5501,7 +5503,7 @@
 
           <div class="info-card reveal">
             <h3 data-i18n="info.hours.title">Orari di apertura</h3>
-            <p class="places-intro" data-i18n-html="info.places.intro">Quest'inverno ci trovi in <strong>due
+            <p class="places-intro" data-i18n-html="info.places.intro">Fino a fine ottobre ci trovi in <strong>due
                 sedi</strong>, con orari diversi:</p>
             <div class="place">
               <div class="place__head">
@@ -5545,8 +5547,9 @@
               <div class="hours-table">
                 <div class="hours-row"><b data-i18n="info.day.monFri">Lunedì – Venerdì</b><span>08:30–14:00</span></div>
               </div>
-              <p class="hours-note" data-i18n-html="info.hours.cafeNote">Servizio caffetteria e, a pranzo,
-                solo <strong>menu del giorno</strong> a <strong>CHF 16.–</strong>.</p>
+              <p class="hours-note" data-i18n-html="info.hours.cafeNote">Stagione all'esterno <strong>prolungata fino al
+                  31 ottobre</strong>. Servizio caffetteria e, a pranzo, solo <strong>menu del giorno</strong> a
+                <strong>CHF 16.–</strong>.</p>
             </div>
             <p class="hours-note" data-i18n-html="info.hours.note">
               Per gruppi e occasioni speciali ti chiediamo di chiamarci,
@@ -5572,7 +5575,7 @@
           <div class="reserve__notice" id="reserveNotice" data-i18n-html="reserve.notice">
             <strong>Scegli dove prenotare.</strong> Al coperto alla <strong>Morettina</strong> (Via alla Morettina 10)
             per pranzo e cena, oppure all'esterno al <strong>Tennis Club</strong> (Via Ballerini 1),
-            solo a pranzo, dal lunedì al venerdì.
+            solo a pranzo, dal lunedì al venerdì, fino al 31 ottobre.
           </div>
         </div>
 
@@ -5612,7 +5615,7 @@
                 <span class="rf-place__card">
                   <span class="place-num place-num--2">2</span>
                   <span class="rf-place__txt"><b data-i18n="form.place.out">All'esterno · Tennis Club</b>
-                    <small data-i18n="form.place.outSub">Solo pranzo, lun–ven</small></span>
+                    <small data-i18n="form.place.outSub">Solo pranzo, lun–ven, fino al 31 ottobre</small></span>
                 </span>
               </label>
             </div>
@@ -6035,6 +6038,7 @@
       }
 
       // Sede: all'esterno (Tennis Club) si prenota solo a pranzo, lun–ven
+      var OUTDOOR_LAST_DAY = '2026-10-31'; // stagione all'esterno prolungata fino a fine ottobre
       var dinner = document.getElementById('rfDinner');
       var timeSel = f.querySelector('select[name="ora"]');
       function isOutside() {
@@ -6057,7 +6061,9 @@
         var msg = '';
         if (isOutside() && dateInput.value) {
           var day = new Date(dateInput.value + 'T12:00:00').getDay();
-          if (day === 0 || day === 6) {
+          if (dateInput.value > OUTDOOR_LAST_DAY) {
+            msg = tWa('form.place.late', 'All\'esterno al Tennis Club si prenota solo fino al 31 ottobre.');
+          } else if (day === 0 || day === 6) {
             msg = tWa('form.place.weekend', 'All\'esterno al Tennis Club si prenota solo dal lunedì al venerdì.');
           }
         }
@@ -6161,7 +6167,7 @@
           'drawer.bookBtn': 'Tisch reservieren',
           /* hero */
           'hero.title': '<span class="nowrap">Pizza <span class="amp">&amp;</span> Küche</span><br class="br-desktop" /> <span class="nowrap">im Ristorante <span class="num">23</span></span>',
-          'hero.sub': '<strong>Restaurant für alle, im Tennis Club Locarno – und jetzt auch drinnen.</strong> Diesen Winter erwarten Sie Restaurant und Pizzeria im Innenraum an der Morettina, während im Club, eingebettet in den Bosco Isolino, das Restaurant für Frühstück und Mittagessen mit dem Tagesmenü geöffnet bleibt.',
+          'hero.sub': '<strong>Restaurant für alle, im Tennis Club Locarno – und jetzt auch drinnen.</strong> Diesen Winter erwarten Sie Restaurant und Pizzeria im Innenraum an der Morettina, und im Club, eingebettet in den Bosco Isolino, haben wir die Saison draussen bis Ende Oktober verlängert: Das Restaurant bleibt für Frühstück und Mittagessen mit dem Tagesmenü geöffnet.',
           'hero.bookBtn': 'Tisch reservieren',
           'hero.discoverBtn': 'Unsere Küche entdecken',
           'hero.photoTag': 'Foto · Sommerterrasse',
@@ -6171,7 +6177,7 @@
           'hero.notice.p1': 'Restaurant & Pizzeria',
           'hero.notice.p1sub': 'drinnen, Via alla Morettina 10 · Mittag- und Abendessen',
           'hero.notice.p2': 'Caffetteria & Mittagessen',
-          'hero.notice.p2sub': 'im Tennis Club, Via Ballerini 1 · Mo–Fr 8:30–14:00',
+          'hero.notice.p2sub': 'im Tennis Club, Via Ballerini 1 · Mo–Fr 8:30–14:00 · verlängert bis 31. Oktober',
           'hero.notice.hours': 'Zeiten & Standorte',
           'hero.notice.news': 'Alle Neuigkeiten',
           'hero.strip.bookLabel': 'Online reservieren',
@@ -6348,7 +6354,7 @@
           'eventi.meta.count': '2 Neuheiten',
           'eventi.e0.art': 'Den ganzen<br><em>Winter geöffnet</em>',
           'eventi.e0.title': 'Diesen Winter<br><em>bleiben wir offen.</em>',
-          'eventi.e0.text': 'Das ist die Neuheit dieses Jahres: Im Winter schließen wir nicht. Ab dem 5. Oktober erwarten Sie Restaurant und Pizzeria an der Morettina, Via alla Morettina 10, während die Caffetteria im Tennis Club von Montag bis Freitag, 8:30–14:00, geöffnet bleibt.',
+          'eventi.e0.text': 'Das ist die Neuheit dieses Jahres: Im Winter schließen wir nicht. Ab dem 5. Oktober erwarten Sie Restaurant und Pizzeria an der Morettina, Via alla Morettina 10. Und im Tennis Club haben wir die Saison draussen bis Ende Oktober verlängert: Caffetteria und Mittagessen von Montag bis Freitag, 8:30–14:00.',
           'eventi.e0.cta': 'Alle Winter-Neuigkeiten',
           'eventi.e1.tag': 'Neu',
           'eventi.e1.soon': 'Demnächst',
@@ -6372,7 +6378,7 @@
           /* info */
           'info.eyebrow': 'Zeiten & Standorte',
           'info.title': 'Besuchen Sie <em>uns</em>.',
-          'info.lead': 'Ab dem 5. Oktober sind Restaurant und Pizzeria im Wintersitz an der Morettina. Im Tennis Club bleibt die Caffetteria an Werktagen geöffnet. Im Sommer sind wir alle wieder am historischen Sitz des Clubs.',
+          'info.lead': 'Ab dem 5. Oktober sind Restaurant und Pizzeria im Wintersitz an der Morettina. Im Tennis Club haben wir die Saison draussen bis Ende Oktober verlängert, mit Caffetteria und Mittagessen an Werktagen. Im Sommer sind wir alle wieder am historischen Sitz des Clubs.',
           'info.map.tag': 'Wintersaison · ab 5. Oktober',
           'info.map.cta': 'In Google Maps öffnen',
           'info.hours.title': 'Öffnungszeiten',
@@ -6385,17 +6391,17 @@
           'info.day.sun': 'Sonntag',
           'info.day.monFri': 'Montag – Freitag',
           'info.closed': 'Geschlossen',
-          'info.places.intro': 'Diesen Winter finden Sie uns an <strong>zwei Standorten</strong>, mit unterschiedlichen Zeiten:',
+          'info.places.intro': 'Bis Ende Oktober finden Sie uns an <strong>zwei Standorten</strong>, mit unterschiedlichen Zeiten:',
           'info.place.map': 'Karte',
           'info.hours.restLabel': 'Restaurant & Pizzeria',
           'info.hours.cafeLabel': 'Caffetteria & Mittagessen im Tennis Club Locarno',
-          'info.hours.cafeNote': 'Caffetteria und mittags nur <strong>Tagesmenü</strong> zu <strong>CHF 16.–</strong>.',
+          'info.hours.cafeNote': 'Saison draussen <strong>verlängert bis 31. Oktober</strong>. Caffetteria und mittags nur <strong>Tagesmenü</strong> zu <strong>CHF 16.–</strong>.',
           'info.hours.note': 'Für Gruppen und besondere Anlässe bitten wir Sie um einen Anruf, damit wir uns richtig vorbereiten können.',
           /* reserve */
           'reserve.eyebrow': 'Reservierungen',
           'reserve.title': 'Ein Tisch im <em>Ristorante 23</em>.',
           'reserve.lead': 'Füllen Sie das Formular aus und wir melden uns zur Bestätigung. Oder rufen Sie uns einfach an.',
-          'reserve.notice': '<strong>Wählen Sie, wo Sie reservieren.</strong> Drinnen an der <strong>Morettina</strong> (Via alla Morettina 10) für Mittag- und Abendessen, oder draussen im <strong>Tennis Club</strong> (Via Ballerini 1), nur mittags, von Montag bis Freitag.',
+          'reserve.notice': '<strong>Wählen Sie, wo Sie reservieren.</strong> Drinnen an der <strong>Morettina</strong> (Via alla Morettina 10) für Mittag- und Abendessen, oder draussen im <strong>Tennis Club</strong> (Via Ballerini 1), nur mittags, von Montag bis Freitag, bis 31. Oktober.',
           'form.name': 'Vor- und Nachname',
           'form.name.ph': 'Max Muster',
           'form.tel': 'Telefon',
@@ -6408,8 +6414,9 @@
           'form.place.in': 'Drinnen · Morettina',
           'form.place.inSub': 'Mittag- und Abendessen',
           'form.place.out': 'Draussen · Tennis Club',
-          'form.place.outSub': 'Nur mittags, Mo–Fr',
+          'form.place.outSub': 'Nur mittags, Mo–Fr, bis 31. Oktober',
           'form.place.weekend': 'Draussen im Tennis Club kann nur von Montag bis Freitag reserviert werden.',
+          'form.place.late': 'Draussen im Tennis Club kann nur bis 31. Oktober reserviert werden.',
           'form.people': 'Personen',
           'form.notes': 'Hinweise <em>(optional)</em>',
           'form.notes.ph': 'Allergien, Tisch im Schatten, Geburtstag…',
@@ -6454,7 +6461,7 @@
           'drawer.bookBtn': 'Book a table',
           /* hero */
           'hero.title': '<span class="nowrap">Pizza <span class="amp">&amp;</span> kitchen</span><br class="br-desktop" /> <span class="nowrap">at Ristorante <span class="num">23</span></span>',
-          'hero.sub': '<strong>Restaurant open to the public, at the Tennis Club Locarno – and now indoors too.</strong> This winter the restaurant and pizzeria welcome you in the indoor dining room at the Morettina, while at the club, nestled in the Bosco Isolino, the restaurant stays open for breakfast and lunch with the dish of the day.',
+          'hero.sub': '<strong>Restaurant open to the public, at the Tennis Club Locarno – and now indoors too.</strong> This winter the restaurant and pizzeria welcome you in the indoor dining room at the Morettina, and at the club, nestled in the Bosco Isolino, we\'ve extended the outdoor season until the end of October: the restaurant stays open for breakfast and lunch with the dish of the day.',
           'hero.bookBtn': 'Book a table',
           'hero.discoverBtn': 'Discover our kitchen',
           'hero.photoTag': 'Photo · Summer terrace',
@@ -6464,7 +6471,7 @@
           'hero.notice.p1': 'Restaurant & pizzeria',
           'hero.notice.p1sub': 'indoors, Via alla Morettina 10 · lunch and dinner',
           'hero.notice.p2': 'Café & lunch',
-          'hero.notice.p2sub': 'at the Tennis Club, Via Ballerini 1 · Mon–Fri 8:30–14:00',
+          'hero.notice.p2sub': 'at the Tennis Club, Via Ballerini 1 · Mon–Fri 8:30–14:00 · extended until 31 October',
           'hero.notice.hours': 'Hours & locations',
           'hero.notice.news': 'All the news',
           'hero.strip.bookLabel': 'Book online',
@@ -6641,7 +6648,7 @@
           'eventi.meta.count': '2 new',
           'eventi.e0.art': 'Open<br><em>all winter</em>',
           'eventi.e0.title': 'This winter<br><em>we stay open.</em>',
-          'eventi.e0.text': 'It\'s this year\'s big news: we don\'t close for the winter. From 5 October the restaurant and pizzeria welcome you at the Morettina, Via alla Morettina 10, while the café at the Tennis Club stays open Monday to Friday, 8:30–14:00.',
+          'eventi.e0.text': 'It\'s this year\'s big news: we don\'t close for the winter. From 5 October the restaurant and pizzeria welcome you at the Morettina, Via alla Morettina 10. And at the Tennis Club we\'ve extended the outdoor season until the end of October: café and lunch Monday to Friday, 8:30–14:00.',
           'eventi.e0.cta': 'All the winter news',
           'eventi.e1.tag': 'New',
           'eventi.e1.soon': 'Coming soon',
@@ -6665,7 +6672,7 @@
           /* info */
           'info.eyebrow': 'Hours & locations',
           'info.title': 'Come <em>visit us</em>.',
-          'info.lead': 'From 5 October the restaurant and pizzeria are at our winter venue at the Morettina. At the Tennis Club the café stays open on weekdays. In summer we\'re all back at the club\'s historic home.',
+          'info.lead': 'From 5 October the restaurant and pizzeria are at our winter venue at the Morettina. At the Tennis Club we\'ve extended the outdoor season until the end of October, with café and lunch on weekdays. In summer we\'re all back at the club\'s historic home.',
           'info.map.tag': 'Winter season · from 5 October',
           'info.map.cta': 'Open in Google Maps',
           'info.hours.title': 'Opening hours',
@@ -6678,17 +6685,17 @@
           'info.day.sun': 'Sunday',
           'info.day.monFri': 'Monday – Friday',
           'info.closed': 'Closed',
-          'info.places.intro': 'This winter you\'ll find us in <strong>two places</strong>, with different hours:',
+          'info.places.intro': 'Until the end of October you\'ll find us in <strong>two places</strong>, with different hours:',
           'info.place.map': 'Map',
           'info.hours.restLabel': 'Restaurant & pizzeria',
           'info.hours.cafeLabel': 'Café & lunch at the Tennis Club Locarno',
-          'info.hours.cafeNote': 'Café service and, at lunch, <strong>dish of the day</strong> only, at <strong>CHF 16</strong>.',
+          'info.hours.cafeNote': 'Outdoor season <strong>extended until 31 October</strong>. Café service and, at lunch, <strong>dish of the day</strong> only, at <strong>CHF 16</strong>.',
           'info.hours.note': 'For groups and special occasions please call ahead so we can prepare properly.',
           /* reserve */
           'reserve.eyebrow': 'Reservations',
           'reserve.title': 'A table at <em>Ristorante 23</em>.',
           'reserve.lead': 'Fill in the form and we\'ll get back to you to confirm. Or just give us a call.',
-          'reserve.notice': '<strong>Choose where to book.</strong> Indoors at the <strong>Morettina</strong> (Via alla Morettina 10) for lunch and dinner, or outdoors at the <strong>Tennis Club</strong> (Via Ballerini 1), lunch only, Monday to Friday.',
+          'reserve.notice': '<strong>Choose where to book.</strong> Indoors at the <strong>Morettina</strong> (Via alla Morettina 10) for lunch and dinner, or outdoors at the <strong>Tennis Club</strong> (Via Ballerini 1), lunch only, Monday to Friday, until 31 October.',
           'form.name': 'First and last name',
           'form.name.ph': 'John Smith',
           'form.tel': 'Phone',
@@ -6701,8 +6708,9 @@
           'form.place.in': 'Indoors · Morettina',
           'form.place.inSub': 'Lunch and dinner',
           'form.place.out': 'Outdoors · Tennis Club',
-          'form.place.outSub': 'Lunch only, Mon–Fri',
+          'form.place.outSub': 'Lunch only, Mon–Fri, until 31 October',
           'form.place.weekend': 'Outdoors at the Tennis Club can only be booked Monday to Friday.',
+          'form.place.late': 'Outdoors at the Tennis Club can only be booked until 31 October.',
           'form.people': 'People',
           'form.notes': 'Notes <em>(optional)</em>',
           'form.notes.ph': 'Allergies, table in the shade, birthday…',
