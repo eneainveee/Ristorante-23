@@ -279,6 +279,12 @@
       text-align: right;
     }
 
+    .nv-hours .nv-sub {
+      display: block;
+      font-size: 12px;
+      color: var(--clay);
+    }
+
     .nv-hours .closed {
       color: var(--clay);
       font-style: italic;
@@ -466,7 +472,7 @@
               <li data-i18n-html="m.l3">Caffè e colazione dalle <strong>8:30</strong></li>
             </ul>
             <div class="nv-hours">
-              <div><b data-i18n="d.mon">Lunedì</b><span>08:30–14:00 · 16:00–20:00</span></div>
+              <div><b data-i18n="d.mon">Lunedì</b><span>08:30–14:00 · 16:00–21:00<small class="nv-sub" data-i18n="d.monNote">solo caffetteria · cucina chiusa</small></span></div>
               <div><b data-i18n="d.tueFri">Martedì – Venerdì</b><span>08:30–14:00 · 16:00–22:30</span></div>
               <div><b data-i18n="d.sat">Sabato</b><span>08:30–14:00 · 17:00–22:30</span></div>
               <div><b data-i18n="d.sun">Domenica</b><span class="closed" data-i18n="closed">Chiuso</span></div>
@@ -528,7 +534,7 @@
             </div>
             <ul class="nv-points">
               <li data-i18n-html="r.l1">Nel modulo online scegli la sede: <strong>al coperto</strong> o <strong>all'esterno</strong></li>
-              <li data-i18n-html="r.l2">Morettina: <strong>pranzo e cena</strong>, da lunedì a sabato</li>
+              <li data-i18n-html="r.l2">Morettina: <strong>pranzo e cena</strong>, da martedì a sabato</li>
               <li data-i18n-html="r.l3">Tennis Club: <strong>solo pranzo</strong>, da lunedì a venerdì, <strong>fino al 31 ottobre</strong></li>
               <li data-i18n-html="r.l4">La richiesta parte su <strong>WhatsApp</strong>; per gruppi e occasioni speciali chiamaci</li>
             </ul>
@@ -611,7 +617,7 @@
           'r.tag': 'Prenotazioni',
           'r.title': 'Scegli tu dove prenotare',
           'r.l1': "Nel modulo online scegli la sede: <strong>al coperto</strong> o <strong>all'esterno</strong>",
-          'r.l2': 'Morettina: <strong>pranzo e cena</strong>, da lunedì a sabato',
+          'r.l2': 'Morettina: <strong>pranzo e cena</strong>, da martedì a sabato',
           'r.l3': 'Tennis Club: <strong>solo pranzo</strong>, da lunedì a venerdì, <strong>fino al 31 ottobre</strong>',
           'r.l4': 'La richiesta parte su <strong>WhatsApp</strong>; per gruppi e occasioni speciali chiamaci',
           'r.book': 'Prenota un tavolo',
@@ -621,7 +627,7 @@
           'd2.cta': 'Seguici su Instagram',
           contact: 'Domande? Chiamaci al <a href="tel:+41917511116">091 751 11 16</a> o scrivi a <a href="mailto:venti_tre@outlook.com">venti_tre@outlook.com</a>.',
           map: 'Mappa', menu: 'Vedi il menu', closed: 'Chiuso',
-          'd.mon': 'Lunedì', 'd.tueFri': 'Martedì – Venerdì', 'd.sat': 'Sabato', 'd.sun': 'Domenica',
+          'd.mon': 'Lunedì', 'd.monNote': 'solo caffetteria · cucina chiusa', 'd.tueFri': 'Martedì – Venerdì', 'd.sat': 'Sabato', 'd.sun': 'Domenica',
           'd.monFri': 'Lunedì – Venerdì', 'd.weekend': 'Sabato e domenica',
           'd.until': 'Ultimo giorno', 'd.untilVal': 'venerdì 30 ottobre'
         },
@@ -649,7 +655,7 @@
           'r.tag': 'Reservierungen',
           'r.title': 'Sie wählen, wo Sie reservieren',
           'r.l1': 'Im Online-Formular wählen Sie den Ort: <strong>drinnen</strong> oder <strong>draussen</strong>',
-          'r.l2': 'Morettina: <strong>Mittag- und Abendessen</strong>, Montag bis Samstag',
+          'r.l2': 'Morettina: <strong>Mittag- und Abendessen</strong>, Dienstag bis Samstag',
           'r.l3': 'Tennis Club: <strong>nur mittags</strong>, Montag bis Freitag, <strong>bis 31. Oktober</strong>',
           'r.l4': 'Die Anfrage geht per <strong>WhatsApp</strong>; für Gruppen und besondere Anlässe rufen Sie uns an',
           'r.book': 'Tisch reservieren',
@@ -659,7 +665,7 @@
           'd2.cta': 'Folgen Sie uns auf Instagram',
           contact: 'Fragen? Rufen Sie uns an unter <a href="tel:+41917511116">091 751 11 16</a> oder schreiben Sie an <a href="mailto:venti_tre@outlook.com">venti_tre@outlook.com</a>.',
           map: 'Karte', menu: 'Zur Speisekarte', closed: 'Geschlossen',
-          'd.mon': 'Montag', 'd.tueFri': 'Dienstag – Freitag', 'd.sat': 'Samstag', 'd.sun': 'Sonntag',
+          'd.mon': 'Montag', 'd.monNote': 'nur Cafeteria · Küche geschlossen', 'd.tueFri': 'Dienstag – Freitag', 'd.sat': 'Samstag', 'd.sun': 'Sonntag',
           'd.monFri': 'Montag – Freitag', 'd.weekend': 'Samstag und Sonntag',
           'd.until': 'Letzter Tag', 'd.untilVal': 'Freitag, 30. Oktober'
         },
@@ -687,7 +693,7 @@
           'r.tag': 'Bookings',
           'r.title': 'You choose where to book',
           'r.l1': 'In the online form you pick the venue: <strong>indoors</strong> or <strong>outdoors</strong>',
-          'r.l2': 'Morettina: <strong>lunch and dinner</strong>, Monday to Saturday',
+          'r.l2': 'Morettina: <strong>lunch and dinner</strong>, Tuesday to Saturday',
           'r.l3': 'Tennis Club: <strong>lunch only</strong>, Monday to Friday, <strong>until 31 October</strong>',
           'r.l4': 'Your request is sent via <strong>WhatsApp</strong>; for groups and special occasions, give us a call',
           'r.book': 'Book a table',
@@ -697,7 +703,7 @@
           'd2.cta': 'Follow us on Instagram',
           contact: 'Questions? Call us on <a href="tel:+41917511116">091 751 11 16</a> or write to <a href="mailto:venti_tre@outlook.com">venti_tre@outlook.com</a>.',
           map: 'Map', menu: 'See the menu', closed: 'Closed',
-          'd.mon': 'Monday', 'd.tueFri': 'Tuesday – Friday', 'd.sat': 'Saturday', 'd.sun': 'Sunday',
+          'd.mon': 'Monday', 'd.monNote': 'café only · kitchen closed', 'd.tueFri': 'Tuesday – Friday', 'd.sat': 'Saturday', 'd.sun': 'Sunday',
           'd.monFri': 'Monday – Friday', 'd.weekend': 'Saturday and Sunday',
           'd.until': 'Last day', 'd.untilVal': 'Friday 30 October'
         }

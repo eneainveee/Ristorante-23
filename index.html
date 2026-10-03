@@ -2653,6 +2653,17 @@
       font-feature-settings: "tnum";
     }
 
+    .hours-row .hours-sub {
+      display: block;
+      margin-top: 2px;
+      font-family: var(--sans);
+      font-style: normal;
+      font-size: 12px;
+      letter-spacing: .02em;
+      color: var(--clay);
+      text-align: right;
+    }
+
     .places-intro {
       margin: -6px 0 0;
       font-size: 14.5px;
@@ -4433,7 +4444,7 @@
     "hasMap": "https://maps.google.com/?q=Via+alla+Morettina+10,+6600+Locarno",
     "openingHoursSpecification": [
       { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], "opens": "08:30", "closes": "14:00" },
-      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "16:00", "closes": "20:00" },
+      { "@type": "OpeningHoursSpecification", "dayOfWeek": "Monday", "opens": "16:00", "closes": "21:00" },
       { "@type": "OpeningHoursSpecification", "dayOfWeek": ["Tuesday", "Wednesday", "Thursday", "Friday"], "opens": "16:00", "closes": "22:30" },
       { "@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "17:00", "closes": "22:30" }
     ],
@@ -5665,7 +5676,7 @@
                   </svg><span data-i18n="info.place.map">Mappa</span></button>
               </div>
               <div class="hours-table">
-                <div class="hours-row"><b data-i18n="info.day.mon">Lunedì</b><span>08:30–14:00 · 16:00–20:00</span></div>
+                <div class="hours-row"><b data-i18n="info.day.mon">Lunedì</b><span>08:30–14:00 · 16:00–21:00<small class="hours-sub" data-i18n="info.day.monNote">solo caffetteria · cucina chiusa</small></span></div>
                 <div class="hours-row"><b data-i18n="info.day.tue">Martedì</b><span>08:30–14:00 · 16:00–22:30</span></div>
                 <div class="hours-row"><b data-i18n="info.day.wed">Mercoledì</b><span>08:30–14:00 · 16:00–22:30</span></div>
                 <div class="hours-row"><b data-i18n="info.day.thu">Giovedì</b><span>08:30–14:00 · 16:00–22:30</span></div>
@@ -6199,7 +6210,8 @@
       var cal = document.getElementById('rfCal');
 
       // Sedi:
-      // - al coperto (Morettina): si prenota dal 5 ottobre, pranzo e cena
+      // - al coperto (Morettina): si prenota dal 5 ottobre, pranzo e cena, mar–sab
+      //   (il lunedì solo caffetteria, cucina chiusa)
       // - all'esterno (Tennis Club): fino al 4 ottobre pranzo e cena tutti i giorni;
       //   dal 5 ottobre solo pranzo, lun–ven, fino a fine ottobre
       var INDOOR_FIRST_DAY = '2026-10-05';
@@ -6222,7 +6234,7 @@
         if (maxDate() && iso > maxDate()) return false;
         var day = new Date(iso + 'T12:00:00').getDay();
         if (isOutside() && iso >= INDOOR_FIRST_DAY && (day === 0 || day === 6)) return false; // Tennis Club: lun–ven
-        if (!isOutside() && day === 0) return false; // Morettina: domenica chiuso
+        if (!isOutside() && (day === 0 || day === 1)) return false; // Morettina: domenica chiuso, lunedì cucina chiusa
         return true;
       }
       function outsideLunchOnly() {
@@ -6664,6 +6676,7 @@
           'info.map.cta': 'In Google Maps öffnen',
           'info.hours.title': 'Öffnungszeiten',
           'info.day.mon': 'Montag',
+          'info.day.monNote': 'nur Cafeteria · Küche geschlossen',
           'info.day.tue': 'Dienstag',
           'info.day.wed': 'Mittwoch',
           'info.day.thu': 'Donnerstag',
@@ -6965,6 +6978,7 @@
           'info.map.cta': 'Open in Google Maps',
           'info.hours.title': 'Opening hours',
           'info.day.mon': 'Monday',
+          'info.day.monNote': 'café only · kitchen closed',
           'info.day.tue': 'Tuesday',
           'info.day.wed': 'Wednesday',
           'info.day.thu': 'Thursday',
