@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#FAF6EC" />
   <title>Novità · Ristorante 23</title>
   <meta name="description"
-    content="Le novità del Ristorante 23 di Locarno: ristorante e pizzeria al coperto alla Morettina, caffetteria e pranzo al Tennis Club fino a fine ottobre, prenotazioni e pizza delivery in arrivo, carta Sapori d'autunno con selvaggina per un periodo limitato." />
+    content="Le novità del Ristorante 23 di Locarno: ristorante e pizzeria al coperto alla Morettina, prenotazioni e pizza delivery in arrivo, carta Sapori d'autunno con selvaggina per un periodo limitato." />
   <link rel="canonical" href="https://ristorante23.ch/novita.html" />
   <link rel="icon" type="image/png" sizes="32x32" href="Logo/favicon-32.png" />
   <link rel="stylesheet" href="fonts.css" />
@@ -340,6 +340,7 @@
 
     /* Delivery con foto */
     .nv-card--soon {
+      grid-column: 1 / -1;
       padding: 0;
       overflow: hidden;
       border-style: dashed;
@@ -516,14 +517,14 @@
           </svg>
           <span data-i18n="eyebrow">Novità · Autunno 2026</span>
         </p>
-        <h1 data-i18n-html="title">Dal 5 ottobre <em>anche al coperto.</em></h1>
-        <p data-i18n="lead">È la novità di quest'anno: dal 5 ottobre ristorante e pizzeria sono al
-          coperto alla Morettina, e al Tennis Club Locarno all'Isolino abbiamo prolungato la stagione all'esterno fino a fine ottobre.
+        <h1 data-i18n-html="title">Dal 5 ottobre <em>al coperto.</em></h1>
+        <p data-i18n="lead">Dal 5 ottobre ristorante e pizzeria sono al
+          coperto alla Morettina, a pranzo e a cena. La stagione all'esterno al Tennis Club si è conclusa.
           Ecco tutto quello che cambia.</p>
         <div class="nv-facts">
           <div><b data-i18n="f1.b">5 ottobre</b><span data-i18n="f1.s">inizio della stagione al coperto, alla Morettina</span></div>
-          <div><b data-i18n="f2.b">2 sedi</b><span data-i18n="f2.s">Morettina al coperto e Tennis Club Isolino fino a fine ottobre</span></div>
-          <div><b data-i18n="f3.b">CHF 16.–</b><span data-i18n="f3.s">il menu del giorno al Tennis Club</span></div>
+          <div><b data-i18n="f2.b">Mar – Sab</b><span data-i18n="f2.s">pranzo e cena alla Morettina</span></div>
+          <div><b data-i18n="f3.b">Selvaggina</b><span data-i18n="f3.s">la carta Sapori d'autunno, per un periodo limitato</span></div>
           <div><b data-i18n="f4.b">Presto</b><span data-i18n="f4.s">la pizza consegnata a casa</span></div>
         </div>
       </div>
@@ -592,38 +593,7 @@
             </div>
           </article>
 
-          <!-- 2 · Tennis Club -->
-          <article class="nv-card">
-            <div class="nv-card__head">
-              <span class="num num--2">2</span>
-              <div>
-                <span class="nv-tag" data-i18n="c.tag">All'esterno · prolungato fino al 31 ottobre</span>
-                <h2 data-i18n="c.title">Caffetteria e pranzo al Tennis Club Locarno</h2>
-                <span class="nv-addr">Via Francesco Ballerini 1 · 6600 Locarno</span>
-              </div>
-            </div>
-            <ul class="nv-points">
-              <li data-i18n-html="c.l1">Abbiamo <strong>prolungato la stagione all'esterno</strong> fino a fine ottobre</li>
-              <li data-i18n-html="c.l1b"><strong>Colazione e caffè</strong> dal mattino, dal lunedì al venerdì</li>
-              <li data-i18n-html="c.l2">A pranzo il <strong>menu del giorno</strong> a <strong>CHF 16.–</strong></li>
-              <li data-i18n-html="c.l3">Immersi nel <strong>Bosco Isolino</strong>, a due passi dal lago</li>
-            </ul>
-            <div class="nv-hours">
-              <div><b data-i18n="d.monFri">Lunedì – Venerdì</b><span>08:30–14:00</span></div>
-              <div><b data-i18n="d.weekend">Sabato e domenica</b><span class="closed" data-i18n="closed">Chiuso</span></div>
-              <div><b data-i18n="d.until">Ultimo giorno</b><span data-i18n="d.untilVal">venerdì 30 ottobre</span></div>
-            </div>
-            <div class="nv-links">
-              <a class="nv-btn" href="https://maps.google.com/?q=Via+Francesco+Ballerini+1,+6600+Locarno"
-                target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                  stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
-                  <circle cx="12" cy="10" r="3" />
-                </svg><span data-i18n="map">Mappa</span></a>
-            </div>
-          </article>
-
-          <!-- 3 · Prenotazioni -->
+          <!-- 2 · Prenotazioni -->
           <article class="nv-card">
             <div class="nv-card__head">
               <span class="nv-ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
@@ -633,13 +603,12 @@
                 </svg></span>
               <div>
                 <span class="nv-tag" data-i18n="r.tag">Prenotazioni</span>
-                <h2 data-i18n="r.title">Scegli tu dove prenotare</h2>
+                <h2 data-i18n="r.title">Prenota il tuo tavolo</h2>
               </div>
             </div>
             <ul class="nv-points">
-              <li data-i18n-html="r.l1">Nel modulo online scegli la sede: <strong>al coperto</strong> o <strong>all'esterno</strong></li>
+              <li data-i18n-html="r.l1">Nel modulo online scegli <strong>data, ora e persone</strong></li>
               <li data-i18n-html="r.l2">Morettina: <strong>pranzo e cena</strong>, da martedì a sabato</li>
-              <li data-i18n-html="r.l3">Tennis Club: <strong>solo pranzo</strong>, da lunedì a venerdì, <strong>fino al 31 ottobre</strong></li>
               <li data-i18n-html="r.l4">La richiesta parte su <strong>WhatsApp</strong>; per gruppi e occasioni speciali chiamaci</li>
             </ul>
             <div class="nv-links">
@@ -652,7 +621,7 @@
             </div>
           </article>
 
-          <!-- 4 · Pizza delivery -->
+          <!-- 3 · Pizza delivery -->
           <article class="nv-card nv-card--soon">
             <picture class="nv-photo">
               <source type="image/webp"
@@ -701,28 +670,21 @@
           pageTitle: 'Novità · Ristorante 23',
           back: '← Torna al sito',
           eyebrow: 'Novità · Autunno 2026',
-          title: 'Dal 5 ottobre <em>anche al coperto.</em>',
-          lead: "È la novità di quest'anno: dal 5 ottobre ristorante e pizzeria sono al coperto alla Morettina, e al Tennis Club Locarno all'Isolino abbiamo prolungato la stagione all'esterno fino a fine ottobre. Ecco tutto quello che cambia.",
+          title: 'Dal 5 ottobre <em>al coperto.</em>',
+          lead: "Dal 5 ottobre ristorante e pizzeria sono al coperto alla Morettina, a pranzo e a cena. La stagione all'esterno al Tennis Club si è conclusa. Ecco tutto quello che cambia.",
           'f1.b': '5 ottobre', 'f1.s': 'inizio della stagione al coperto, alla Morettina',
-          'f2.b': '2 sedi', 'f2.s': 'Morettina al coperto e Tennis Club Isolino fino a fine ottobre',
-          'f3.b': 'CHF 16.–', 'f3.s': 'il menu del giorno al Tennis Club',
+          'f2.b': 'Mar – Sab', 'f2.s': 'pranzo e cena alla Morettina',
+          'f3.b': 'Selvaggina', 'f3.s': "la carta Sapori d'autunno, per un periodo limitato",
           'f4.b': 'Presto', 'f4.s': 'la pizza consegnata a casa',
           'm.tag': 'Al coperto · dal 5 ottobre',
           'm.title': 'Ristorante & pizzeria',
           'm.l1': 'Sala interna, calda e raccolta, per <strong>pranzo e cena</strong>',
           'm.l2': 'Pizza al <strong>forno a legna</strong>, anche senza glutine',
           'm.l3': 'Caffè e colazione dalle <strong>8:30</strong>',
-          'c.tag': "All'esterno · prolungato fino al 31 ottobre",
-          'c.title': 'Caffetteria e pranzo al Tennis Club Locarno',
-          'c.l1': "Abbiamo <strong>prolungato la stagione all'esterno</strong> fino a fine ottobre",
-          'c.l1b': '<strong>Colazione e caffè</strong> dal mattino, dal lunedì al venerdì',
-          'c.l2': 'A pranzo il <strong>menu del giorno</strong> a <strong>CHF 16.–</strong>',
-          'c.l3': 'Immersi nel <strong>Bosco Isolino</strong>, a due passi dal lago',
           'r.tag': 'Prenotazioni',
-          'r.title': 'Scegli tu dove prenotare',
-          'r.l1': "Nel modulo online scegli la sede: <strong>al coperto</strong> o <strong>all'esterno</strong>",
+          'r.title': 'Prenota il tuo tavolo',
+          'r.l1': 'Nel modulo online scegli <strong>data, ora e persone</strong>',
           'r.l2': 'Morettina: <strong>pranzo e cena</strong>, da martedì a sabato',
-          'r.l3': 'Tennis Club: <strong>solo pranzo</strong>, da lunedì a venerdì, <strong>fino al 31 ottobre</strong>',
           'r.l4': 'La richiesta parte su <strong>WhatsApp</strong>; per gruppi e occasioni speciali chiamaci',
           'r.book': 'Prenota un tavolo',
           'd2.tag': 'Prossimamente',
@@ -732,8 +694,6 @@
           contact: 'Domande? Chiamaci al <a href="tel:+41917511116">091 751 11 16</a> o scrivi a <a href="mailto:venti_tre@outlook.com">venti_tre@outlook.com</a>.',
           map: 'Mappa', menu: 'Vedi il menu', closed: 'Chiuso',
           'd.mon': 'Lunedì', 'd.monNote': 'solo caffetteria · cucina chiusa', 'd.tueFri': 'Martedì – Venerdì', 'd.sat': 'Sabato', 'd.sun': 'Domenica',
-          'd.monFri': 'Lunedì – Venerdì', 'd.weekend': 'Sabato e domenica',
-          'd.until': 'Ultimo giorno', 'd.untilVal': 'venerdì 30 ottobre',
           "a.tag": "Nuova carta · per un periodo limitato",
           "a.title": "Sapori d'autunno",
           "a.text": "La nostra proposta di selvaggina, accanto alla carta di sempre. La trovi alla Morettina, a pranzo e a cena, finché dura la stagione.",
@@ -753,28 +713,21 @@
           pageTitle: 'Neuigkeiten · Ristorante 23',
           back: '← Zurück zur Website',
           eyebrow: 'Neuigkeiten · Herbst 2026',
-          title: 'Ab 5. Oktober <em>auch drinnen.</em>',
-          lead: 'Das ist die Neuheit dieses Jahres: Ab dem 5. Oktober sind Restaurant und Pizzeria drinnen an der Morettina, und im Tennis Club Locarno am Isolino haben wir die Saison draussen bis Ende Oktober verlängert. Hier alles, was sich ändert.',
+          title: 'Ab 5. Oktober <em>drinnen.</em>',
+          lead: 'Ab dem 5. Oktober sind Restaurant und Pizzeria drinnen an der Morettina, mittags und abends. Die Saison draussen im Tennis Club ist zu Ende. Hier alles, was sich ändert.',
           'f1.b': '5. Oktober', 'f1.s': 'Beginn der Saison drinnen, an der Morettina',
-          'f2.b': '2 Standorte', 'f2.s': 'Morettina drinnen und Tennis Club Isolino bis Ende Oktober',
-          'f3.b': 'CHF 16.–', 'f3.s': 'das Tagesmenü im Tennis Club',
+          'f2.b': 'Di – Sa', 'f2.s': 'Mittag- und Abendessen an der Morettina',
+          'f3.b': 'Wild', 'f3.s': "die Wildkarte Sapori d'autunno, für kurze Zeit",
           'f4.b': 'Bald', 'f4.s': 'Pizza nach Hause geliefert',
           'm.tag': 'Drinnen · ab 5. Oktober',
           'm.title': 'Restaurant & Pizzeria',
           'm.l1': 'Warmer, gemütlicher Innenraum für <strong>Mittag- und Abendessen</strong>',
           'm.l2': 'Pizza aus dem <strong>Holzofen</strong>, auch glutenfrei',
           'm.l3': 'Kaffee und Frühstück ab <strong>8:30</strong>',
-          'c.tag': 'Draussen · verlängert bis 31. Oktober',
-          'c.title': 'Caffetteria & Mittagessen im Tennis Club Locarno',
-          'c.l1': 'Wir haben die <strong>Saison draussen verlängert</strong>, bis Ende Oktober',
-          'c.l1b': '<strong>Frühstück und Kaffee</strong> ab dem Morgen, Montag bis Freitag',
-          'c.l2': 'Mittags das <strong>Tagesmenü</strong> zu <strong>CHF 16.–</strong>',
-          'c.l3': 'Eingebettet in den <strong>Bosco Isolino</strong>, nahe am See',
           'r.tag': 'Reservierungen',
-          'r.title': 'Sie wählen, wo Sie reservieren',
-          'r.l1': 'Im Online-Formular wählen Sie den Ort: <strong>drinnen</strong> oder <strong>draussen</strong>',
+          'r.title': 'Reservieren Sie Ihren Tisch',
+          'r.l1': 'Im Online-Formular wählen Sie <strong>Datum, Uhrzeit und Personen</strong>',
           'r.l2': 'Morettina: <strong>Mittag- und Abendessen</strong>, Dienstag bis Samstag',
-          'r.l3': 'Tennis Club: <strong>nur mittags</strong>, Montag bis Freitag, <strong>bis 31. Oktober</strong>',
           'r.l4': 'Die Anfrage geht per <strong>WhatsApp</strong>; für Gruppen und besondere Anlässe rufen Sie uns an',
           'r.book': 'Tisch reservieren',
           'd2.tag': 'Demnächst',
@@ -784,8 +737,6 @@
           contact: 'Fragen? Rufen Sie uns an unter <a href="tel:+41917511116">091 751 11 16</a> oder schreiben Sie an <a href="mailto:venti_tre@outlook.com">venti_tre@outlook.com</a>.',
           map: 'Karte', menu: 'Zur Speisekarte', closed: 'Geschlossen',
           'd.mon': 'Montag', 'd.monNote': 'nur Cafeteria · Küche geschlossen', 'd.tueFri': 'Dienstag – Freitag', 'd.sat': 'Samstag', 'd.sun': 'Sonntag',
-          'd.monFri': 'Montag – Freitag', 'd.weekend': 'Samstag und Sonntag',
-          'd.until': 'Letzter Tag', 'd.untilVal': 'Freitag, 30. Oktober',
           "a.tag": "Neue Karte · nur für kurze Zeit",
           "a.title": "Sapori d'autunno",
           "a.text": "Unser Wildangebot, zusätzlich zur gewohnten Karte. An der Morettina, mittags und abends, solange die Saison dauert.",
@@ -805,28 +756,21 @@
           pageTitle: 'News · Ristorante 23',
           back: '← Back to the site',
           eyebrow: 'News · Autumn 2026',
-          title: 'From 5 October <em>indoors too.</em>',
-          lead: "It's this year's big news: from 5 October the restaurant and pizzeria are indoors at the Morettina, and at the Tennis Club Locarno, by the Isolino, we've extended the outdoor season until the end of October. Here's everything that changes.",
+          title: 'From 5 October <em>indoors.</em>',
+          lead: "From 5 October the restaurant and pizzeria are indoors at the Morettina, for lunch and dinner. The outdoor season at the Tennis Club has come to an end. Here's everything that changes.",
           'f1.b': '5 October', 'f1.s': 'start of the indoor season, at the Morettina',
-          'f2.b': '2 venues', 'f2.s': 'Morettina indoors and Tennis Club Isolino until end of October',
-          'f3.b': 'CHF 16', 'f3.s': 'dish of the day at the Tennis Club',
+          'f2.b': 'Tue – Sat', 'f2.s': 'lunch and dinner at the Morettina',
+          'f3.b': 'Game', 'f3.s': "the Sapori d'autunno game menu, for a limited time",
           'f4.b': 'Soon', 'f4.s': 'pizza delivered to your door',
           'm.tag': 'Indoors · from 5 October',
           'm.title': 'Restaurant & pizzeria',
           'm.l1': 'A warm, cosy indoor dining room for <strong>lunch and dinner</strong>',
           'm.l2': '<strong>Wood-fired</strong> pizza, gluten-free too',
           'm.l3': 'Coffee and breakfast from <strong>8:30</strong>',
-          'c.tag': 'Outdoors · extended until 31 October',
-          'c.title': 'Café & lunch at the Tennis Club Locarno',
-          'c.l1': "We've <strong>extended the outdoor season</strong> until the end of October",
-          'c.l1b': '<strong>Breakfast and coffee</strong> from the morning, Monday to Friday',
-          'c.l2': 'At lunch the <strong>dish of the day</strong> at <strong>CHF 16</strong>',
-          'c.l3': 'Nestled in the <strong>Bosco Isolino</strong>, close to the lake',
           'r.tag': 'Bookings',
-          'r.title': 'You choose where to book',
-          'r.l1': 'In the online form you pick the venue: <strong>indoors</strong> or <strong>outdoors</strong>',
+          'r.title': 'Book your table',
+          'r.l1': 'In the online form pick <strong>date, time and guests</strong>',
           'r.l2': 'Morettina: <strong>lunch and dinner</strong>, Tuesday to Saturday',
-          'r.l3': 'Tennis Club: <strong>lunch only</strong>, Monday to Friday, <strong>until 31 October</strong>',
           'r.l4': 'Your request is sent via <strong>WhatsApp</strong>; for groups and special occasions, give us a call',
           'r.book': 'Book a table',
           'd2.tag': 'Coming soon',
@@ -836,8 +780,6 @@
           contact: 'Questions? Call us on <a href="tel:+41917511116">091 751 11 16</a> or write to <a href="mailto:venti_tre@outlook.com">venti_tre@outlook.com</a>.',
           map: 'Map', menu: 'See the menu', closed: 'Closed',
           'd.mon': 'Monday', 'd.monNote': 'café only · kitchen closed', 'd.tueFri': 'Tuesday – Friday', 'd.sat': 'Saturday', 'd.sun': 'Sunday',
-          'd.monFri': 'Monday – Friday', 'd.weekend': 'Saturday and Sunday',
-          'd.until': 'Last day', 'd.untilVal': 'Friday 30 October',
           "a.tag": "New menu · for a limited time",
           "a.title": "Sapori d'autunno",
           "a.text": "Our game specialities, alongside our regular menu. At the Morettina, for lunch and dinner, while the season lasts.",
