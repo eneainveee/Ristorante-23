@@ -7,7 +7,7 @@
   <meta name="theme-color" content="#FAF6EC" />
   <title>Novità · Ristorante 23</title>
   <meta name="description"
-    content="Le novità del Ristorante 23 di Locarno: ristorante e pizzeria al coperto alla Morettina, caffetteria e pranzo al Tennis Club fino a fine ottobre, prenotazioni e pizza delivery in arrivo." />
+    content="Le novità del Ristorante 23 di Locarno: ristorante e pizzeria al coperto alla Morettina, caffetteria e pranzo al Tennis Club fino a fine ottobre, prenotazioni e pizza delivery in arrivo, carta Sapori d'autunno con selvaggina per un periodo limitato." />
   <link rel="canonical" href="https://ristorante23.ch/novita.html" />
   <link rel="icon" type="image/png" sizes="32x32" href="Logo/favicon-32.png" />
   <link rel="stylesheet" href="fonts.css" />
@@ -373,6 +373,83 @@
       color: var(--ink-soft);
     }
 
+    /* Carta speciale a tempo limitato */
+    .nv-card--feature {
+      grid-column: 1 / -1;
+      padding: 0;
+      overflow: hidden;
+      display: grid;
+      grid-template-columns: minmax(0, 340px) 1fr;
+      border-color: rgba(183, 89, 58, .3);
+    }
+
+    .nv-feature__img {
+      display: block;
+      background: #E9D9B8;
+    }
+
+    .nv-feature__img img {
+      display: block;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+
+    .nv-feature__body {
+      padding: clamp(20px, 3vw, 32px);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .nv-feature__body h2 {
+      font-size: clamp(24px, 3vw, 30px);
+    }
+
+    .nv-dishes {
+      list-style: none;
+      margin: 0 0 16px;
+      padding: 0;
+      border-top: 1px solid var(--line);
+      font-size: 14.5px;
+    }
+
+    .nv-dishes li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 14px;
+      padding: 9px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .nv-dishes b {
+      display: block;
+      font-weight: 600;
+    }
+
+    .nv-dishes small {
+      display: block;
+      font-size: 13px;
+      color: var(--ink-mute);
+    }
+
+    .nv-dishes .p {
+      flex: none;
+      font-variant-numeric: tabular-nums;
+      color: var(--ink-soft);
+    }
+
+    @media (max-width: 800px) {
+      .nv-card--feature {
+        grid-template-columns: 1fr;
+      }
+
+      .nv-feature__img {
+        aspect-ratio: 4 / 3;
+      }
+    }
+
     .nv-contact {
       margin-top: 16px;
       padding: 16px 20px;
@@ -455,6 +532,33 @@
     <div class="nv-main">
       <div class="nv-wrap">
         <div class="nv-grid">
+
+          <!-- 0 · Sapori d'autunno (carta a tempo limitato) -->
+          <article class="nv-card nv-card--feature">
+            <a class="nv-feature__img" href="index.html#menu-autunno">
+              <img src="Immagini/eventi/sapori-autunno-800w.jpg"
+                srcset="Immagini/eventi/sapori-autunno-480w.jpg 480w, Immagini/eventi/sapori-autunno-800w.jpg 800w, Immagini/eventi/sapori-autunno-1024w.jpg 1024w"
+                sizes="(max-width: 800px) 100vw, 340px" width="800" height="1200"
+                alt="La carta Sapori d'autunno del Ristorante 23" loading="lazy" decoding="async" />
+            </a>
+            <div class="nv-feature__body">
+              <span class="nv-tag" data-i18n="a.tag">Nuova carta · per un periodo limitato</span>
+              <h2 data-i18n="a.title">Sapori d'autunno</h2>
+              <p class="nv-text" data-i18n="a.text">La nostra proposta di selvaggina, accanto alla carta di sempre.
+                La trovi alla Morettina, a pranzo e a cena, finché dura la stagione.</p>
+              <ul class="nv-dishes">
+              <li><span><b data-i18n="aut1.n">Carpaccio di cervo</b><small data-i18n="aut1.d">con fichi e caprino marinato</small></span><span class="p">Fr&nbsp;24.50</span></li>
+              <li><span><b data-i18n="aut2.n">Tagliatelle fatte in casa</b><small data-i18n="aut2.d">con ragù di cinghiale</small></span><span class="p">Fr&nbsp;25.00</span></li>
+              <li><span><b data-i18n="aut3.n">Scaloppine di capriolo</b><small data-i18n="aut3.d">con risotto allo zafferano</small></span><span class="p">Fr&nbsp;31.00</span></li>
+              <li><span><b data-i18n="aut4.n">Spezzatino di cervo</b><small data-i18n="aut4.d">con spätzli, cavolini di Bruxelles e castagne caramellate</small></span><span class="p">Fr&nbsp;29.00</span></li>
+              <li><span><b data-i18n="aut5.n">Sorbetto all'uva</b><small data-i18n="aut5.d">dessert</small></span><span class="p">Fr&nbsp;6.50</span></li>
+              </ul>
+              <div class="nv-links">
+                <a class="nv-btn nv-btn--primary" href="index.html#menu-autunno" data-i18n="a.cta">Vedi la carta</a>
+                <a class="nv-btn" href="index.html#prenota" data-i18n="r.book">Prenota un tavolo</a>
+              </div>
+            </div>
+          </article>
 
           <!-- 1 · Morettina -->
           <article class="nv-card">
@@ -629,7 +733,21 @@
           map: 'Mappa', menu: 'Vedi il menu', closed: 'Chiuso',
           'd.mon': 'Lunedì', 'd.monNote': 'solo caffetteria · cucina chiusa', 'd.tueFri': 'Martedì – Venerdì', 'd.sat': 'Sabato', 'd.sun': 'Domenica',
           'd.monFri': 'Lunedì – Venerdì', 'd.weekend': 'Sabato e domenica',
-          'd.until': 'Ultimo giorno', 'd.untilVal': 'venerdì 30 ottobre'
+          'd.until': 'Ultimo giorno', 'd.untilVal': 'venerdì 30 ottobre',
+          "a.tag": "Nuova carta · per un periodo limitato",
+          "a.title": "Sapori d'autunno",
+          "a.text": "La nostra proposta di selvaggina, accanto alla carta di sempre. La trovi alla Morettina, a pranzo e a cena, finché dura la stagione.",
+          "a.cta": "Vedi la carta",
+          "aut1.n": "Carpaccio di cervo",
+          "aut1.d": "con fichi e caprino marinato",
+          "aut2.n": "Tagliatelle fatte in casa",
+          "aut2.d": "con ragù di cinghiale",
+          "aut3.n": "Scaloppine di capriolo",
+          "aut3.d": "con risotto allo zafferano",
+          "aut4.n": "Spezzatino di cervo",
+          "aut4.d": "con spätzli, cavolini di Bruxelles e castagne caramellate",
+          "aut5.n": "Sorbetto all'uva",
+          "aut5.d": "dessert"
         },
         de: {
           pageTitle: 'Neuigkeiten · Ristorante 23',
@@ -667,7 +785,21 @@
           map: 'Karte', menu: 'Zur Speisekarte', closed: 'Geschlossen',
           'd.mon': 'Montag', 'd.monNote': 'nur Cafeteria · Küche geschlossen', 'd.tueFri': 'Dienstag – Freitag', 'd.sat': 'Samstag', 'd.sun': 'Sonntag',
           'd.monFri': 'Montag – Freitag', 'd.weekend': 'Samstag und Sonntag',
-          'd.until': 'Letzter Tag', 'd.untilVal': 'Freitag, 30. Oktober'
+          'd.until': 'Letzter Tag', 'd.untilVal': 'Freitag, 30. Oktober',
+          "a.tag": "Neue Karte · nur für kurze Zeit",
+          "a.title": "Sapori d'autunno",
+          "a.text": "Unser Wildangebot, zusätzlich zur gewohnten Karte. An der Morettina, mittags und abends, solange die Saison dauert.",
+          "a.cta": "Zur Karte",
+          "aut1.n": "Hirschcarpaccio",
+          "aut1.d": "mit Feigen und mariniertem Ziegenkäse",
+          "aut2.n": "Hausgemachte Tagliatelle",
+          "aut2.d": "mit Wildschweinragù",
+          "aut3.n": "Rehschnitzel",
+          "aut3.d": "mit Safranrisotto",
+          "aut4.n": "Hirschragout",
+          "aut4.d": "mit Spätzli, Rosenkohl und karamellisierten Kastanien",
+          "aut5.n": "Traubensorbet",
+          "aut5.d": "Dessert"
         },
         en: {
           pageTitle: 'News · Ristorante 23',
@@ -705,7 +837,21 @@
           map: 'Map', menu: 'See the menu', closed: 'Closed',
           'd.mon': 'Monday', 'd.monNote': 'café only · kitchen closed', 'd.tueFri': 'Tuesday – Friday', 'd.sat': 'Saturday', 'd.sun': 'Sunday',
           'd.monFri': 'Monday – Friday', 'd.weekend': 'Saturday and Sunday',
-          'd.until': 'Last day', 'd.untilVal': 'Friday 30 October'
+          'd.until': 'Last day', 'd.untilVal': 'Friday 30 October',
+          "a.tag": "New menu · for a limited time",
+          "a.title": "Sapori d'autunno",
+          "a.text": "Our game specialities, alongside our regular menu. At the Morettina, for lunch and dinner, while the season lasts.",
+          "a.cta": "See the menu",
+          "aut1.n": "Venison carpaccio",
+          "aut1.d": "with figs and marinated goat's cheese",
+          "aut2.n": "Homemade tagliatelle",
+          "aut2.d": "with wild boar ragù",
+          "aut3.n": "Roe deer escalopes",
+          "aut3.d": "with saffron risotto",
+          "aut4.n": "Venison stew",
+          "aut4.d": "with spätzli, Brussels sprouts and caramelised chestnuts",
+          "aut5.n": "Grape sorbet",
+          "aut5.d": "dessert"
         }
       };
 

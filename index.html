@@ -1471,6 +1471,46 @@
       }
     }
 
+    /* Novità in evidenza (carta a tempo limitato): riga intera, foto a lato */
+    @media (min-width: 641px) {
+      .eventi__grid .evento--feature {
+        grid-column: 1 / -1;
+        flex-direction: row;
+        align-items: stretch;
+        min-height: 320px;
+      }
+
+      .eventi__grid .evento--feature .evento__photo {
+        flex: 0 0 40%;
+        aspect-ratio: auto;
+      }
+
+      .eventi__grid .evento--feature .evento__photo img {
+        position: absolute;
+        inset: 0;
+      }
+
+      .eventi__grid .evento--feature .evento__body {
+        flex: 1;
+        justify-content: center;
+        padding: clamp(20px, 2.4vw, 36px);
+        gap: 12px;
+      }
+    }
+
+    .evento--feature .evento__photo {
+      background: #E9D9B8;
+    }
+
+    .evento--feature .evento__photo img {
+      object-position: center 4%;
+    }
+
+    .evento--feature .evento__labels {
+      top: auto;
+      bottom: 16px;
+    }
+
     /* Se la griglia è spenta, l'evento rimasto occupa tutta la riga */
     @media (min-width: 641px) {
       .eventi__grid.has-single .evento:not(.evento--news) {
@@ -3813,6 +3853,88 @@
       color: var(--ink);
     }
 
+    /* Carta speciale "Sapori d'autunno" (periodo limitato) */
+    .menu__nav a.menu__nav-special {
+      color: var(--clay);
+    }
+
+    .menu__nav a.menu__nav-special::before {
+      content: "";
+      display: inline-block;
+      width: 6px;
+      height: 6px;
+      margin-right: 8px;
+      border-radius: 50%;
+      background: var(--clay);
+      vertical-align: 1px;
+    }
+
+    .menu__cat--special.is-active {
+      padding: clamp(26px, 4vw, 44px) clamp(18px, 4vw, 44px);
+      border: 1px solid rgba(183, 89, 58, .28);
+      border-radius: 10px;
+      background: linear-gradient(180deg, rgba(217, 162, 75, .10), rgba(183, 89, 58, .05));
+    }
+
+    .menu__special__head {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 14px;
+    }
+
+    .menu__special__badge {
+      font: 700 10.5px/1 var(--sans);
+      letter-spacing: .2em;
+      text-transform: uppercase;
+      color: var(--bg-3, #FEFCF6);
+      background: var(--clay);
+      padding: 7px 12px;
+      border-radius: 999px;
+    }
+
+    .menu__cat__head h3.menu__special__title {
+      font-family: var(--serif);
+      font-size: clamp(30px, 4.4vw, 44px);
+      font-weight: 700;
+      letter-spacing: 0;
+      text-transform: none;
+      line-height: 1.05;
+    }
+
+    .menu__cat__head h3.menu__special__title::before,
+    .menu__cat__head h3.menu__special__title::after {
+      display: none;
+    }
+
+    .menu__special__sub {
+      margin: 0;
+      font: 600 11px/1.4 var(--sans);
+      letter-spacing: .26em;
+      text-transform: uppercase;
+      color: var(--ink-mute);
+    }
+
+    .menu__special__sep {
+      margin: 18px 0 0;
+      text-align: center;
+      font: 600 11px/1 var(--sans);
+      letter-spacing: .3em;
+      text-transform: uppercase;
+      color: var(--clay);
+    }
+
+    .menu__dolce {
+      margin: 8px 0 0;
+      text-align: center;
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 20px;
+      line-height: 1.5;
+      color: var(--ink-soft);
+    }
+
     .menu__foot {
       max-width: 760px;
       margin: 56px auto 0;
@@ -4861,21 +4983,68 @@
         </div>
 
         <nav class="menu__nav" aria-label="Categorie del menu" role="tablist">
-          <a href="#menu-antipasti" class="is-active" role="tab" aria-selected="true"
-            data-i18n="menu.tab.antipasti">Antipasti</a>
+          <a href="#menu-autunno" class="is-active menu__nav-special" role="tab" aria-selected="true"
+            data-i18n="menu.tab.autunno">Sapori d'autunno</a>
+          <a href="#menu-antipasti" role="tab" aria-selected="false" data-i18n="menu.tab.antipasti">Antipasti</a>
           <a href="#menu-primi" role="tab" aria-selected="false" data-i18n="menu.tab.primi">Primi</a>
           <a href="#menu-secondi" role="tab" aria-selected="false" data-i18n="menu.tab.secondi">Secondi</a>
           <a href="#menu-bambini" role="tab" aria-selected="false" data-i18n="menu.tab.bambini">Per i bambini</a>
           <a href="#menu-pizze" role="tab" aria-selected="false" data-i18n="menu.tab.pizze">Pizze</a>
-          <a href="#menu-bianche" role="tab" aria-selected="false" data-i18n="menu.tab.bianche">Pizze bianche</a>
           <a href="#menu-dessert" role="tab" aria-selected="false" data-i18n="menu.tab.dessert">Dessert</a>
           <a href="#menu-gelati" role="tab" aria-selected="false" data-i18n="menu.tab.gelati">Gelati</a>
         </nav>
 
         <div class="menu__grid">
 
+          <!-- SAPORI D'AUTUNNO · carta speciale a tempo limitato -->
+          <section class="menu__cat menu__cat--special is-active" role="tabpanel" id="menu-autunno">
+            <header class="menu__cat__head menu__special__head">
+              <span class="menu__special__badge" data-i18n="menu.aut.badge">Per un periodo limitato</span>
+              <h3 class="menu__special__title">Sapori d'autunno</h3>
+              <p class="menu__special__sub" data-i18n="menu.aut.sub">La nostra proposta di selvaggina</p>
+            </header>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="aut.1.n">Carpaccio di cervo</p>
+                <p class="menu-row__desc" data-i18n="aut.1.d">Con fichi e caprino marinato</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;24.50</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="aut.2.n">Tagliatelle fatte in casa</p>
+                <p class="menu-row__desc" data-i18n="aut.2.d">Con ragù di cinghiale</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;25.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="aut.3.n">Scaloppine di capriolo</p>
+                <p class="menu-row__desc" data-i18n="aut.3.d">Con risotto allo zafferano</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;31.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="aut.4.n">Spezzatino di cervo</p>
+                <p class="menu-row__desc" data-i18n="aut.4.d">Con spätzli, cavolini di Bruxelles e castagne caramellate</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;29.00</span>
+            </article>
+            <p class="menu__sub__group__title menu__special__sep" data-i18n="menu.cat.dessert">Dessert</p>
+            <article class="menu-row">
+              <div>
+                <div class="menu-row__title">
+                  <p class="menu-row__name" data-i18n="aut.5.n">Sorbetto all'uva</p>
+                  <span class="diet" data-i18n="diet.vegan">Vegano</span>
+                </div>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;6.50</span>
+            </article>
+          </section>
+
           <!-- ANTIPASTI -->
-          <section class="menu__cat is-active" id="menu-antipasti" role="tabpanel">
+          <section class="menu__cat" role="tabpanel" id="menu-antipasti">
             <header class="menu__cat__head">
               <h3 data-i18n="menu.cat.antipasti">Antipasti</h3>
             </header>
@@ -4886,7 +5055,7 @@
                   <span class="diet" data-i18n="diet.vegan">Vegano</span>
                 </div>
               </div>
-              <span class="menu-row__price">Fr&nbsp;9.50</span>
+              <span class="menu-row__price">Fr&nbsp;9.00</span>
             </article>
             <article class="menu-row">
               <div>
@@ -4900,54 +5069,31 @@
             <article class="menu-row">
               <div>
                 <div class="menu-row__title">
-                  <p class="menu-row__name" data-i18n="ant.3.n">Insalata greca</p>
+                  <p class="menu-row__name" data-i18n="ant.3.n">Insalata invernale</p>
                   <span class="diet" data-i18n="diet.veg">Vegetariano</span>
                 </div>
-                <p class="menu-row__desc" data-i18n="ant.3.d">Peperoni, feta, cetrioli, cipolle rosse, olive, salsa
-                  yogurt</p>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;17.50</span>
-            </article>
-            <article class="menu-row">
-              <div>
-                <p class="menu-row__name" data-i18n="ant.4.n">Caesar salad</p>
-                <p class="menu-row__desc" data-i18n="ant.4.d">Insalata iceberg, pollo CBT, parmigiano, salsa caesar,
-                  crostini</p>
+                <p class="menu-row__desc" data-i18n="ant.3.d">Finocchi, arance, noci e buscion di capra</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;16.50</span>
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="ant.5.n">Tartare di manzo</p>
-                <p class="menu-row__desc" data-i18n="ant.5.d">Pane croccante, capperi, pomodori secchi</p>
+                <p class="menu-row__name" data-i18n="ant.4.n">Caesar salad</p>
+                <p class="menu-row__desc" data-i18n="ant.4.d">Insalata iceberg, pollo CBT, parmigiano, salsa caesar, crostini</p>
               </div>
-              <div class="menu-row__price-list">
-                <span class="menu-row__price">140 gr · Fr&nbsp;26.50</span>
-                <span class="menu-row__price menu-row__price--small">70 gr · Fr&nbsp;19.00</span>
-              </div>
+              <span class="menu-row__price">Fr&nbsp;16.50</span>
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="ant.6.n">Polpette di salmone</p>
-                <p class="menu-row__desc" data-i18n="ant.6.d">Salmone, ricotta</p>
+                <p class="menu-row__name" data-i18n="ant.5.n">Zuppa di cipolle</p>
               </div>
-              <span class="menu-row__price">Fr&nbsp;24.80</span>
+              <span class="menu-row__price">Fr&nbsp;12.50</span>
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="ant.7.n">Tagliere Tennis</p>
-                <p class="menu-row__desc" data-i18n="ant.7.d">+ focaccia Fr 3.— · + burrata Fr 5.—</p>
+                <p class="menu-row__name" data-i18n="ant.6.n">Minestrone</p>
               </div>
-              <span class="menu-row__price">Fr&nbsp;23.50</span>
-            </article>
-            <article class="menu-row">
-              <div>
-                <div class="menu-row__title">
-                  <p class="menu-row__name" data-i18n="ant.8.n">Gazpacho</p>
-                  <span class="diet" data-i18n="diet.vegan">Vegano</span>
-                </div>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;10.80</span>
+              <span class="menu-row__price">Fr&nbsp;12.50</span>
             </article>
           </section>
 
@@ -4958,36 +5104,35 @@
             </header>
             <article class="menu-row">
               <div>
-                <div class="menu-row__title">
-                  <p class="menu-row__name" data-i18n="pri.1.n">Tagliolini</p>
-                  <span class="diet" data-i18n="diet.veg">Vegetariano</span>
-                </div>
-                <p class="menu-row__desc" data-i18n="pri.1.d">Pesto di rucola, nocciole</p>
+                <p class="menu-row__name" data-i18n="pri.1.n">Lasagne alla bolognese</p>
               </div>
-              <span class="menu-row__price">Fr&nbsp;18.50</span>
-            </article>
-            <article class="menu-row">
-              <div>
-                <p class="menu-row__name" data-i18n="pri.2.n">Poké di riso venere</p>
-                <p class="menu-row__desc" data-i18n="pri.2.d">Gamberi, zucchine</p>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;19.50</span>
+              <span class="menu-row__price">Fr&nbsp;22.50</span>
             </article>
             <article class="menu-row">
               <div>
                 <div class="menu-row__title">
-                  <p class="menu-row__name" data-i18n="pri.3.n">Risotto cacio e pepe</p>
+                  <p class="menu-row__name" data-i18n="pri.2.n">Tagliatelle ai funghi porcini</p>
                   <span class="diet" data-i18n="diet.veg">Vegetariano</span>
                 </div>
-                <p class="menu-row__desc" data-i18n="pri.3.d">Cacio, pepe e lime</p>
               </div>
-              <span class="menu-row__price">Fr&nbsp;18.00</span>
+              <span class="menu-row__price">Fr&nbsp;24.00</span>
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="pri.4.n">Lasagne alla bolognese</p>
+                <div class="menu-row__title">
+                  <p class="menu-row__name" data-i18n="pri.3.n">Tortelloni di ricotta e spinaci</p>
+                  <span class="diet" data-i18n="diet.veg">Vegetariano</span>
+                </div>
+                <p class="menu-row__desc" data-i18n="pri.3.d">Al burro e salvia</p>
               </div>
-              <span class="menu-row__price">Fr&nbsp;21.50</span>
+              <span class="menu-row__price">Fr&nbsp;22.50</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="pri.4.n">Risotto con crema di zucca</p>
+                <p class="menu-row__desc" data-i18n="pri.4.d">Al timo e luganighetta</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;23.00</span>
             </article>
             <article class="menu-row">
               <div>
@@ -5023,44 +5168,31 @@
             </header>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="sec.1.n">Smashed burger</p>
-                <p class="menu-row__desc" data-i18n="sec.1.d">Carne di manzo, formaggio, insalata, pomodoro, cipolle,
-                  salsa, patatine fritte
-                </p>
+                <p class="menu-row__name" data-i18n="sec.1.n">Pollo al cestello</p>
+                <p class="menu-row__desc" data-i18n="sec.1.d">Con patatine fritte e salsa</p>
               </div>
-              <span class="menu-row__price">Fr&nbsp;25.80</span>
+              <span class="menu-row__price">Fr&nbsp;23.50</span>
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="sec.2.n">Saltimbocca alla romana</p>
-                <p class="menu-row__desc" data-i18n="sec.2.d">Prosciutto crudo, tagliolini al burro, verdura</p>
+                <p class="menu-row__name" data-i18n="sec.2.n">Cordon bleu di maiale</p>
+                <p class="menu-row__desc" data-i18n="sec.2.d">Con patatine fritte e verdure</p>
               </div>
-              <span class="menu-row__price">Fr&nbsp;35.50</span>
+              <span class="menu-row__price">Fr&nbsp;33.00</span>
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="sec.3.n">Cordon bleu di maiale</p>
-                <p class="menu-row__desc" data-i18n="sec.3.d">Formaggio d'alpeggio, prosciutto crudo, patatine fritte,
-                  verdure</p>
+                <p class="menu-row__name" data-i18n="sec.3.n">Tagliata di manzo</p>
+                <p class="menu-row__desc" data-i18n="sec.3.d">Con rucola e grana, patate novelle al forno</p>
               </div>
-              <span class="menu-row__price">Fr&nbsp;31.80</span>
+              <span class="menu-row__price">Fr&nbsp;35.00</span>
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="sec.4.n">Branzino CBT</p>
-                <p class="menu-row__desc" data-i18n="sec.4.d">Con vellutata di cipolla, bietola</p>
+                <p class="menu-row__name" data-i18n="sec.4.n">Spezzatino di vitello ai funghi</p>
+                <p class="menu-row__desc" data-i18n="sec.4.d">Con riso e verdure</p>
               </div>
-              <span class="menu-row__price">Fr&nbsp;39.80</span>
-            </article>
-            <article class="menu-row">
-              <div>
-                <div class="menu-row__title">
-                  <p class="menu-row__name" data-i18n="sec.5.n">Tofu-steak</p>
-                  <span class="diet" data-i18n="diet.vegan">Vegano</span>
-                </div>
-                <p class="menu-row__desc" data-i18n="sec.5.d">Con crema di ceci, verdure</p>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;21.50</span>
+              <span class="menu-row__price">Fr&nbsp;32.50</span>
             </article>
           </section>
 
@@ -5077,14 +5209,8 @@
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="bam.2.n">Hot dog</p>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;11.00</span>
-            </article>
-            <article class="menu-row">
-              <div>
                 <div class="menu-row__title">
-                  <p class="menu-row__name" data-i18n="bam.3.n">Rigatoni al pomodoro</p>
+                  <p class="menu-row__name" data-i18n="bam.2.n">Rigatoni al pomodoro</p>
                   <span class="diet" data-i18n="diet.vegan">Vegano</span>
                 </div>
               </div>
@@ -5092,8 +5218,8 @@
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="bam.4.n">Rigatoni Bolognese</p>
-                <p class="menu-row__desc" data-i18n="bam.4.d">Con ragù</p>
+                <p class="menu-row__name" data-i18n="bam.3.n">Rigatoni alla bolognese</p>
+                <p class="menu-row__desc" data-i18n="bam.3.d">Con ragù</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;11.50</span>
             </article>
@@ -5126,115 +5252,165 @@
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="piz.3.n">Siciliana</p>
-                <p class="menu-row__desc" data-i18n="piz.3.d">Pomodoro, mozzarella, acciughe, capperi, olive</p>
+                <p class="menu-row__name" data-i18n="piz.3.n">Napoli</p>
+                <p class="menu-row__desc" data-i18n="piz.3.d">Pomodoro, mozzarella, acciughe, origano</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;17.50</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.4.n">Siciliana</p>
+                <p class="menu-row__desc" data-i18n="piz.4.d">Pomodoro, mozzarella, acciughe, capperi, olive</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;18.00</span>
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="piz.4.n">Prosciutto cotto</p>
-                <p class="menu-row__desc" data-i18n="piz.4.d">Pomodoro, mozzarella, prosciutto cotto</p>
+                <p class="menu-row__name" data-i18n="piz.5.n">Prosciutto cotto</p>
+                <p class="menu-row__desc" data-i18n="piz.5.d">Pomodoro, mozzarella, prosciutto cotto</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;18.00</span>
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="piz.5.n">Prosciutto e funghi</p>
-                <p class="menu-row__desc" data-i18n="piz.5.d">Pomodoro, mozzarella, prosciutto cotto, champignon</p>
+                <p class="menu-row__name" data-i18n="piz.6.n">Prosciutto e funghi</p>
+                <p class="menu-row__desc" data-i18n="piz.6.d">Pomodoro, mozzarella, prosciutto cotto, funghi</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;19.50</span>
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="piz.6.n">4 stagioni</p>
-                <p class="menu-row__desc" data-i18n="piz.6.d">Pomodoro, mozzarella, prosciutto cotto, champignon,
-                  carciofi, olive nere</p>
+                <div class="menu-row__title">
+                  <p class="menu-row__name" data-i18n="piz.7.n">4 formaggi</p>
+                  <span class="diet" data-i18n="diet.veg">Vegetariano</span>
+                </div>
+                <p class="menu-row__desc" data-i18n="piz.7.d">Pomodoro, mozzarella, gorgonzola, parmigiano, fontal</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;21.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.8.n">Diavola</p>
+                <p class="menu-row__desc" data-i18n="piz.8.d">Pomodoro, mozzarella, salame piccante e cipolle</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;21.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.9.n">Crudo</p>
+                <p class="menu-row__desc" data-i18n="piz.9.d">Pomodoro, mozzarella, prosciutto crudo</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;22.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.10.n">Pizza 23</p>
+                <p class="menu-row__desc" data-i18n="piz.10.d">Pomodoro, mozzarella, luganighetta, peperoni</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;22.50</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.11.n">Frutti di mare</p>
+                <p class="menu-row__desc" data-i18n="piz.11.d">Pomodoro, frutti di mare</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;23.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.12.n">Valtellina</p>
+                <p class="menu-row__desc" data-i18n="piz.12.d">Pomodoro, mozzarella, bresaola, rucola, grana</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;23.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.13.n">Salame piccante</p>
+                <p class="menu-row__desc" data-i18n="piz.13.d">Pomodoro, mozzarella, salame piccante</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;20.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.14.n">Speck e cipolle</p>
+                <p class="menu-row__desc" data-i18n="piz.14.d">Pomodoro, mozzarella, speck, cipolle</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;19.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.15.n">Tonno e cipolle</p>
+                <p class="menu-row__desc" data-i18n="piz.15.d">Pomodoro, tonno, cipolle, senza mozzarella</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;19.50</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <div class="menu-row__title">
+                  <p class="menu-row__name" data-i18n="piz.16.n">Porcini</p>
+                  <span class="diet" data-i18n="diet.veg">Vegetariano</span>
+                </div>
+                <p class="menu-row__desc" data-i18n="piz.16.d">Pomodoro, mozzarella, funghi porcini</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;21.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.17.n">Mari e Monti</p>
+                <p class="menu-row__desc" data-i18n="piz.17.d">Pomodoro, mozzarella, funghi porcini, gamberetti</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;23.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.18.n">4 stagioni</p>
+                <p class="menu-row__desc" data-i18n="piz.18.d">Pomodoro, mozzarella, prosciutto cotto, funghi, carciofi, olive nere</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;21.50</span>
             </article>
             <article class="menu-row">
               <div>
                 <div class="menu-row__title">
-                  <p class="menu-row__name" data-i18n="piz.7.n">Ortolana</p>
+                  <p class="menu-row__name" data-i18n="piz.19.n">Ortolana</p>
                   <span class="diet" data-i18n="diet.veg">Vegetariano</span>
                 </div>
-                <p class="menu-row__desc" data-i18n="piz.7.d">Pomodoro, mozzarella, zucchine, melanzane, peperoni</p>
+                <p class="menu-row__desc" data-i18n="piz.19.d">Pomodoro, mozzarella, zucchine, melanzane, peperoni, cipolle, carciofi</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;21.00</span>
             </article>
             <article class="menu-row">
               <div>
                 <div class="menu-row__title">
-                  <p class="menu-row__name" data-i18n="piz.8.n">Tricolore</p>
+                  <p class="menu-row__name" data-i18n="piz.20.n">Tricolore</p>
                   <span class="diet" data-i18n="diet.veg">Vegetariano</span>
                 </div>
-                <p class="menu-row__desc" data-i18n="piz.8.d">Pomodoro, mozzarella, rucola, pomodori cherry, mozzarella
-                  di bufala</p>
-              </div>
-              <div class="menu-row__price-list">
-                <span class="menu-row__price">Fr&nbsp;22.00</span>
-                <span class="menu-row__price menu-row__price--small" data-i18n="piz.8.p2">con burrata ·
-                  Fr&nbsp;23.00</span>
-              </div>
-            </article>
-            <article class="menu-row">
-              <div>
-                <p class="menu-row__name" data-i18n="piz.9.n">Speck e cipolle</p>
-                <p class="menu-row__desc" data-i18n="piz.9.d">Pomodoro, mozzarella, speck, cipolle</p>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;19.00</span>
-            </article>
-            <article class="menu-row">
-              <div>
-                <p class="menu-row__name" data-i18n="piz.10.n">Tonno e cipolle</p>
-                <p class="menu-row__desc" data-i18n="piz.10.d">Pomodoro, tonno, cipolle, senza mozzarella</p>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;19.50</span>
-            </article>
-          </section>
-
-          <!-- PIZZE BIANCHE -->
-          <section class="menu__cat" role="tabpanel" id="menu-bianche">
-            <header class="menu__cat__head">
-              <h3 data-i18n="menu.cat.bianche">Pizze bianche</h3>
-            </header>
-            <article class="menu-row">
-              <div>
-                <p class="menu-row__name" data-i18n="bia.1.n">Salmone e mascarpone</p>
-                <p class="menu-row__desc" data-i18n="bia.1.d">Salmone affumicato, mascarpone</p>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;23.00</span>
-            </article>
-            <article class="menu-row">
-              <div>
-                <div class="menu-row__title">
-                  <p class="menu-row__name" data-i18n="bia.2.n">4 formaggi</p>
-                  <span class="diet" data-i18n="diet.veg">Vegetariano</span>
-                </div>
-                <p class="menu-row__desc" data-i18n="bia.2.d">Mozzarella, gorgonzola, parmigiano, fontal</p>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;21.00</span>
-            </article>
-            <article class="menu-row">
-              <div>
-                <p class="menu-row__name" data-i18n="bia.3.n">Focaccia Crudo e Burrata</p>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;22.50</span>
-            </article>
-            <article class="menu-row">
-              <div>
-                <p class="menu-row__name" data-i18n="bia.4.n">Focaccia Mortadella</p>
-                <p class="menu-row__desc" data-i18n="bia.4.d">Mortadella, mozzarella di bufala</p>
+                <p class="menu-row__desc" data-i18n="piz.20.d">Pomodoro, mozzarella, rucola, pomodorini cherry</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;22.00</span>
             </article>
             <article class="menu-row">
               <div>
-                <p class="menu-row__name" data-i18n="bia.5.n">Focaccia Ticinese</p>
-                <p class="menu-row__desc" data-i18n="bia.5.d">Luganighetta, formaggio ticinese</p>
+                <div class="menu-row__title">
+                  <p class="menu-row__name" data-i18n="piz.21.n">Tricolore con burrata</p>
+                  <span class="diet" data-i18n="diet.veg">Vegetariano</span>
+                </div>
+                <p class="menu-row__desc" data-i18n="piz.21.d">Pomodoro, mozzarella, rucola, pomodorini cherry, burrata</p>
               </div>
               <span class="menu-row__price">Fr&nbsp;23.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.22.n">Calzone liscio</p>
+                <p class="menu-row__desc" data-i18n="piz.22.d">Pomodoro, mozzarella, prosciutto cotto</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;18.00</span>
+            </article>
+            <article class="menu-row">
+              <div>
+                <p class="menu-row__name" data-i18n="piz.23.n">Calzone farcito</p>
+                <p class="menu-row__desc" data-i18n="piz.23.d">Pomodoro, mozzarella, prosciutto cotto, carciofi, funghi, uovo</p>
+              </div>
+              <span class="menu-row__price">Fr&nbsp;19.50</span>
             </article>
             <p class="menu__note" data-i18n-html="menu.note">
               <strong>Senza glutine</strong> +CHF 3 &nbsp;·&nbsp;
@@ -5248,24 +5424,8 @@
             <header class="menu__cat__head">
               <h3 data-i18n="menu.cat.dessert">Dessert</h3>
             </header>
-            <article class="menu-row">
-              <div>
-                <p class="menu-row__name" data-i18n="des.1.n">Zabaione freddo</p>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;10.80</span>
-            </article>
-            <article class="menu-row">
-              <div>
-                <p class="menu-row__name" data-i18n="des.2.n">Tiramisù fatto in casa</p>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;9.50</span>
-            </article>
-            <article class="menu-row">
-              <div>
-                <p class="menu-row__name" data-i18n="des.3.n">Cheesecake al cioccolato</p>
-              </div>
-              <span class="menu-row__price">Fr&nbsp;9.50</span>
-            </article>
+            <p class="menu__dolce" data-i18n-html="menu.dolce">Un dolce finale? Chiedete al nostro personale cosa
+              abbiamo preparato per voi.</p>
           </section>
 
           <!-- GELATI -->
@@ -5445,13 +5605,43 @@
               Le ultime novità, le grigliate nel weekend e gli spazi riservabili per occasioni speciali.
             </p>
             <div class="eventi__meta">
-              <span data-i18n="eventi.meta.count">2 novità</span>
+              <span data-i18n="eventi.meta.count">3 novità</span>
               <span>Locarno · TI</span>
             </div>
           </div>
         </header>
 
         <div class="eventi__grid is-centered">
+
+          <a class="evento evento--feature reveal" href="#menu-autunno">
+            <div class="evento__photo">
+              <img src="Immagini/eventi/sapori-autunno-800w.jpg"
+                srcset="Immagini/eventi/sapori-autunno-480w.jpg 480w, Immagini/eventi/sapori-autunno-800w.jpg 800w, Immagini/eventi/sapori-autunno-1024w.jpg 1024w"
+                sizes="(max-width: 640px) 100vw, 40vw" width="800" height="1200"
+                alt="La carta Sapori d'autunno: carpaccio di cervo, tagliatelle al ragù di cinghiale, scaloppine di capriolo, spezzatino di cervo"
+                loading="lazy" decoding="async" />
+              <div class="evento__labels">
+                <span class="evento__tag" data-i18n="eventi.e4.tag">Nuova carta</span>
+                <span class="evento__soon" data-i18n="eventi.e4.limited">Periodo limitato</span>
+              </div>
+            </div>
+            <div class="evento__body">
+              <h3 class="evento__title" data-i18n-html="eventi.e4.title">Sapori d'autunno,<br><em>la nostra selvaggina.</em></h3>
+              <p class="evento__text" data-i18n="eventi.e4.text">Per un periodo limitato, accanto alla carta, la nostra
+                proposta di selvaggina: carpaccio di cervo con fichi e caprino, tagliatelle fatte in casa al ragù di
+                cinghiale, scaloppine di capriolo con risotto allo zafferano e spezzatino di cervo con spätzli e
+                castagne caramellate. Per finire, sorbetto all'uva.</p>
+              <div class="evento__cta">
+                <span data-i18n="eventi.e4.cta">Scopri la carta</span>
+                <span class="arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
 
           <a class="evento evento--news reveal" href="novita.html">
             <div class="evento__photo evento__art">
@@ -6186,6 +6376,11 @@
         });
       });
 
+      window.addEventListener('hashchange', function () {
+        var id = location.hash.slice(1);
+        if (id.indexOf('menu-') === 0) activate(id, { scroll: true });
+      });
+
       /* deep-link: if URL hash matches a category, activate it */
       if (location.hash) {
         var id = location.hash.slice(1);
@@ -6502,7 +6697,6 @@
           'menu.tab.secondi': 'Hauptgerichte',
           'menu.tab.bambini': 'Für Kinder',
           'menu.tab.pizze': 'Pizzen',
-          'menu.tab.bianche': 'Weiße Pizzen',
           'menu.tab.dessert': 'Dessert',
           'menu.tab.gelati': 'Eis',
           'menu.cat.antipasti': 'Vorspeisen',
@@ -6510,91 +6704,106 @@
           'menu.cat.secondi': 'Hauptgerichte',
           'menu.cat.bambini': 'Für Kinder',
           'menu.cat.pizze': 'Pizzen',
-          'menu.cat.bianche': 'Weiße Pizzen',
           'menu.cat.dessert': 'Dessert',
           'menu.cat.gelati': 'Eis',
+          /* sapori d'autunno */
+          'aut.1.n': 'Hirschcarpaccio',
+          'aut.1.d': 'Mit Feigen und mariniertem Ziegenkäse',
+          'aut.2.n': 'Hausgemachte Tagliatelle',
+          'aut.2.d': 'Mit Wildschweinragù',
+          'aut.3.n': 'Rehschnitzel',
+          'aut.3.d': 'Mit Safranrisotto',
+          'aut.4.n': 'Hirschragout',
+          'aut.4.d': 'Mit Spätzli, Rosenkohl und karamellisierten Kastanien',
+          'aut.5.n': 'Traubensorbet',
           /* antipasti */
           'ant.1.n': 'Grüner Salat',
           'ant.2.n': 'Gemischter Salat',
-          'ant.3.n': 'Griechischer Salat',
-          'ant.3.d': 'Paprika, Feta, Gurken, rote Zwiebeln, Oliven, Joghurtsauce',
+          'ant.3.n': 'Wintersalat',
+          'ant.3.d': 'Fenchel, Orangen, Nüsse und Ziegenkäse-Buscion',
           'ant.4.n': 'Caesar Salad',
           'ant.4.d': 'Eisbergsalat, Hähnchen Sous-Vide, Parmesan, Caesar-Sauce, Croutons',
-          'ant.5.n': 'Rindstartar',
-          'ant.5.d': 'Knuspriges Brot, Kapern, getrocknete Tomaten',
-          'ant.6.n': 'Lachsbällchen',
-          'ant.6.d': 'Lachs, Ricotta',
-          'ant.7.n': 'Tennis-Brettchen',
-          'ant.7.d': '+ Focaccia Fr 3.— · + Burrata Fr 5.—',
-          'ant.8.n': 'Gazpacho',
+          'ant.5.n': 'Zwiebelsuppe',
+          'ant.6.n': 'Minestrone',
           /* primi */
-          'pri.1.n': 'Tagliolini',
-          'pri.1.d': 'Rucolapesto, Haselnüsse',
-          'pri.2.n': 'Poké mit schwarzem Reis',
-          'pri.2.d': 'Garnelen, Zucchini',
-          'pri.3.n': 'Risotto cacio e pepe',
-          'pri.3.d': 'Käse, Pfeffer und Limette',
-          'pri.4.n': 'Lasagne Bolognese',
+          'pri.1.n': 'Lasagne Bolognese',
+          'pri.2.n': 'Tagliatelle mit Steinpilzen',
+          'pri.3.n': 'Tortelloni mit Ricotta und Spinat',
+          'pri.3.d': 'An Butter und Salbei',
+          'pri.4.n': 'Risotto mit Kürbiscreme',
+          'pri.4.d': 'Thymian und Luganighetta',
           'pri.5.n': 'Spaghetti mit Tomatensauce',
           'pri.6.n': 'Spaghetti Bolognese',
           'pri.6.d': 'Mit Ragout',
-          'pri.7.n': 'Spaghetti mit Knoblauch, Öl und Peperoncino',
+          'pri.7.n': 'Spaghetti mit Knoblauch, Öl und Chili',
           /* secondi */
-          'sec.1.n': 'Smashed Burger',
-          'sec.1.d': 'Rindfleisch, Käse, Salat, Tomate, Zwiebeln, Sauce, Pommes frites',
-          'sec.2.n': 'Saltimbocca alla romana',
-          'sec.2.d': 'Rohschinken, Tagliolini mit Butter, Gemüse',
-          'sec.3.n': 'Schweine-Cordon-bleu',
-          'sec.3.d': 'Alpkäse, Rohschinken, Pommes frites, Gemüse',
-          'sec.4.n': 'Wolfsbarsch Sous-Vide',
-          'sec.4.d': 'Mit Zwiebel-Velouté, Mangold',
-          'sec.5.n': 'Tofu-Steak',
-          'sec.5.d': 'Mit Kichererbsencreme, Gemüse',
+          'sec.1.n': 'Poulet im Körbchen',
+          'sec.1.d': 'Mit Pommes frites und Sauce',
+          'sec.2.n': 'Schweins-Cordon-bleu',
+          'sec.2.d': 'Mit Pommes frites und Gemüse',
+          'sec.3.n': 'Rindstagliata',
+          'sec.3.d': 'Mit Rucola und Parmesan, dazu junge Ofenkartoffeln',
+          'sec.4.n': 'Kalbsgeschnetzeltes mit Pilzen',
+          'sec.4.d': 'Mit Reis und Gemüse',
           /* bambini */
           'bam.1.n': 'Chicken Nuggets mit Pommes frites',
-          'bam.2.n': 'Hot Dog',
-          'bam.3.n': 'Rigatoni mit Tomatensauce',
-          'bam.4.n': 'Rigatoni Bolognese',
-          'bam.4.d': 'Mit Ragout',
+          'bam.2.n': 'Rigatoni mit Tomatensauce',
+          'bam.3.n': 'Rigatoni Bolognese',
+          'bam.3.d': 'Mit Ragout',
           /* pizze */
           'piz.1.n': 'Marinara',
-          'piz.1.d': 'Tomate, Knoblauch, Oregano',
+          'piz.1.d': 'Tomaten, Knoblauch, Oregano',
           'piz.2.n': 'Margherita',
-          'piz.2.d': 'Tomate, Mozzarella',
-          'piz.3.n': 'Siciliana',
-          'piz.3.d': 'Tomate, Mozzarella, Sardellen, Kapern, Oliven',
-          'piz.4.n': 'Prosciutto cotto',
-          'piz.4.d': 'Tomate, Mozzarella, Kochschinken',
-          'piz.5.n': 'Prosciutto e funghi',
-          'piz.5.d': 'Tomate, Mozzarella, Kochschinken, Champignons',
-          'piz.6.n': '4 stagioni',
-          'piz.6.d': 'Tomate, Mozzarella, Kochschinken, Champignons, Artischocken, schwarze Oliven',
-          'piz.7.n': 'Ortolana',
-          'piz.7.d': 'Tomate, Mozzarella, Zucchini, Auberginen, Paprika',
-          'piz.8.n': 'Tricolore',
-          'piz.8.d': 'Tomate, Mozzarella, Rucola, Cherrytomaten, Büffelmozzarella',
-          'piz.8.p2': 'mit Burrata · Fr 23.00',
-          'piz.9.n': 'Speck und Zwiebeln',
-          'piz.9.d': 'Tomate, Mozzarella, Speck, Zwiebeln',
-          'piz.10.n': 'Thunfisch und Zwiebeln',
-          'piz.10.d': 'Tomate, Thunfisch, Zwiebeln, ohne Mozzarella',
-          /* pizze bianche */
-          'bia.1.n': 'Lachs und Mascarpone',
-          'bia.1.d': 'Räucherlachs, Mascarpone',
-          'bia.2.n': '4 Käse',
-          'bia.2.d': 'Mozzarella, Gorgonzola, Parmesan, Fontal',
-          'bia.3.n': 'Focaccia Rohschinken und Burrata',
-          'bia.4.n': 'Focaccia Mortadella',
-          'bia.4.d': 'Mortadella, Büffelmozzarella',
-          'bia.5.n': 'Focaccia Ticinese',
-          'bia.5.d': 'Luganighetta, Tessiner Käse',
+          'piz.2.d': 'Tomaten, Mozzarella',
+          'piz.3.n': 'Napoli',
+          'piz.3.d': 'Tomaten, Mozzarella, Sardellen, Oregano',
+          'piz.4.n': 'Siciliana',
+          'piz.4.d': 'Tomaten, Mozzarella, Sardellen, Kapern, Oliven',
+          'piz.5.n': 'Prosciutto cotto',
+          'piz.5.d': 'Tomaten, Mozzarella, gekochter Schinken',
+          'piz.6.n': 'Prosciutto e funghi',
+          'piz.6.d': 'Tomaten, Mozzarella, gekochter Schinken, Pilze',
+          'piz.7.n': '4 Käse',
+          'piz.7.d': 'Tomaten, Mozzarella, Gorgonzola, Parmesan, Fontal',
+          'piz.8.n': 'Diavola',
+          'piz.8.d': 'Tomaten, Mozzarella, scharfe Salami und Zwiebeln',
+          'piz.9.n': 'Crudo',
+          'piz.9.d': 'Tomaten, Mozzarella, Rohschinken',
+          'piz.10.n': 'Pizza 23',
+          'piz.10.d': 'Tomaten, Mozzarella, Luganighetta, Peperoni',
+          'piz.11.n': 'Meeresfrüchte',
+          'piz.11.d': 'Tomaten, Meeresfrüchte',
+          'piz.12.n': 'Valtellina',
+          'piz.12.d': 'Tomaten, Mozzarella, Bresaola, Rucola, Grana',
+          'piz.13.n': 'Scharfe Salami',
+          'piz.13.d': 'Tomaten, Mozzarella, scharfe Salami',
+          'piz.14.n': 'Speck und Zwiebeln',
+          'piz.14.d': 'Tomaten, Mozzarella, Speck, Zwiebeln',
+          'piz.15.n': 'Thunfisch und Zwiebeln',
+          'piz.15.d': 'Tomaten, Thunfisch, Zwiebeln, ohne Mozzarella',
+          'piz.16.n': 'Porcini',
+          'piz.16.d': 'Tomaten, Mozzarella, Steinpilze',
+          'piz.17.n': 'Mari e Monti',
+          'piz.17.d': 'Tomaten, Mozzarella, Steinpilze, Crevetten',
+          'piz.18.n': '4 Jahreszeiten',
+          'piz.18.d': 'Tomaten, Mozzarella, gekochter Schinken, Pilze, Artischocken, schwarze Oliven',
+          'piz.19.n': 'Ortolana',
+          'piz.19.d': 'Tomaten, Mozzarella, Zucchini, Auberginen, Peperoni, Zwiebeln, Artischocken',
+          'piz.20.n': 'Tricolore',
+          'piz.20.d': 'Tomaten, Mozzarella, Rucola, Cherrytomaten',
+          'piz.21.n': 'Tricolore mit Burrata',
+          'piz.21.d': 'Tomaten, Mozzarella, Rucola, Cherrytomaten, Burrata',
+          'piz.22.n': 'Calzone einfach',
+          'piz.22.d': 'Tomaten, Mozzarella, gekochter Schinken',
+          'piz.23.n': 'Calzone gefüllt',
+          'piz.23.d': 'Tomaten, Mozzarella, gekochter Schinken, Artischocken, Pilze, Ei',
+          'menu.tab.autunno': 'Sapori d\'autunno',
+          'menu.aut.badge': 'Nur für kurze Zeit',
+          'menu.aut.sub': 'Unser Wildangebot',
+          'menu.dolce': 'Lust auf ein Dessert? Fragen Sie unser Personal, was wir heute für Sie vorbereitet haben.',
           'menu.note': '<strong>Glutenfrei</strong> +CHF 3 &nbsp;·&nbsp; <strong>Laktosefreier Mozzarella</strong> +CHF 2 &nbsp;·&nbsp; <strong>Veganer Mozzarella</strong> +CHF 2',
           'diet.veg': 'Vegetarisch',
           'diet.vegan': 'Vegan',
-          /* dessert */
-          'des.1.n': 'Kalter Zabaione',
-          'des.2.n': 'Hausgemachtes Tiramisù',
-          'des.3.n': 'Schokoladen-Cheesecake',
           /* gelati */
           'gel.coppe.label': 'Becher',
           'gel.gusti.label': 'Sorten',
@@ -6643,7 +6852,12 @@
           'eventi.eyebrow': 'News & Events',
           'eventi.title': 'Was im Ristorante <span class="num">23</span> <em>läuft</em><span class="dot">.</span>',
           'eventi.lead': 'Die neuesten News, Grillabende am Wochenende und reservierbare Räume für besondere Anlässe.',
-          'eventi.meta.count': '2 Neuheiten',
+          'eventi.meta.count': '3 Neuheiten',
+          'eventi.e4.tag': 'Neue Karte',
+          'eventi.e4.limited': 'Nur für kurze Zeit',
+          'eventi.e4.title': 'Sapori d\'autunno,<br><em>unser Wildangebot.</em>',
+          'eventi.e4.text': 'Nur für kurze Zeit, zusätzlich zur Karte: Hirschcarpaccio mit Feigen und Ziegenkäse, hausgemachte Tagliatelle mit Wildschweinragù, Rehschnitzel mit Safranrisotto und Hirschragout mit Spätzli und karamellisierten Kastanien. Zum Abschluss Traubensorbet.',
+          'eventi.e4.cta': 'Zur Karte',
           'eventi.e0.art': 'Jetzt auch<br><em>drinnen</em>',
           'eventi.e0.from': 'Morettina · ab 5. Oktober',
           'eventi.e0.title': 'Ab 5. Oktober<br><em>auch drinnen.</em>',
@@ -6804,7 +7018,6 @@
           'menu.tab.secondi': 'Mains',
           'menu.tab.bambini': 'For kids',
           'menu.tab.pizze': 'Pizzas',
-          'menu.tab.bianche': 'White pizzas',
           'menu.tab.dessert': 'Dessert',
           'menu.tab.gelati': 'Ice cream',
           'menu.cat.antipasti': 'Starters',
@@ -6812,91 +7025,107 @@
           'menu.cat.secondi': 'Mains',
           'menu.cat.bambini': 'For kids',
           'menu.cat.pizze': 'Pizzas',
-          'menu.cat.bianche': 'White pizzas',
           'menu.cat.dessert': 'Dessert',
           'menu.cat.gelati': 'Ice cream',
+          /* sapori d'autunno */
+          'aut.1.n': 'Venison carpaccio',
+          'aut.1.d': 'With figs and marinated goat\'s cheese',
+          'aut.2.n': 'Homemade tagliatelle',
+          'aut.2.d': 'With wild boar ragù',
+          'aut.3.n': 'Roe deer escalopes',
+          'aut.3.d': 'With saffron risotto',
+          'aut.4.n': 'Venison stew',
+          'aut.4.d': 'With spätzli, Brussels sprouts and caramelised chestnuts',
+          'aut.5.n': 'Grape sorbet',
           /* antipasti */
           'ant.1.n': 'Green salad',
           'ant.2.n': 'Mixed salad',
-          'ant.3.n': 'Greek salad',
-          'ant.3.d': 'Peppers, feta, cucumber, red onion, olives, yogurt dressing',
+          'ant.3.n': 'Winter salad',
+          'ant.3.d': 'Fennel, orange, walnuts and goat\'s cheese buscion',
           'ant.4.n': 'Caesar salad',
           'ant.4.d': 'Iceberg lettuce, sous-vide chicken, parmesan, Caesar dressing, croutons',
-          'ant.5.n': 'Beef tartare',
-          'ant.5.d': 'Crusty bread, capers, sun-dried tomatoes',
-          'ant.6.n': 'Salmon meatballs',
-          'ant.6.d': 'Salmon, ricotta',
-          'ant.7.n': 'Tennis board',
-          'ant.7.d': '+ Focaccia Fr 3.— · + Burrata Fr 5.—',
-          'ant.8.n': 'Gazpacho',
+          'ant.5.n': 'Onion soup',
+          'ant.6.n': 'Minestrone',
+          'ant.6.d': 'Italian vegetable soup',
           /* primi */
-          'pri.1.n': 'Tagliolini',
-          'pri.1.d': 'Rocket pesto, hazelnuts',
-          'pri.2.n': 'Black rice poke',
-          'pri.2.d': 'Prawns, zucchini',
-          'pri.3.n': 'Risotto cacio e pepe',
-          'pri.3.d': 'Cheese, pepper and lime',
-          'pri.4.n': 'Lasagne Bolognese',
+          'pri.1.n': 'Lasagne Bolognese',
+          'pri.2.n': 'Tagliatelle with porcini mushrooms',
+          'pri.3.n': 'Ricotta and spinach tortelloni',
+          'pri.3.d': 'With butter and sage',
+          'pri.4.n': 'Risotto with pumpkin cream',
+          'pri.4.d': 'Thyme and luganighetta sausage',
           'pri.5.n': 'Spaghetti with tomato sauce',
           'pri.6.n': 'Spaghetti Bolognese',
           'pri.6.d': 'With meat ragù',
-          'pri.7.n': 'Spaghetti with garlic, oil and chili',
+          'pri.7.n': 'Spaghetti with garlic, oil and chilli',
           /* secondi */
-          'sec.1.n': 'Smashed burger',
-          'sec.1.d': 'Beef, cheese, lettuce, tomato, onion, sauce, fries',
-          'sec.2.n': 'Saltimbocca alla romana',
-          'sec.2.d': 'Cured ham, tagliolini with butter, vegetables',
-          'sec.3.n': 'Pork cordon bleu',
-          'sec.3.d': 'Alpine cheese, cured ham, fries, vegetables',
-          'sec.4.n': 'Sous-vide sea bass',
-          'sec.4.d': 'With onion velouté, Swiss chard',
-          'sec.5.n': 'Tofu steak',
-          'sec.5.d': 'With chickpea cream, vegetables',
+          'sec.1.n': 'Chicken in a basket',
+          'sec.1.d': 'With fries and dip',
+          'sec.2.n': 'Pork cordon bleu',
+          'sec.2.d': 'With fries and vegetables',
+          'sec.3.n': 'Sliced beef tagliata',
+          'sec.3.d': 'With rocket and grana, roast new potatoes',
+          'sec.4.n': 'Veal and mushroom stew',
+          'sec.4.d': 'With rice and vegetables',
           /* bambini */
           'bam.1.n': 'Chicken nuggets with fries',
-          'bam.2.n': 'Hot dog',
-          'bam.3.n': 'Rigatoni with tomato sauce',
-          'bam.4.n': 'Rigatoni Bolognese',
-          'bam.4.d': 'With meat ragù',
+          'bam.2.n': 'Rigatoni with tomato sauce',
+          'bam.3.n': 'Rigatoni Bolognese',
+          'bam.3.d': 'With meat ragù',
           /* pizze */
           'piz.1.n': 'Marinara',
           'piz.1.d': 'Tomato, garlic, oregano',
           'piz.2.n': 'Margherita',
           'piz.2.d': 'Tomato, mozzarella',
-          'piz.3.n': 'Siciliana',
-          'piz.3.d': 'Tomato, mozzarella, anchovies, capers, olives',
-          'piz.4.n': 'Prosciutto cotto',
-          'piz.4.d': 'Tomato, mozzarella, cooked ham',
-          'piz.5.n': 'Prosciutto e funghi',
-          'piz.5.d': 'Tomato, mozzarella, cooked ham, mushrooms',
-          'piz.6.n': '4 stagioni',
-          'piz.6.d': 'Tomato, mozzarella, cooked ham, mushrooms, artichokes, black olives',
-          'piz.7.n': 'Ortolana',
-          'piz.7.d': 'Tomato, mozzarella, zucchini, eggplant, peppers',
-          'piz.8.n': 'Tricolore',
-          'piz.8.d': 'Tomato, mozzarella, rocket, cherry tomatoes, buffalo mozzarella',
-          'piz.8.p2': 'with burrata · Fr 23.00',
-          'piz.9.n': 'Speck and onion',
-          'piz.9.d': 'Tomato, mozzarella, speck, onion',
-          'piz.10.n': 'Tuna and onion',
-          'piz.10.d': 'Tomato, tuna, onion, no mozzarella',
-          /* pizze bianche */
-          'bia.1.n': 'Salmon and mascarpone',
-          'bia.1.d': 'Smoked salmon, mascarpone',
-          'bia.2.n': '4 cheeses',
-          'bia.2.d': 'Mozzarella, gorgonzola, parmesan, fontal',
-          'bia.3.n': 'Focaccia with cured ham and burrata',
-          'bia.4.n': 'Mortadella focaccia',
-          'bia.4.d': 'Mortadella, buffalo mozzarella',
-          'bia.5.n': 'Ticinese focaccia',
-          'bia.5.d': 'Luganighetta sausage, Ticino cheese',
+          'piz.3.n': 'Napoli',
+          'piz.3.d': 'Tomato, mozzarella, anchovies, oregano',
+          'piz.4.n': 'Siciliana',
+          'piz.4.d': 'Tomato, mozzarella, anchovies, capers, olives',
+          'piz.5.n': 'Prosciutto cotto',
+          'piz.5.d': 'Tomato, mozzarella, cooked ham',
+          'piz.6.n': 'Prosciutto e funghi',
+          'piz.6.d': 'Tomato, mozzarella, cooked ham, mushrooms',
+          'piz.7.n': '4 cheeses',
+          'piz.7.d': 'Tomato, mozzarella, gorgonzola, parmesan, fontal',
+          'piz.8.n': 'Diavola',
+          'piz.8.d': 'Tomato, mozzarella, spicy salami and onions',
+          'piz.9.n': 'Crudo',
+          'piz.9.d': 'Tomato, mozzarella, prosciutto crudo',
+          'piz.10.n': 'Pizza 23',
+          'piz.10.d': 'Tomato, mozzarella, luganighetta sausage, peppers',
+          'piz.11.n': 'Seafood',
+          'piz.11.d': 'Tomato, seafood',
+          'piz.12.n': 'Valtellina',
+          'piz.12.d': 'Tomato, mozzarella, bresaola, rocket, grana',
+          'piz.13.n': 'Spicy salami',
+          'piz.13.d': 'Tomato, mozzarella, spicy salami',
+          'piz.14.n': 'Speck and onions',
+          'piz.14.d': 'Tomato, mozzarella, speck, onions',
+          'piz.15.n': 'Tuna and onions',
+          'piz.15.d': 'Tomato, tuna, onions, no mozzarella',
+          'piz.16.n': 'Porcini',
+          'piz.16.d': 'Tomato, mozzarella, porcini mushrooms',
+          'piz.17.n': 'Mari e Monti',
+          'piz.17.d': 'Tomato, mozzarella, porcini mushrooms, shrimps',
+          'piz.18.n': '4 seasons',
+          'piz.18.d': 'Tomato, mozzarella, cooked ham, mushrooms, artichokes, black olives',
+          'piz.19.n': 'Ortolana',
+          'piz.19.d': 'Tomato, mozzarella, courgettes, aubergines, peppers, onions, artichokes',
+          'piz.20.n': 'Tricolore',
+          'piz.20.d': 'Tomato, mozzarella, rocket, cherry tomatoes',
+          'piz.21.n': 'Tricolore with burrata',
+          'piz.21.d': 'Tomato, mozzarella, rocket, cherry tomatoes, burrata',
+          'piz.22.n': 'Plain calzone',
+          'piz.22.d': 'Tomato, mozzarella, cooked ham',
+          'piz.23.n': 'Filled calzone',
+          'piz.23.d': 'Tomato, mozzarella, cooked ham, artichokes, mushrooms, egg',
+          'menu.tab.autunno': 'Sapori d\'autunno',
+          'menu.aut.badge': 'For a limited time',
+          'menu.aut.sub': 'Our game specialities',
+          'menu.dolce': 'Something sweet to finish? Ask our staff what we have prepared for you today.',
           'menu.note': '<strong>Gluten-free</strong> +CHF 3 &nbsp;·&nbsp; <strong>Lactose-free mozzarella</strong> +CHF 2 &nbsp;·&nbsp; <strong>Vegan mozzarella</strong> +CHF 2',
           'diet.veg': 'Vegetarian',
           'diet.vegan': 'Vegan',
-          /* dessert */
-          'des.1.n': 'Cold zabaione',
-          'des.2.n': 'Homemade tiramisù',
-          'des.3.n': 'Chocolate cheesecake',
           /* gelati */
           'gel.coppe.label': 'Sundaes',
           'gel.gusti.label': 'Flavours',
@@ -6945,7 +7174,12 @@
           'eventi.eyebrow': 'News & events',
           'eventi.title': 'What\'s <em>on</em> at Ristorante <span class="num">23</span><span class="dot">.</span>',
           'eventi.lead': 'The latest news, weekend grill nights and bookable spaces for special occasions.',
-          'eventi.meta.count': '2 new',
+          'eventi.meta.count': '3 new',
+          'eventi.e4.tag': 'New menu',
+          'eventi.e4.limited': 'Limited time',
+          'eventi.e4.title': 'Sapori d\'autunno,<br><em>our game specialities.</em>',
+          'eventi.e4.text': 'For a limited time, alongside our regular menu: venison carpaccio with figs and goat\'s cheese, homemade tagliatelle with wild boar ragù, roe deer escalopes with saffron risotto and venison stew with spätzli and caramelised chestnuts. To finish, grape sorbet.',
+          'eventi.e4.cta': 'See the menu',
           'eventi.e0.art': 'Now indoors<br><em>too</em>',
           'eventi.e0.from': 'Morettina · from 5 October',
           'eventi.e0.title': 'From 5 October<br><em>indoors too.</em>',
