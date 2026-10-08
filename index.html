@@ -1273,6 +1273,72 @@
       border-bottom-color: var(--ink);
     }
 
+    /* Orari di oggi: stato aperto/chiuso; tutto il blocco porta agli orari */
+    .strip-item__icon.is-live.is-closed {
+      background: var(--ink-mute);
+      box-shadow: 0 0 0 5px rgba(20, 17, 15, .06);
+      animation: none;
+    }
+
+    .strip-item__icon.is-live.is-later {
+      background: var(--gold);
+      box-shadow: 0 0 0 5px rgba(182, 135, 58, .16);
+      animation: none;
+    }
+
+    a.strip-item--today,
+    a.strip-item--today:hover {
+      border-bottom: 0;
+      color: inherit;
+    }
+
+    .today-head {
+      display: flex !important;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0 10px;
+    }
+
+    .today-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      color: var(--clay);
+      transition: color .2s var(--ease-out);
+    }
+
+    .today-more::before {
+      content: "";
+      width: 1px;
+      height: 9px;
+      background: currentColor;
+      opacity: .35;
+      color: var(--ink-mute);
+    }
+
+    .today-more::after {
+      content: "→";
+      letter-spacing: 0;
+      font-size: 11px;
+      margin-left: -4px;
+      transition: transform .25s var(--ease-out);
+    }
+
+    .strip-item--today .today-times {
+      display: inline-block;
+      background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat;
+      transition: background-size .35s var(--ease-out);
+    }
+
+    .strip-item--today:hover .today-times,
+    .strip-item--today:focus-visible .today-times {
+      background-size: 100% 1px;
+    }
+
+    .strip-item--today:hover .today-more::after {
+      transform: translateX(3px);
+    }
+
     @media (max-width: 1024px) {
       .hero {
         min-height: auto;
@@ -4849,13 +4915,14 @@
         </div>
 
         <div class="hero__strip">
-          <div class="strip-item">
+          <a class="strip-item strip-item--today" href="#informazioni" id="todayHours">
             <span class="strip-item__icon is-live" aria-hidden="true"></span>
             <div>
-              <small data-i18n="hero.strip.openLabel">Aperto oggi</small>
-              <strong>08:30 — 22:30</strong>
+              <small class="today-head"><span class="today-label">Oggi</span><span class="today-more"
+                  data-i18n="hero.strip.allHours">Tutti gli orari</span></small>
+              <strong class="today-times">08:30–14:00 · 16:00–22:30</strong>
             </div>
-          </div>
+          </a>
           <div class="strip-item">
             <span class="strip-item__icon" aria-hidden="true">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"
@@ -6592,7 +6659,7 @@
           'hero.bookBtn': 'Tisch reservieren',
           'hero.discoverBtn': 'Unsere Küche entdecken',
           'hero.photoTag': 'Foto · Sommerterrasse',
-          'hero.strip.openLabel': 'Heute geöffnet',
+          'hero.strip.allHours': 'Alle Öffnungszeiten',
           'hero.strip.seasonLabel': 'Wintersaison · ab 5. Oktober',
           'hero.notice.title': 'Jetzt finden Sie uns drinnen, an der Morettina',
           'hero.notice.p1': 'Restaurant & Pizzeria',
@@ -6898,7 +6965,7 @@
           'hero.bookBtn': 'Book a table',
           'hero.discoverBtn': 'Discover our kitchen',
           'hero.photoTag': 'Photo · Summer terrace',
-          'hero.strip.openLabel': 'Open today',
+          'hero.strip.allHours': 'All opening hours',
           'hero.strip.seasonLabel': 'Winter season · from 5 October',
           'hero.notice.title': 'You\'ll now find us indoors, at the Morettina',
           'hero.notice.p1': 'Restaurant & pizzeria',
@@ -7384,6 +7451,82 @@
             }
           });
         });
+      })();
+
+      // Orari di oggi in cima (ora di Locarno): aperto ora / più tardi / chiuso
+      (function () {
+        var box = document.getElementById('todayHours');
+        if (!box) return;
+        var dot = box.querySelector('.strip-item__icon');
+        var label = box.querySelector('.today-label');
+        var times = box.querySelector('.today-times');
+        // minuti dalla mezzanotte; 0 = domenica
+        var HOURS = {
+          0: [],
+          1: [[510, 840], [960, 1260]],
+          2: [[510, 840], [960, 1350]],
+          3: [[510, 840], [960, 1350]],
+          4: [[510, 840], [960, 1350]],
+          5: [[510, 840], [960, 1350]],
+          6: [[510, 840], [1020, 1350]]
+        };
+        var TXT = {
+          it: { openNow: 'Aperto ora', today: 'Oggi', closedNow: 'Chiuso ora', closedToday: 'Chiuso oggi', cafe: 'solo caffetteria',
+            at: 'Riapre alle {t}', tomorrow: 'Riapre domani alle {t}', day: 'Riapre {d} alle {t}' },
+          de: { openNow: 'Jetzt geöffnet', today: 'Heute', closedNow: 'Jetzt geschlossen', closedToday: 'Heute geschlossen', cafe: 'nur Caffetteria',
+            at: 'Öffnet wieder um {t}', tomorrow: 'Öffnet morgen um {t}', day: 'Öffnet {d} um {t}' },
+          en: { openNow: 'Open now', today: 'Today', closedNow: 'Closed now', closedToday: 'Closed today', cafe: 'café only',
+            at: 'Reopens at {t}', tomorrow: 'Reopens tomorrow at {t}', day: 'Reopens {d} at {t}' }
+        };
+        var DAYS = {
+          it: ['domenica', 'lunedì', 'martedì', 'mercoledì', 'giovedì', 'venerdì', 'sabato'],
+          de: ['Sonntag', 'Montag', 'Dienstag', 'Mittwoch', 'Donnerstag', 'Freitag', 'Samstag'],
+          en: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday']
+        };
+        function fmt(m) { return String(Math.floor(m / 60)).padStart(2, '0') + ':' + String(m % 60).padStart(2, '0'); }
+        function nowInLocarno() {
+          var parts = {};
+          new Intl.DateTimeFormat('en-GB', { timeZone: 'Europe/Zurich', weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23' })
+            .formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
+          var wd = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].indexOf(parts.weekday);
+          return { day: wd, min: (+parts.hour) * 60 + (+parts.minute) };
+        }
+        function render() {
+          var lang = window.__t23Lang || 'it';
+          var t = TXT[lang] || TXT.it, days = DAYS[lang] || DAYS.it;
+          var n = nowInLocarno(), slots = HOURS[n.day];
+          var openSlot = null, nextSlot = null;
+          slots.forEach(function (s) {
+            if (n.min >= s[0] && n.min < s[1]) openSlot = s;
+            else if (!nextSlot && n.min < s[0]) nextSlot = s;
+          });
+          var cafe = n.day === 1 ? ' · ' + t.cafe : '';
+          var todayTimes = slots.map(function (s) { return fmt(s[0]) + '–' + fmt(s[1]); }).join(' · ');
+          dot.classList.remove('is-closed', 'is-later');
+          if (openSlot) {
+            label.textContent = t.openNow + cafe;
+            times.textContent = todayTimes;
+          } else if (nextSlot && n.min < slots[0][0]) {
+            label.textContent = t.today + cafe;
+            times.textContent = todayTimes;
+            dot.classList.add('is-later');
+          } else if (nextSlot) {
+            label.textContent = t.closedNow;
+            times.textContent = t.at.replace('{t}', fmt(nextSlot[0]));
+            dot.classList.add('is-closed');
+          } else {
+            // chiuso per oggi: cerca il prossimo giorno di apertura
+            var d = n.day, add = 0;
+            do { d = (d + 1) % 7; add++; } while (!HOURS[d].length);
+            label.textContent = slots.length ? t.closedNow : t.closedToday;
+            var at = fmt(HOURS[d][0][0]);
+            times.textContent = add === 1 ? t.tomorrow.replace('{t}', at) : t.day.replace('{d}', days[d]).replace('{t}', at);
+            dot.classList.add('is-closed');
+          }
+        }
+        render();
+        setInterval(render, 60000);
+        new MutationObserver(render).observe(document.documentElement, { attributes: true, attributeFilter: ['lang'] });
       })();
 
       // Avviso invernale in alto: sparisce dal 1° novembre
