@@ -2150,45 +2150,23 @@
       line-height: 1.5;
     }
 
-    /* Orario cucina — pill liquid glass con icona orologio */
+    /* Nota forno a legna — editoriale: filetto oro a sinistra, serif corsivo, niente pill */
     .about__copy p.about__hours {
-      display: inline-flex;
-      align-items: center;
-      gap: 12px;
-      margin: 6px 0 24px;
-      padding: 11px 21px 11px 16px;
-      border-radius: 999px;
-      font-family: var(--sans);
-      font-style: normal;
-      font-size: 14px;
-      font-weight: 500;
-      line-height: 1.4;
-      letter-spacing: .015em;
+      max-width: 34em;
+      margin: 8px 0 26px;
+      padding: 2px 0 2px 20px;
+      border-left: 2px solid var(--gold);
+      font-family: var(--serif);
+      font-style: italic;
+      font-size: 17px;
+      font-weight: 400;
+      line-height: 1.55;
       color: var(--ink-soft);
-      background: linear-gradient(180deg, rgba(255, 255, 255, .82), rgba(254, 252, 246, .5));
-      border: 1px solid rgba(182, 135, 58, .22);
-      box-shadow: var(--shadow-sm), inset 0 1px 0 rgba(255, 255, 255, .85);
-      -webkit-backdrop-filter: blur(10px) saturate(1.1);
-      backdrop-filter: blur(10px) saturate(1.1);
-    }
-
-    .about__hours__ico {
-      flex: none;
-      width: 18px;
-      height: 18px;
-      color: var(--gold);
-    }
-
-    .about__copy p.about__hours span {
-      padding-left: 13px;
-      border-left: 1px solid rgba(182, 135, 58, .25);
     }
 
     .about__copy p.about__hours strong {
-      font-weight: 700;
+      font-weight: 600;
       color: var(--ink);
-      letter-spacing: .03em;
-      font-variant-numeric: tabular-nums;
     }
 
     /* Orario in evidenza nella nota orari in fondo */
@@ -4979,18 +4957,13 @@
           </div>
           <div class="about__copy reveal">
             <span class="eyebrow" data-i18n="about.eyebrow">La nostra cucina</span>
-            <h2 class="section-title" data-i18n-html="about.title">La pizza, <em>fatta da noi</em>.</h2>
+            <h2 class="section-title" data-i18n-html="about.title">La pizza, <em>firmata 23</em>.</h2>
             <p class="lead" data-i18n="about.lead">
               Scopri il sapore delle nostre pizze, fragranti e profumate.
             </p>
             <p class="about__hours" role="note">
-              <svg class="about__hours__ico" viewBox="0 0 24 24" fill="none" stroke="currentColor"
-                stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <path
-                  d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z" />
-              </svg>
-              <span data-i18n-html="about.oven">Il <strong>forno a legna</strong> è presente solo al
-                ristorante esterno del Tennis Club</span>
+              <span data-i18n-html="about.oven">Nella bella stagione, nella sede esterna al Bosco Isolino,
+                la sforniamo dal nostro <strong>forno a legna</strong></span>
             </p>
             <p class="about__diet" data-i18n="about.diet">
               Senza glutine &middot; Senza lattosio
@@ -6675,9 +6648,9 @@
           /* about/filosofia */
           'about.tag': 'Pizzeria',
           'about.eyebrow': 'Unsere Küche',
-          'about.title': 'Die Pizza, <em>hausgemacht</em>.',
+          'about.title': 'Die Pizza, <em>signiert 23</em>.',
           'about.lead': 'Entdecken Sie den Geschmack unserer duftenden, knusprigen Pizzen.',
-          'about.oven': 'Den <strong>Holzofen</strong> gibt es nur im Aussenrestaurant beim Tennis Club',
+          'about.oven': 'In der warmen Jahreszeit backen wir sie an unserem Aussenstandort beim Bosco Isolino in unserem <strong>Holzofen</strong>',
           'about.diet': 'Glutenfrei · Laktosefrei',
           'about.cta': 'Die ganze Speisekarte entdecken',
           /* feat23 */
@@ -6981,9 +6954,9 @@
           /* about/filosofia */
           'about.tag': 'Pizzeria',
           'about.eyebrow': 'Our kitchen',
-          'about.title': 'The pizza, <em>made in-house</em>.',
+          'about.title': 'The pizza, <em>signed 23</em>.',
           'about.lead': 'Discover the taste of our fragrant, crisp pizzas.',
-          'about.oven': 'The <strong>wood-fired oven</strong> is only at our outdoor restaurant at the Tennis Club',
+          'about.oven': 'In the warmer months, at our outdoor venue by the Bosco Isolino, it comes straight from our <strong>wood-fired oven</strong>',
           'about.diet': 'Gluten-free · Lactose-free',
           'about.cta': 'See the full menu',
           /* feat23 */
