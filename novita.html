@@ -490,9 +490,45 @@
       color: var(--ink-soft);
     }
 
+    /* Locandina: mostrata intera, senza ritagli */
+    .nv-card--poster {
+      grid-template-columns: minmax(0, 360px) 1fr;
+    }
+
+    .nv-card--poster .nv-feature__img {
+      background: #1d120d;
+    }
+
+    .nv-card--poster .nv-feature__img img {
+      height: auto;
+      aspect-ratio: 1145 / 1374;
+      object-fit: contain;
+    }
+
+    .nv-price {
+      font-family: var(--serif);
+      font-size: 30px;
+      font-weight: 700;
+      line-height: 1;
+      color: var(--clay);
+      margin: 4px 0 14px;
+    }
+
+    .nv-price small {
+      font-family: var(--sans);
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--ink-mute);
+      margin-left: 4px;
+    }
+
     @media (max-width: 800px) {
       .nv-card--feature {
         grid-template-columns: 1fr;
+      }
+
+      .nv-card--poster .nv-feature__img {
+        aspect-ratio: auto;
       }
 
       .nv-feature__img {
@@ -588,6 +624,37 @@
     <div class="nv-main">
       <div class="nv-wrap">
         <div class="nv-grid">
+
+          <!-- 00 · Chinoise a volontà -->
+          <article class="nv-card nv-card--feature nv-card--poster">
+            <a class="nv-feature__img" href="Immagini/eventi/chinoise-1145w.jpg" target="_blank" rel="noopener">
+              <img src="Immagini/eventi/chinoise-800w.jpg"
+                srcset="Immagini/eventi/chinoise-480w.jpg 480w, Immagini/eventi/chinoise-800w.jpg 800w, Immagini/eventi/chinoise-1145w.jpg 1145w"
+                sizes="(max-width: 800px) 100vw, 360px" width="1145" height="1374"
+                alt="Locandina: Chinoise a volontà, manzo e/o cervo con contorni, 36 franchi a persona" decoding="async"
+                data-i18n-alt="c.alt" />
+            </a>
+            <div class="nv-feature__body">
+              <span class="nv-tag" data-i18n="c.tag">Da martedì 3 novembre</span>
+              <h2 data-i18n="c.title">Chinoise a volontà</h2>
+              <p class="nv-text" data-i18n="c.text">Manzo e/o cervo da cuocere al tavolo nel brodo caldo, a volontà,
+                con contorni e salse. Alla Morettina.</p>
+              <p class="nv-price">Fr&nbsp;36.00<small data-i18n="c.per">a persona</small></p>
+              <ul class="nv-points">
+                <li data-i18n-html="c.l1"><strong>Manzo e/o cervo</strong> con contorni</li>
+                <li data-i18n-html="c.l2">Minimo <strong>due persone</strong></li>
+                <li data-i18n-html="c.l3">Solo <strong>su prenotazione</strong></li>
+              </ul>
+              <div class="nv-links">
+                <a class="nv-btn nv-btn--primary" href="tel:+41917511116"><svg viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                    <path
+                      d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6 6l1.3-1.3a2 2 0 0 1 2.1-.4c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z" />
+                  </svg><span data-i18n="c.call">Prenota: 091 751 11 16</span></a>
+                <a class="nv-btn" href="index.html#prenota" data-i18n="r.book">Prenota un tavolo</a>
+              </div>
+            </div>
+          </article>
 
           <!-- 0 · Sapori d'autunno (carta a tempo limitato) -->
           <article class="nv-card nv-card--feature">
@@ -738,6 +805,15 @@
           'f2.b': 'Mar – Sab', 'f2.s': 'pranzo e cena alla Morettina',
           'f3.b': 'Selvaggina', 'f3.s': "la carta Sapori d'autunno, per un periodo limitato",
           'f4.b': 'Presto', 'f4.s': 'la pizza consegnata a casa',
+          'c.tag': "Da martedì 3 novembre",
+          'c.title': "Chinoise a volontà",
+          'c.text': "Manzo e/o cervo da cuocere al tavolo nel brodo caldo, a volontà, con contorni e salse. Alla Morettina.",
+          'c.per': "a persona",
+          'c.l1': "<strong>Manzo e/o cervo</strong> con contorni",
+          'c.l2': "Minimo <strong>due persone</strong>",
+          'c.l3': "Solo <strong>su prenotazione</strong>",
+          'c.call': "Prenota: 091 751 11 16",
+          'c.alt': "Locandina: Chinoise a volontà, manzo e/o cervo con contorni, 36 franchi a persona",
           'm.tag': 'Al coperto · dal 5 ottobre',
           'm.title': 'Ristorante & pizzeria',
           'm.l1': 'Sala interna, calda e raccolta, per <strong>pranzo e cena</strong>',
@@ -782,6 +858,15 @@
           'f2.b': 'Di – Sa', 'f2.s': 'Mittag- und Abendessen an der Morettina',
           'f3.b': 'Wild', 'f3.s': "die Wildkarte Sapori d'autunno, für kurze Zeit",
           'f4.b': 'Bald', 'f4.s': 'Pizza nach Hause geliefert',
+          'c.tag': "Ab Dienstag, 3. November",
+          'c.title': "Fondue Chinoise à discrétion",
+          'c.text': "Rind und/oder Hirsch, am Tisch in heisser Brühe gegart, so viel Sie mögen, mit Beilagen und Saucen. An der Morettina.",
+          'c.per': "pro Person",
+          'c.l1': "<strong>Rind und/oder Hirsch</strong> mit Beilagen",
+          'c.l2': "Ab <strong>zwei Personen</strong>",
+          'c.l3': "Nur <strong>auf Reservierung</strong>",
+          'c.call': "Reservieren: 091 751 11 16",
+          'c.alt': "Plakat: Fondue Chinoise à discrétion, Rind und/oder Hirsch mit Beilagen, 36 Franken pro Person",
           'm.tag': 'Drinnen · ab 5. Oktober',
           'm.title': 'Restaurant & Pizzeria',
           'm.l1': 'Warmer, gemütlicher Innenraum für <strong>Mittag- und Abendessen</strong>',
@@ -826,6 +911,15 @@
           'f2.b': 'Tue – Sat', 'f2.s': 'lunch and dinner at the Morettina',
           'f3.b': 'Game', 'f3.s': "the Sapori d'autunno game menu, for a limited time",
           'f4.b': 'Soon', 'f4.s': 'pizza delivered to your door',
+          'c.tag': "From Tuesday 3 November",
+          'c.title': "All-you-can-eat fondue chinoise",
+          'c.text': "Beef and/or venison, cooked at the table in hot broth, as much as you like, with side dishes and sauces. At the Morettina.",
+          'c.per': "per person",
+          'c.l1': "<strong>Beef and/or venison</strong> with side dishes",
+          'c.l2': "Minimum <strong>two people</strong>",
+          'c.l3': "<strong>Booking required</strong>",
+          'c.call': "Book: 091 751 11 16",
+          'c.alt': "Poster: all-you-can-eat fondue chinoise, beef and/or venison with side dishes, 36 francs per person",
           'm.tag': 'Indoors · from 5 October',
           'm.title': 'Restaurant & pizzeria',
           'm.l1': 'A warm, cosy indoor dining room for <strong>lunch and dinner</strong>',
@@ -873,6 +967,10 @@
         document.querySelectorAll('[data-i18n-html]').forEach(function (el) {
           var k = el.getAttribute('data-i18n-html');
           if (d[k] != null) el.innerHTML = d[k];
+        });
+        document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+          var k = el.getAttribute('data-i18n-alt');
+          if (d[k] != null) el.alt = d[k];
         });
         document.querySelectorAll('.lang button').forEach(function (b) {
           b.setAttribute('aria-pressed', b.getAttribute('data-lang') === lang ? 'true' : 'false');
