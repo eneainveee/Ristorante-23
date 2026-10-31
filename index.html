@@ -1564,6 +1564,64 @@
       }
     }
 
+    /* Locandina (es. Chinoise): mostrata intera, mai ritagliata */
+    .evento--poster .evento__photo {
+      aspect-ratio: auto;
+      background: #1d120d;
+    }
+
+    .evento--poster .evento__photo img {
+      height: auto;
+      aspect-ratio: 1145 / 1374;
+      object-fit: contain;
+    }
+
+    .evento--poster .evento__text {
+      flex: none;
+    }
+
+    .evento__facts {
+      list-style: none;
+      margin: 4px 0 6px;
+      padding: 0;
+      border-top: 1px solid var(--glass-line);
+      font-size: 14px;
+    }
+
+    .evento__facts li {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 16px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--glass-line);
+      color: var(--ink-mute);
+    }
+
+    .evento__facts b {
+      font-weight: 600;
+      color: var(--ink);
+      text-align: right;
+    }
+
+    .evento__facts .price {
+      font-family: var(--serif);
+      font-size: 26px;
+      line-height: 1;
+      font-weight: 700;
+      color: var(--clay);
+    }
+
+    @media (min-width: 641px) {
+      .eventi__grid .evento--feature.evento--poster .evento__photo {
+        flex: 0 0 min(38%, 420px);
+      }
+
+      .eventi__grid .evento--feature.evento--poster .evento__photo img {
+        position: static;
+      }
+    }
+
     /* Sapori d'autunno: riquadro grafico con foglie e palchi di cervo */
     .evento__photo.evento__art--autunno {
       background: #2b1610 url("Immagini/eventi/sapori-autunno-sfondo.svg") center / cover no-repeat;
@@ -5664,13 +5722,43 @@
               Le ultime novità, le grigliate nel weekend e gli spazi riservabili per occasioni speciali.
             </p>
             <div class="eventi__meta">
-              <span data-i18n="eventi.meta.count">3 novità</span>
+              <span data-i18n="eventi.meta.count">4 novità</span>
               <span>Locarno · TI</span>
             </div>
           </div>
         </header>
 
         <div class="eventi__grid is-centered">
+
+          <a class="evento evento--feature evento--poster reveal" href="tel:+41917511116">
+            <div class="evento__photo">
+              <img src="Immagini/eventi/chinoise-800w.jpg"
+                srcset="Immagini/eventi/chinoise-480w.jpg 480w, Immagini/eventi/chinoise-800w.jpg 800w, Immagini/eventi/chinoise-1145w.jpg 1145w"
+                sizes="(max-width: 640px) 100vw, 420px" width="1145" height="1374"
+                alt="Locandina: Chinoise a volontà, manzo e/o cervo con contorni, 36 franchi a persona" loading="lazy"
+                decoding="async" data-i18n-alt="eventi.e5.alt" />
+            </div>
+            <div class="evento__body">
+              <h3 class="evento__title" data-i18n-html="eventi.e5.title">Chinoise a volontà,<br><em>da martedì 3 novembre.</em></h3>
+              <p class="evento__text" data-i18n="eventi.e5.text">Manzo e/o cervo da cuocere al tavolo nel brodo caldo, a
+                volontà, con contorni e salse. Alla Morettina.</p>
+              <ul class="evento__facts">
+                <li><span data-i18n="eventi.e5.f1">A persona</span><b class="price">Fr 36</b></li>
+                <li><span data-i18n="eventi.e5.f2">Carne</span><b data-i18n="eventi.e5.f2v">Manzo e/o cervo, con contorni</b></li>
+                <li><span data-i18n="eventi.e5.f3">Persone</span><b data-i18n="eventi.e5.f3v">Minimo due</b></li>
+                <li><span data-i18n="eventi.e5.f4">Prenotazione</span><b data-i18n="eventi.e5.f4v">Obbligatoria</b></li>
+              </ul>
+              <div class="evento__cta">
+                <span data-i18n="eventi.e5.cta">Prenota: 091 751 11 16</span>
+                <span class="arrow" aria-hidden="true">
+                  <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M5 12h14M13 6l6 6-6 6" />
+                  </svg>
+                </span>
+              </div>
+            </div>
+          </a>
 
           <a class="evento evento--feature reveal" href="#menu-autunno">
             <div class="evento__photo evento__art evento__art--autunno">
@@ -6828,7 +6916,12 @@
           'eventi.eyebrow': 'News & Events',
           'eventi.title': 'Was im Ristorante <span class="num">23</span> <em>läuft</em><span class="dot">.</span>',
           'eventi.lead': 'Die neuesten News, Grillabende am Wochenende und reservierbare Räume für besondere Anlässe.',
-          'eventi.meta.count': '3 Neuheiten',
+          'eventi.meta.count': '4 Neuheiten',
+          'eventi.e5.title': 'Fondue Chinoise à discrétion,<br><em>ab Dienstag, 3. November.</em>',
+          'eventi.e5.text': 'Rind und/oder Hirsch, am Tisch in heisser Brühe gegart, so viel Sie mögen, mit Beilagen und Saucen. An der Morettina.',
+          'eventi.e5.f1': 'Pro Person', 'eventi.e5.f2': 'Fleisch', 'eventi.e5.f2v': 'Rind und/oder Hirsch, mit Beilagen', 'eventi.e5.f3': 'Personen', 'eventi.e5.f3v': 'Ab zwei', 'eventi.e5.f4': 'Reservierung', 'eventi.e5.f4v': 'Erforderlich',
+          'eventi.e5.cta': 'Reservieren: 091 751 11 16',
+          'eventi.e5.alt': 'Plakat: Fondue Chinoise à discrétion, Rind und/oder Hirsch mit Beilagen, 36 Franken pro Person',
           'eventi.e4.tag': 'Neue Karte',
           'eventi.e4.limited': 'Nur für kurze Zeit',
           'eventi.e4.game': 'Hirsch · Wildschwein · Reh',
@@ -7135,7 +7228,12 @@
           'eventi.eyebrow': 'News & events',
           'eventi.title': 'What\'s <em>on</em> at Ristorante <span class="num">23</span><span class="dot">.</span>',
           'eventi.lead': 'The latest news, weekend grill nights and bookable spaces for special occasions.',
-          'eventi.meta.count': '3 new',
+          'eventi.meta.count': '4 new',
+          'eventi.e5.title': 'All-you-can-eat fondue chinoise,<br><em>from Tuesday 3 November.</em>',
+          'eventi.e5.text': 'Beef and/or venison, cooked at the table in hot broth, as much as you like, with side dishes and sauces. At the Morettina.',
+          'eventi.e5.f1': 'Per person', 'eventi.e5.f2': 'Meat', 'eventi.e5.f2v': 'Beef and/or venison, with sides', 'eventi.e5.f3': 'Guests', 'eventi.e5.f3v': 'Minimum two', 'eventi.e5.f4': 'Booking', 'eventi.e5.f4v': 'Required',
+          'eventi.e5.cta': 'Book: 091 751 11 16',
+          'eventi.e5.alt': 'Poster: all-you-can-eat fondue chinoise, beef and/or venison with side dishes, 36 francs per person',
           'eventi.e4.tag': 'New menu',
           'eventi.e4.limited': 'Limited time',
           'eventi.e4.game': 'Venison · Wild boar · Roe deer',
@@ -7312,6 +7410,18 @@
           } else {
             var orig = originalAttrs.get(el);
             if (orig && orig.placeholder != null) el.setAttribute('placeholder', orig.placeholder);
+          }
+        });
+
+        /* alt delle immagini */
+        document.querySelectorAll('[data-i18n-alt]').forEach(function (el) {
+          var key = el.getAttribute('data-i18n-alt');
+          captureAttr(el, 'alt');
+          if (dict && dict[key] != null) {
+            el.setAttribute('alt', dict[key]);
+          } else {
+            var orig = originalAttrs.get(el);
+            if (orig && orig.alt != null) el.setAttribute('alt', orig.alt);
           }
         });
 
