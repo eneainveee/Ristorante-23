@@ -3467,6 +3467,87 @@
       cursor: pointer;
     }
 
+    /* Tipo di prenotazione: tavolo / serata Chinoise */
+    .rf-kind {
+      border: 0;
+      margin: 0;
+      padding: 0;
+      min-width: 0;
+    }
+
+    .rf-kind legend {
+      padding: 0;
+      margin-bottom: 8px;
+      font-family: var(--sans);
+      font-size: 12px;
+      font-weight: 600;
+      letter-spacing: .14em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .rf-kind__opts {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+
+    .rf-kind__opt {
+      position: relative;
+      display: grid;
+      gap: 2px;
+      padding: 12px 14px 12px 42px;
+      background: #fff;
+      border: 1px solid rgba(20, 17, 15, .12);
+      border-radius: 6px;
+      cursor: pointer;
+      transition: border-color .2s var(--ease-out), background .2s var(--ease-out);
+    }
+
+    .rf-kind__opt:hover {
+      border-color: rgba(20, 17, 15, .22);
+    }
+
+    .rf-kind__opt input {
+      position: absolute;
+      left: 14px;
+      top: 14px;
+      width: 18px;
+      height: 18px;
+      margin: 0;
+      accent-color: var(--gold);
+      cursor: pointer;
+    }
+
+    .rf-kind__opt b {
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--ink);
+    }
+
+    .rf-kind__opt small {
+      font-size: 12.5px;
+      line-height: 1.4;
+      color: var(--ink-mute);
+    }
+
+    .rf-kind__opt:has(input:checked) {
+      border-color: var(--gold);
+      background: #FFFBF1;
+      box-shadow: 0 0 0 1px var(--gold);
+    }
+
+    .rf-kind__opt:has(input:focus-visible) {
+      outline: 2px solid var(--clay);
+      outline-offset: 2px;
+    }
+
+    @media (max-width: 480px) {
+      .rf-kind__opts {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .rf-consent {
       display: flex;
       align-items: flex-start;
@@ -5730,7 +5811,7 @@
 
         <div class="eventi__grid is-centered">
 
-          <a class="evento evento--feature evento--poster reveal" href="tel:+41917511116">
+          <a class="evento evento--feature evento--poster reveal" href="#prenota-chinoise">
             <div class="evento__photo">
               <img src="Immagini/eventi/chinoise-800w.jpg"
                 srcset="Immagini/eventi/chinoise-480w.jpg 480w, Immagini/eventi/chinoise-800w.jpg 800w, Immagini/eventi/chinoise-1145w.jpg 1145w"
@@ -5744,12 +5825,11 @@
                 volontà, con contorni e salse. Alla Morettina.</p>
               <ul class="evento__facts">
                 <li><span data-i18n="eventi.e5.f1">A persona</span><b class="price">Fr 36</b></li>
-                <li><span data-i18n="eventi.e5.f2">Carne</span><b data-i18n="eventi.e5.f2v">Manzo e/o cervo, con contorni</b></li>
                 <li><span data-i18n="eventi.e5.f3">Persone</span><b data-i18n="eventi.e5.f3v">Minimo due</b></li>
                 <li><span data-i18n="eventi.e5.f4">Prenotazione</span><b data-i18n="eventi.e5.f4v">Obbligatoria</b></li>
               </ul>
               <div class="evento__cta">
-                <span data-i18n="eventi.e5.cta">Prenota: 091 751 11 16</span>
+                <span data-i18n="eventi.e5.cta">Prenota la serata Chinoise</span>
                 <span class="arrow" aria-hidden="true">
                   <svg viewBox="0 0 24 24" width="11" height="11" fill="none" stroke="currentColor" stroke-width="2.2"
                     stroke-linecap="round" stroke-linejoin="round">
@@ -6065,6 +6145,22 @@
           </div>
 
           <input type="hidden" name="sede" value="coperto" />
+
+          <fieldset class="rf-row rf-kind">
+            <legend data-i18n="form.kind">Prenotazione</legend>
+            <div class="rf-kind__opts">
+              <label class="rf-kind__opt">
+                <input type="radio" name="tipo" value="tavolo" checked />
+                <b data-i18n="form.kind.table">Tavolo</b>
+                <small data-i18n="form.kind.table.s">Pranzo o cena, dalla carta</small>
+              </label>
+              <label class="rf-kind__opt">
+                <input type="radio" name="tipo" value="chinoise" />
+                <b data-i18n="form.kind.chinoise">Serata Chinoise</b>
+                <small data-i18n="form.kind.chinoise.s">A volontà · Fr 36 a persona · minimo 2 persone · dal 3 novembre</small>
+              </label>
+            </div>
+          </fieldset>
 
           <div class="rf-row rf-row--3">
             <div class="rf-field rf-date">
@@ -6510,8 +6606,14 @@
       function maxDate() {
         return '';
       }
+      var CHINOISE_FROM = '2026-11-03';
+      function isChinoise() {
+        var r = f.querySelector('input[name="tipo"]:checked');
+        return !!r && r.value === 'chinoise';
+      }
       function isSelectable(iso) {
         if (iso < minDate()) return false;
+        if (isChinoise() && iso < CHINOISE_FROM) return false;
         var day = new Date(iso + 'T12:00:00').getDay();
         if (day === 0 || day === 1) return false; // domenica chiuso, lunedì cucina chiusa
         return true;
@@ -6520,7 +6622,28 @@
         // una data non più valida (es. passata) viene tolta
         if (dateInput.value && !isSelectable(dateInput.value)) setDate('');
         if (!cal.hidden) renderCal();
+        // Chinoise: minimo 2 persone
+        f.querySelectorAll('select[name="persone"] option').forEach(function (o) {
+          if (o.textContent.trim() === '1') {
+            o.disabled = isChinoise();
+            if (o.disabled && o.selected) f.persone.value = '';
+          }
+        });
       }
+      f.querySelectorAll('input[name="tipo"]').forEach(function (r) {
+        r.addEventListener('change', syncPlace);
+      });
+      // Link "Prenota la serata Chinoise" (#prenota-chinoise): preseleziona e porta al modulo
+      function openChinoiseFromHash() {
+        if (location.hash !== '#prenota-chinoise') return;
+        var r = f.querySelector('input[name="tipo"][value="chinoise"]');
+        if (r) { r.checked = true; syncPlace(); }
+        var sec = document.getElementById('prenota');
+        if (sec) sec.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        history.replaceState(null, '', location.pathname + location.search + '#prenota');
+      }
+      window.addEventListener('hashchange', openChinoiseFromHash);
+      openChinoiseFromHash();
 
       // Calendario: le date non prenotabili sono disattivate
       function curLang() { return window.__t23Lang || 'it'; }
@@ -6645,8 +6768,13 @@
       }
       function buildMessage(data) {
         var lines = [
-          tWa('wa.greeting', 'Ciao Ristorante 23, vorrei prenotare un tavolo.'),
+          data.tipo === 'chinoise'
+            ? tWa('wa.greeting.chinoise', 'Ciao Ristorante 23, vorrei prenotare per la SERATA CHINOISE a volontà.')
+            : tWa('wa.greeting', 'Ciao Ristorante 23, vorrei prenotare un tavolo.'),
           '',
+          tWa('wa.kind', 'Prenotazione') + ': ' + (data.tipo === 'chinoise'
+            ? tWa('wa.kind.chinoise', 'SERATA CHINOISE (Fr 36 a persona)')
+            : tWa('wa.kind.table', 'Tavolo')),
           tWa('wa.name', 'Nome') + ': ' + (data.nome || ''),
           tWa('wa.phone', 'Telefono') + ': ' + (data.tel || ''),
         ];
@@ -6676,6 +6804,7 @@
           tel: (fd.get('tel') || '').toString().trim(),
           email: (fd.get('email') || '').toString().trim(),
           sede: (fd.get('sede') || '').toString(),
+          tipo: (fd.get('tipo') || '').toString(),
           data: (fd.get('data') || '').toString().trim(),
           ora: (fd.get('ora') || '').toString().trim(),
           persone: (fd.get('persone') || '').toString().trim(),
@@ -6919,8 +7048,8 @@
           'eventi.meta.count': '4 Neuheiten',
           'eventi.e5.title': 'Fondue Chinoise à discrétion,<br><em>ab Dienstag, 3. November.</em>',
           'eventi.e5.text': 'Rind und/oder Hirsch, am Tisch in heisser Brühe gegart, so viel Sie mögen, mit Beilagen und Saucen. An der Morettina.',
-          'eventi.e5.f1': 'Pro Person', 'eventi.e5.f2': 'Fleisch', 'eventi.e5.f2v': 'Rind und/oder Hirsch, mit Beilagen', 'eventi.e5.f3': 'Personen', 'eventi.e5.f3v': 'Ab zwei', 'eventi.e5.f4': 'Reservierung', 'eventi.e5.f4v': 'Erforderlich',
-          'eventi.e5.cta': 'Reservieren: 091 751 11 16',
+          'eventi.e5.f1': 'Pro Person', 'eventi.e5.f3': 'Personen', 'eventi.e5.f3v': 'Ab zwei', 'eventi.e5.f4': 'Reservierung', 'eventi.e5.f4v': 'Erforderlich',
+          'eventi.e5.cta': 'Chinoise-Abend reservieren',
           'eventi.e5.alt': 'Plakat: Fondue Chinoise à discrétion, Rind und/oder Hirsch mit Beilagen, 36 Franken pro Person',
           'eventi.e4.tag': 'Neue Karte',
           'eventi.e4.limited': 'Nur für kurze Zeit',
@@ -7005,6 +7134,10 @@
           'aria.closeMenu': 'Menü schließen',
           /* whatsapp */
           'wa.greeting': 'Hallo Ristorante 23, ich möchte einen Tisch reservieren.',
+          'wa.greeting.chinoise': 'Hallo Ristorante 23, ich möchte für den CHINOISE-ABEND à discrétion reservieren.',
+          'wa.kind': 'Reservierung', 'wa.kind.table': 'Tisch', 'wa.kind.chinoise': 'CHINOISE-ABEND (CHF 36 pro Person)',
+          'form.kind': 'Reservierung', 'form.kind.table': 'Tisch', 'form.kind.table.s': 'Mittag- oder Abendessen, à la carte',
+          'form.kind.chinoise': 'Chinoise-Abend', 'form.kind.chinoise.s': 'À discrétion · CHF 36 pro Person · ab 2 Personen · ab 3. November',
           'wa.name': 'Name',
           'wa.phone': 'Telefon',
           'wa.email': 'E-Mail',
@@ -7231,8 +7364,8 @@
           'eventi.meta.count': '4 new',
           'eventi.e5.title': 'All-you-can-eat fondue chinoise,<br><em>from Tuesday 3 November.</em>',
           'eventi.e5.text': 'Beef and/or venison, cooked at the table in hot broth, as much as you like, with side dishes and sauces. At the Morettina.',
-          'eventi.e5.f1': 'Per person', 'eventi.e5.f2': 'Meat', 'eventi.e5.f2v': 'Beef and/or venison, with sides', 'eventi.e5.f3': 'Guests', 'eventi.e5.f3v': 'Minimum two', 'eventi.e5.f4': 'Booking', 'eventi.e5.f4v': 'Required',
-          'eventi.e5.cta': 'Book: 091 751 11 16',
+          'eventi.e5.f1': 'Per person', 'eventi.e5.f3': 'Guests', 'eventi.e5.f3v': 'Minimum two', 'eventi.e5.f4': 'Booking', 'eventi.e5.f4v': 'Required',
+          'eventi.e5.cta': 'Book the Chinoise evening',
           'eventi.e5.alt': 'Poster: all-you-can-eat fondue chinoise, beef and/or venison with side dishes, 36 francs per person',
           'eventi.e4.tag': 'New menu',
           'eventi.e4.limited': 'Limited time',
@@ -7317,6 +7450,10 @@
           'aria.closeMenu': 'Close menu',
           /* whatsapp */
           'wa.greeting': 'Hello Ristorante 23, I\'d like to book a table.',
+          'wa.greeting.chinoise': 'Hello Ristorante 23, I\'d like to book for the all-you-can-eat CHINOISE EVENING.',
+          'wa.kind': 'Booking', 'wa.kind.table': 'Table', 'wa.kind.chinoise': 'CHINOISE EVENING (CHF 36 per person)',
+          'form.kind': 'Booking', 'form.kind.table': 'Table', 'form.kind.table.s': 'Lunch or dinner, from the menu',
+          'form.kind.chinoise': 'Chinoise evening', 'form.kind.chinoise.s': 'All you can eat · CHF 36 per person · min. 2 people · from 3 November',
           'wa.name': 'Name',
           'wa.phone': 'Phone',
           'wa.email': 'Email',
